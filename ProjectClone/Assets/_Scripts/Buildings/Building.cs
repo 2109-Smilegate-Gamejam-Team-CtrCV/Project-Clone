@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class Building : MonoBehaviour, ICell
+public  class Building : MonoBehaviour, ICell
 {
     [SerializeField]
     private Vector2Int position;
