@@ -20,6 +20,8 @@ public class Actor : MonoBehaviour, IReboundable
     protected virtual void Awake()
     {
         render = GetComponentInChildren<SpriteRenderer>();
+        render.sortingOrder = -Utility.World2Grid(transform.position).y;
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
