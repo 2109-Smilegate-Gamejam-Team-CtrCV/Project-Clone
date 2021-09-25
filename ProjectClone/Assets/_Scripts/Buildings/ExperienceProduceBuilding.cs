@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperienceProduceBuilding : MonoBehaviour
+public class ExperienceProduceBuilding : Building
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private int experienceCreateValue;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private float experienceCreateDelay;
+
+    [SerializeField]
+    private float experienceCreateDelaySpace;
+
+    private float timer;
+
+    private void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer > experienceCreateDelay)
+        {
+            timer -= experienceCreateDelay;
+            experienceCreateDelay += experienceCreateDelaySpace;
+            GameManager.Instance.gamePresenter.gameModel.AddExperience(experienceCreateValue);
+        }
     }
 }

@@ -19,12 +19,20 @@ public class MapGenerator: MonoBehaviour
     public Vector2Int spawnSize;
 
     public float[] array;
+    public Dictionary<Vector2Int, bool> exist;
+
+
+    public bool IsExist(Vector2Int pos)
+    {
+        return exist.ContainsKey(pos) && exist[pos];
+    }
+
     public void Generator()
     {
+        exist = new Dictionary<Vector2Int, bool>();
         array = new float[size.x * size.y];
         texture = new Texture2D(size.x, size.y, TextureFormat.RGBA32, false);
-           FastNoise fastNoise= new FastNoise();
-        fastNoise.SetSeed(Random.Range(0, 10000));
+        FastNoise fastNoise= new FastNoise();
         fastNoise.SetFrequency(0.12f);
         fastNoise.SetFractalLacunarity(0);
         fastNoise.SetNoiseType(FastNoise.NoiseType.Cellular);
@@ -51,16 +59,25 @@ public class MapGenerator: MonoBehaviour
             {
                 float value = array[y * size.x + x];
                 pixels[y * size.x + x] = (value > cut) ? Color.green : Color.blue;
-                tilemap.SetTile(new Vector3Int(x, y, 0), (value > cut) ? grass : water);
+                bool v = (value > cut);
+                tilemap.SetTile(new Vector3Int(x, y, 0), v ? grass : water);
+
+                exist.Add(new Vector2Int(x, y), v);
                 if (value > cut && Random.Range(0, 100.0f) < 3.0f)
                 {
                     tilemap1.SetTile(new Vector3Int(x, y, 0), random);
                 }
             }
         }
+
+
+      
+
         texture.SetPixels(pixels);
         texture.Apply();
         spriteRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, size.x, size.y), Vector2.one / 2);
 
     }
+
+
 }

@@ -3,16 +3,15 @@ using UniRx;
 
 public class GameModel
 {
-    public readonly ReactiveProperty<int> health;
+    public readonly ReactiveProperty<int> heart;
     public readonly ReactiveProperty<float> mental;
     public readonly ReactiveProperty<int> mineral;
     public readonly ReactiveProperty<int> organism;
     public readonly ReactiveProperty<int> experience;
 
-
     public GameModel()
     {
-        health = new ReactiveProperty<int>(0);
+        heart = new ReactiveProperty<int>(5);
         mental = new ReactiveProperty<float>(100);
         mineral = new ReactiveProperty<int>(0);
         organism = new ReactiveProperty<int>(0);
@@ -27,12 +26,16 @@ public class GameModel
     {
         mineral.Value += v;
     }
-    public void HealthHeal(int value)
+    public void HeartHeal(int value)
     {
-        health.Value += value;
+        heart.Value += value;
     }
     internal void AddMental(float value)
     {
         mental.Value += value;
+    }
+    internal void AddExperience(int value)
+    {
+        experience.Value += value;
     }
 }

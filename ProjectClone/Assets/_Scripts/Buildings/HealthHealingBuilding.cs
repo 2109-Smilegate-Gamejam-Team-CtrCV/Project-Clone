@@ -22,7 +22,7 @@ public class HealthHealingBuilding : Building
         {
             timer -= healthHealDelay;
             healthHealDelay += healthHealDelaySpace;
-            GameManager.Instance.gamePresenter.gameModel.HealthHeal(1);
+            GameManager.Instance.gamePresenter.gameModel.HeartHeal(1);
         }
     }
 }
