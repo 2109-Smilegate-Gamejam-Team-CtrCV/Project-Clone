@@ -624,7 +624,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -788,9 +788,7 @@ MonoBehaviour:
   gamePresenter: {fileID: 1435828929}
   gameGenerator: {fileID: 1448690520}
   building:
-  - {fileID: -5312975167922376072, guid: e936390276011294787b3a5b20bb3ad2, type: 3}
-  - {fileID: -5312975167922376072, guid: 45fdebe11847efe458b01929976a4499, type: 3}
-  - {fileID: -5312975167922376072, guid: 91d4df78ecf7af645a9de5f295c02c86, type: 3}
+  - {fileID: 6237092265049229275, guid: 3495dd02927157344917991cfb5dfcd4, type: 3}
   - {fileID: 6237092265049229275, guid: 3495dd02927157344917991cfb5dfcd4, type: 3}
   index: 0
 --- !u!4 &1435828928

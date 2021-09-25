@@ -8,7 +8,7 @@ public static partial class Utility
     {
         Vector2Int vector2 = new Vector2Int(); 
         vector2.x = Mathf.FloorToInt(vector3.x);
-        vector2.y = Mathf.FloorToInt(vector3.x);
+        vector2.y = Mathf.FloorToInt(vector3.y);
         return vector2;
     }
 

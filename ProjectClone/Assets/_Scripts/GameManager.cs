@@ -5,22 +5,44 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    private List<ICell> grids;
-    public Transform cell;
+    [Header("스크립트 참조")]
+    public GamePresenter gamePresenter;
+    public MapGenerator gameGenerator;
+
+    [SerializeField]
+    private Building[] building;
+    public int index = 0;
+    private List<Building> grids;
 
     protected override void Awake()
     {
         base.Awake();
-        grids = new List<ICell>();
+        gamePresenter.Init();
+        gameGenerator.Generator();
+        grids = new List<Building>();
     }
 
     private void Update()
     {
-        cell.position = (Vector3Int)Utility.World2Grid(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if(Input.GetMouseButtonUp(0))
+        {
+            var b = building[index];
+            var pos = Utility.World2Grid(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            if(!IsExist(b, pos))
+            {
+                var i = Instantiate(b, (Vector2)pos, Quaternion.identity);
+                i.position = pos;
+                AddBuilding(i);
+            }
+        }
     }
 
-    public bool IsExist(Vector2Int pos)
+    private void AddBuilding(Building building)
     {
-        return grids.Any(p => p.IsExist(pos));
+        grids.Add(building);
+    }
+    public bool IsExist(Building building,Vector2Int pos)
+    {
+        return grids.Any(p => !p.IsExist(building,pos));
     }
 }
