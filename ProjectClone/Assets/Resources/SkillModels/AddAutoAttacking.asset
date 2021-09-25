@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f559b8eb4bd8d944b6010b2766d18f0, type: 3}
   m_Name: AddAutoAttacking
   m_EditorClassIdentifier: 
-  skillType: 6
+  skillType: 8
   value: 0
+  skillTitle: 
+  skillText: 
