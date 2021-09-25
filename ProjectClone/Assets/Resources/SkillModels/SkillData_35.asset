@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f559b8eb4bd8d944b6010b2766d18f0, type: 3}
   m_Name: SkillData_35
   m_EditorClassIdentifier: 
-  skillIcon: {fileID: 21300000, guid: bff356bc9e8ce224fbe466904ecb3a75, type: 3}
+  skillIcon: {fileID: 21300000, guid: 73e36d3fc08c14843a5ddf8727b27e9a, type: 3}
   skillType: 9
   value: 0
-  skillTitle: "\uCC44\uAD74 \uC0AC\uC815\uAC70\uB9AC \uC99D\uAC00"
+  skillTitle: "\uCC44\uAD74 \uC2DC \uCD94\uAC00 \uC790\uC6D0 \uD68D\uB4DD"
   skillText: "\uCC44\uAD74\uC2DC 30% \uC758 \uCD94\uAC00 \uC790\uC6D0\uC744 \uC5BB\uC2B5\uB2C8\uB2E4."
