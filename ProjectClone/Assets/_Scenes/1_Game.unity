@@ -8975,6 +8975,7 @@ GameObject:
   - component: {fileID: 1435828928}
   - component: {fileID: 1435828927}
   - component: {fileID: 1435828929}
+  - component: {fileID: 1435828930}
   m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
@@ -8997,6 +8998,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   gamePresenter: {fileID: 1435828929}
   mapGenerator: {fileID: 1448690520}
+  waveControl: {fileID: 1435828930}
   clone: {fileID: 280651137}
   index: 0
   isBuildingMode: 0
@@ -9042,6 +9044,22 @@ MonoBehaviour:
   - Name: "\uD2B9\uC218"
     buildingItems:
     - {fileID: 11400000, guid: 45ba0216a30e24245be09a1c35db5a1a, type: 2}
+--- !u!114 &1435828930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435828926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8870e859eb71b274d815083ac8f297a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalPrefab: {fileID: 5546687043354092529, guid: 9178ed3e3c41c244c994fedf21fd2f27, type: 3}
+  waveLevel: 0
+  waveDelayTime: 15
+  delayIncreaseTime: 1.5
 --- !u!1 &1447881427
 GameObject:
   m_ObjectHideFlags: 0

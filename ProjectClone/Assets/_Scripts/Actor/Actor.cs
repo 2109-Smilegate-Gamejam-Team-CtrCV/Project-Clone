@@ -42,7 +42,7 @@ public class Actor : MonoBehaviour, IReboundable
     public virtual bool GetDamage(int power)
     {
         HP = Mathf.Clamp(HP - power, 0, maxHP);
-        Debug.LogFormat("{0} HP : {1}", gameObject.name, HP);
+        //Debug.LogFormat("{0} HP : {1}", gameObject.name, HP);
 
         if (HP <= 0)
         {
