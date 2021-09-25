@@ -1352,9 +1352,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -55}
+  m_AnchoredPosition: {x: 0, y: -55}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &944001453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,6 +2842,10 @@ MonoBehaviour:
   mineralText: {fileID: 1735198491}
   organismText: {fileID: 88155287}
   shopHeaderTransform: {fileID: 1165105581}
-  shopContextTransform: {fileID: 432564850}
+  shopContextTransform: {fileID: 944001452}
   shopHeader: {fileID: 4176216277908575554, guid: b81c59d3cf188eb41a2c3a425984be4e, type: 3}
+  shopHeaderSprite:
+  - {fileID: 21300000, guid: 8ba906c05ae17cc46a0fb8d6144232dd, type: 3}
+  - {fileID: 21300000, guid: 56d93bf695a9fd641b16021681f098ae, type: 3}
+  - {fileID: 21300000, guid: 13efcd97a47804045b9ae64ea2beae5a, type: 3}
   shopContextItem: {fileID: -92615912639182388, guid: b0574dbaf0f87584a8a7ceab6247e31d, type: 3}

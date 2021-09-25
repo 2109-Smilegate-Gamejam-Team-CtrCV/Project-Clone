@@ -35,6 +35,10 @@ public class GameMainView : MonoBehaviour
     [SerializeField]
     private GameObject shopHeader;
 
+
+    [SerializeField]
+    private Sprite[] shopHeaderSprite;
+
     [SerializeField]
     private GameShopContextItem shopContextItem;
 
@@ -80,6 +84,7 @@ public class GameMainView : MonoBehaviour
     {
         var childIndex = shopHeaderTransform.childCount;
         var item = Instantiate(shopHeader, Vector3.zero, Quaternion.identity, shopHeaderTransform);
+        item.GetComponent<Image>().sprite = shopHeaderSprite[childIndex];
         item.transform.localPosition = Vector3.zero;
         Toggle toggle = item.GetComponentInChildren<Toggle>();
         toggle.group = shopHeaderTransform.GetComponentInChildren<ToggleGroup>();
