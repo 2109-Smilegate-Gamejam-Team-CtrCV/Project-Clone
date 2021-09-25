@@ -103,6 +103,8 @@ MonoBehaviour:
   createCount: 25
   isCreate: 0
   range: 60
+  mentalHeal: 2
+--- !u!58 &4525502180571480306
   mentalHeal: 1
   isPlayerEnter: 0
   checkPlayerCollider: {fileID: 0}
