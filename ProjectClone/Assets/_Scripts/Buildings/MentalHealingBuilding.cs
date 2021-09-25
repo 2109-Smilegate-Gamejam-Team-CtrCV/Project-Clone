@@ -15,7 +15,7 @@ public class MentalHealingBuilding : Building
     private const float MetalHealDelay = 0.5f;
     private void Update()
     {
-        if (isPlayerEnter)
+        if (isPlayerEnter && isCreate)
         {
             timer += Time.deltaTime;
             if (timer > MetalHealDelay)

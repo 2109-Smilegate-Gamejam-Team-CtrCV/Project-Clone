@@ -17,12 +17,15 @@ public class ExperienceProduceBuilding : Building
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > experienceCreateDelay)
+        if(isCreate)
         {
-            timer -= experienceCreateDelay;
-            experienceCreateDelay += experienceCreateDelaySpace;
-            GameManager.Instance.gamePresenter.gameModel.AddExperience(experienceCreateValue);
+            timer += Time.deltaTime;
+            if (timer > experienceCreateDelay)
+            {
+                timer -= experienceCreateDelay;
+                experienceCreateDelay += experienceCreateDelaySpace;
+                GameManager.Instance.gamePresenter.gameModel.AddExperience(experienceCreateValue);
+            }
         }
     }
 }

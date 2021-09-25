@@ -26,11 +26,14 @@ public class ProduceBuilding : Building
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= delayTimer)
+        if(isCreate)
         {
-            timer -= delayTimer;
-            Give();
+            timer += Time.deltaTime;
+            if (timer >= delayTimer)
+            {
+                timer -= delayTimer;
+                Give();
+            }
         }
     }
 
