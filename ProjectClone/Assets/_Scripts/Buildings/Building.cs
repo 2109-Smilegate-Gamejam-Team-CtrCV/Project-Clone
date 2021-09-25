@@ -8,8 +8,8 @@ using UnityEngine;
 public abstract class Building : Cell
 {
     [Header("°Ç¼³")]
-    public int createCount;
-    private int createCounter;
+    public float createCount;
+    private float createCounter;
     public bool isCreate;
 
 
@@ -21,12 +21,12 @@ public abstract class Building : Cell
         GetComponent<SpriteRenderer>().color = Color.gray;
     }
 
-    internal void AddCount()
+    internal void AddCount(float damage)
     {
         if(!isCreate)
         {
-            createCounter += 1;
-            GetComponent<SpriteRenderer>().material.DOFloat(createCounter / (float)createCount, "_Gray", 0.25f);
+            createCounter += damage;
+            GetComponent<SpriteRenderer>().material.DOFloat(createCounter / createCount, "_Gray", 0.25f);
 
             transform.DOScaleY(1, 0.5f).From(1.2f);
             if(createCounter >= createCount)

@@ -42,8 +42,9 @@ public class DefenseBuidling : Building
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
+    protected override void OnDrawGizmosSelected()
     {
+        base.OnDrawGizmosSelected();
         Gizmos.color = new Color(1,0.5f,0);
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
