@@ -216,6 +216,9 @@ public class Clone : Actor, IPlayable
         // 게임매니저에서 처리
         Debug.Log("DEAD!!");
         isDead = true;
+
+        Destroy(gameObject);
+        GameManager.Instance.CreateNextClone();
     }
 
     public void SetMindState(EMindState newState)
