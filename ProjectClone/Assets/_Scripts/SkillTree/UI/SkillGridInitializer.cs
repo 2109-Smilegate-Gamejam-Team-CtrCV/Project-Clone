@@ -70,8 +70,8 @@ public class SkillGridInitializer : MonoBehaviour
         mainCell.canUnlock = mainCell.isUnlocked = true;
         mainCell.adjCell.ForEach(cell =>
         {
-            cell.canUnlock = true;
             cell.gameObject.SetActive(true);
+            cell.canUnlock = true;
         });
     }
 }

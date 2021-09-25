@@ -38,7 +38,7 @@ public class SkillCell : MonoBehaviour
 
     private void OnEnable()
     {
-        if (!isUnlocked && !canUnlock)
+        if (!isUnlocked && isActiveAndEnabled)
         {
             GetComponent<Image>().DOColor(Color.gray,0.5f).From(new Color(0.5f, 0.5f, 0.5f, 0));
             transform.DOScale(0.75f, 0.5f).From(0);
