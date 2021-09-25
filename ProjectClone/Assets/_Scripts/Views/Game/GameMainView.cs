@@ -78,7 +78,8 @@ public class GameMainView : MonoBehaviour
 
         for (int i = 0; i < heart; i++)
         {
-            Instantiate(heartUI, Vector3.zero, Quaternion.identity, heartTransform);
+            var haert =Instantiate(heartUI, Vector3.zero, Quaternion.identity, heartTransform);
+            haert.transform.localPosition = Vector3.zero;
         }
     }
     public void AddShopHeader(string name)
