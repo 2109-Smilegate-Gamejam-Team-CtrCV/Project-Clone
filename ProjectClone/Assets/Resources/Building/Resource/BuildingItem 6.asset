@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d946548db077cd94ba39ffc15526fa8d, type: 3}
   m_Name: BuildingItem 6
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: c3fb6ca922d00884da0bfdb31ecaa26a, type: 3}
+  Icon: {fileID: 21300000, guid: 32d995ab4c003a947b16c86b108e9ef3, type: 3}
   Name: "\uB300\uD615 \uAD11\uBB3C \uC0DD\uC0B0 \uAC74\uBB3C"
   Description: "\uB9CE\uC740 \uC591\uC758 \uAD11\uBB3C\uC744 \uC0DD\uC0B0\uD558\uB294
     \uAC74\uBB3C"
   Mineral: 40
   Organism: 50
-  cell: {fileID: 94160191002180794, guid: e8901206a6b551943bc8a42af56f4253, type: 3}
+  cell: {fileID: 6237092265049229275, guid: b0a9999174dae844aa987cc6dc243be2, type: 3}
