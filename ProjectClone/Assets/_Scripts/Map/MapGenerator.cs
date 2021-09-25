@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -22,12 +23,14 @@ public class MapGenerator: MonoBehaviour
     public Dictionary<Vector2Int, bool> exist;
 
 
+    public Stone[] stones;
+    public Tree[] trees;
     public bool IsExist(Vector2Int pos)
     {
         return exist.ContainsKey(pos) && exist[pos];
     }
 
-    public void Generator()
+    public void Generator(GameManager gameManager)
     {
         exist = new Dictionary<Vector2Int, bool>();
         array = new float[size.x * size.y];
@@ -70,8 +73,30 @@ public class MapGenerator: MonoBehaviour
             }
         }
 
+        for (int i = 0; i < 20; i++)
+        {
+            var pos = new Vector2Int(Random.Range(0, size.x), Random.Range(0, size.y));
+            var stonePrefab = stones[Random.Range(0, stones.Length)];
+            if (!gameManager.IsExist(stonePrefab, pos) )
+            {
+                var stone = Instantiate(stonePrefab, (Vector2)pos, Quaternion.identity);
+                stone.position = pos;
+                gameManager.AddCell(stone);
+            }
+        }
 
-      
+        for (int i = 0; i < 20; i++)
+        {
+            var pos = new Vector2Int(Random.Range(0, size.x), Random.Range(0, size.y));
+            var treePrefab = trees[Random.Range(0, trees.Length)];
+            if (!gameManager.IsExist(treePrefab, pos))
+            {
+                var tree = Instantiate(treePrefab, (Vector2)pos, Quaternion.identity);
+                tree.position = pos;
+                gameManager.AddCell(tree);
+            }
+        }
+
 
         texture.SetPixels(pixels);
         texture.Apply();

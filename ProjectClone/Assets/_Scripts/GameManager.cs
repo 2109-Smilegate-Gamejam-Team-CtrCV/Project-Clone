@@ -9,46 +9,25 @@ public class GameManager : Singleton<GameManager>
     public GamePresenter gamePresenter;
     public MapGenerator mapGenerator;
 
+
+    public Clone clone;
+
     [SerializeField]
     private Building[] building;
     public int index = 0;
     private List<Cell> grids;
 
-    public Stone[] stones;
-    public Tree[] trees;
     protected override void Awake()
     {
         grids = new List<Cell>();
         base.Awake();
         gamePresenter.Init();
-        mapGenerator.Generator();
-
-        for (int i = 0; i < 20; i++)
-        {
-            var pos = new Vector2Int(Random.Range(0, mapGenerator.size.x), Random.Range(0, mapGenerator.size.y));
-            var stonePrefab = stones[Random.Range(0, stones.Length)];
-            if (!IsExist(stonePrefab, pos) && stonePrefab.patterns.All(p => mapGenerator.IsExist(p + pos)))
-            {
-                var stone  = Instantiate(stonePrefab, (Vector2)pos, Quaternion.identity);
-                stone.position = pos;
-                AddCell(stone);
-            }
-        }
-
-        for (int i = 0; i < 20; i++)
-        {
-            var pos = new Vector2Int(Random.Range(0, mapGenerator.size.x), Random.Range(0, mapGenerator.size.y));
-            var treePrefab = trees[Random.Range(0, trees.Length)];
-            if (!IsExist(treePrefab, pos) && treePrefab.patterns.All(p => mapGenerator.IsExist(p + pos)))
-            {
-                var tree = Instantiate(treePrefab, (Vector2)pos, Quaternion.identity);
-                tree.position = pos;
-                AddCell(tree);
-            }
-        }
+        mapGenerator.Generator(this);
+        clone.transform.position = (Vector3Int)mapGenerator.size / 2;
+   
     }
 
-    private void Update()
+/*    private void Update()
     {
         if(Input.GetMouseButtonUp(0))
         {
@@ -62,13 +41,13 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
-
-    private void AddCell(Cell building)
+*/
+    public void AddCell(Cell building)
     {
         grids.Add(building);
     }
     public bool IsExist(Cell building,Vector2Int pos)
     {
-        return grids.Any(p => !p.IsExist(building, pos));
+        return grids.Any(p => !p.IsExist(building, pos)) || !building.patterns.All(p => mapGenerator.IsExist(p + pos));
     }
 }
