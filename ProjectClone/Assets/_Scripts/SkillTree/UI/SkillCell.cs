@@ -21,13 +21,15 @@ public class SkillCell : MonoBehaviour
             .Where(_ => canUnlock && !isUnlocked)
             .Subscribe(_ =>
         {
+            SkillManager.Instance.GetSkill(skillData, out var canGetSkill);
+            if (!canGetSkill) return;
+            
             foreach (var cell in adjCell)
             {
                 cell.gameObject.SetActive(true);
                 cell.canUnlock = true;
             }
             isUnlocked = true;
-            SkillManager.Instance.GetSkill(skillData);
             transform.DOScale(1, 0.75f);
             GetComponent<Image>().DOColor(Color.white,0.75f);
         }).AddTo(gameObject);

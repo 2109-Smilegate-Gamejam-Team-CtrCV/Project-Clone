@@ -16,20 +16,20 @@ public class Clone : Actor, IPlayable
     public float consumeMental = 1;
     public float totalCousumeMental { get { return eMindState == EMindState.Stability ? consumeMental : consumeMental * 0.5f; } }
 
-    [Header("Ã¤±¼")]
+    [Header("Ã¤ï¿½ï¿½")]
 #if UNITY_EDITOR
     [SerializeField] Color miningGizmoColor = Color.yellow;
 #endif
     public int miningPower = 3;
     public float miningSpeed = 1.3f;
     public float miningRange = 2f;
-    public float miningRate = 1f; // ÀÚ¿ø È¹µæ ¹èÀ²
+    public float miningRate = 1f; // ï¿½Ú¿ï¿½ È¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    // ÀÚ¿øÀº ¸Å´ÏÀú¿¡¼­ °®´Â°Ô?
+    // ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½?
     public int mineral = 0; 
     public int organic = 0;
 
-    [Header("°Ç¼³")]
+    [Header("ï¿½Ç¼ï¿½")]
 #if UNITY_EDITOR
     [SerializeField] Color buildingGizmoColor = Color.blue;
 #endif
@@ -120,7 +120,7 @@ public class Clone : Actor, IPlayable
         var hit = Physics2D.Raycast(ray.origin, ray.direction);
         if (hit.collider != null)
         {
-            // todo : È£¹ö¸µµÈ ¿ÀºêÁ§Æ®¿¡ ¾Æ¿ô¶óÀÎ ÁÖ¸é ÁÁÀ»µí?
+            // todo : È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
 
             //Debug.LogFormat("click target name : " + hit.collider.name);
 
@@ -137,7 +137,7 @@ public class Clone : Actor, IPlayable
 
     public void Mine(GameObject target)
     {
-        // todo : Ã¤±¼ »çÁ¤°Å¸® ³»ÀÇ Ã¤±¼ ´ë»óÀ» ÁÂÅ¬¸¯ÇÏ¸é Ã¤±¼ ÁøÇà
+        // todo : Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½Ï¸ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         var mining = target.GetComponent<MiningObject>();
         if (mining)
         {
@@ -155,7 +155,7 @@ public class Clone : Actor, IPlayable
 
     public void Build(GameObject target)
     {
-        // todo : °Ç¼³ »çÁ¤°Å¸® ³»ÀÇ °Ç¼³ ´ë»óÀ» ÁÂÅ¬¸¯ÇÏ¸é °Ç¼³ ÁøÇà
+        // todo : ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         var building = target.GetComponent<Building>();
         if (building)
         {
@@ -183,7 +183,7 @@ public class Clone : Actor, IPlayable
 
     bool ReduceMental()
     {
-        // todo : 1ÃÊ¸¶´Ù ¸àÅ»À» ±ï´Â´Ù.
+        // todo : 1ï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½ï¿½Å»ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
         if (nextConsumeTime.IsEnoughTime())
         {
             float nextTime = eMindState == EMindState.Stability ? 1f : 0.5f;
@@ -212,12 +212,12 @@ public class Clone : Actor, IPlayable
 
     public override void Dead()
     {
-        
         Debug.Log("DEAD!!");
         isDead = true;
         animator.SetTrigger("Death");
         Destroy(this);
         GameManager.Instance.CreateNextClone();
+        SkillManager.Instance.expModel.Initialize();
     }
 
     public void SetMindState(EMindState newState)
