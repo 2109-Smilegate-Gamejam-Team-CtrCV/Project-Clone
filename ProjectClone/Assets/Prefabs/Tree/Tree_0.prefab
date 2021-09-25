@@ -100,7 +100,6 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   patterns:
   - {x: 0, y: 0}
-  - {x: 1, y: 0}
 --- !u!58 &-7596708504132797806
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -114,9 +113,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1, y: 1}
+  m_Offset: {x: 0.5, y: 0.5}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.25
 --- !u!114 &-6789025421568424225
 MonoBehaviour:
   m_ObjectHideFlags: 0
