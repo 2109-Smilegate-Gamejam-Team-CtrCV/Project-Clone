@@ -20,7 +20,7 @@ public class TitlePresenter : MonoBehaviour
         mainView.ExitClick.Subscribe(_ => Application.Quit());
 
 
-        optionView.CancleClick.Subscribe(p => optionView.Hide());
+        optionView.CancelClick.Subscribe(p => optionView.Hide());
         optionView.MasterVolumeValueChanged.Subscribe(p => OptionManager.Instance.Master = p);
         optionView.BGMVolumeValueChanged.Subscribe(p => OptionManager.Instance.BGM = p);
         optionView.VFXVolumeValueChanged.Subscribe(p => OptionManager.Instance.VFX = p);
