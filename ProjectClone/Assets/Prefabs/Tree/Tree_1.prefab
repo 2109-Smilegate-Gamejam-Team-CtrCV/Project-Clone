@@ -133,5 +133,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   maxHP: 20
-  eResource: 0
+  eResource: 1
   amount: 10

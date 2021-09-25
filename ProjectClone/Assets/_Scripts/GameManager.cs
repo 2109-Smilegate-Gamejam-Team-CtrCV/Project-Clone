@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -11,11 +12,14 @@ public class GameManager : Singleton<GameManager>
 
 
     public Clone clone;
+    public Cell Building { get; internal set; }
 
-    [SerializeField]
-    private Building[] building;
     public int index = 0;
     private List<Cell> grids;
+
+    [SerializeField]
+    private bool isBuildingMode;
+
 
     protected override void Awake()
     {
@@ -24,29 +28,67 @@ public class GameManager : Singleton<GameManager>
         gamePresenter.Init();
         mapGenerator.Generator(this);
         clone.transform.position = (Vector3Int)mapGenerator.size / 2;
-   
+
     }
 
-/*    private void Update()
+    private void Update()
     {
-        if(Input.GetMouseButtonUp(0))
+        if(Input.mouseScrollDelta.y > 0.7f)
         {
-            var b = building[index];
+            index += 1;
+
+        }
+        if (Input.mouseScrollDelta.y < -0.7f)
+        {
+            index -= 1;
+
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            SetBuildingMode(!isBuildingMode);
+        }
+        if (isBuildingMode)
+        {
             var pos = Utility.World2Grid(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            if(!IsExist(b, pos)&& b.patterns.All(p => mapGenerator.IsExist(p + pos)))
+            preview.transform.position = (Vector3Int)pos;
+            var b = Building;
+            SpriteRenderer spriteRenderer = preview.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = b.GetComponent<SpriteRenderer>().sprite;
+            if (!IsExist(b, pos) && b.patterns.All(p => mapGenerator.IsExist(p + pos)))
+                spriteRenderer.color = new Color(0, 1, 0, 0.5f);
+
+            else
+                spriteRenderer.color = new Color(1, 0, 0, 0.5f);
+
+            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                var i = Instantiate(b, (Vector2)pos, Quaternion.identity);
-                i.position = pos;
-                AddCell(i);
+                if (!IsExist(b, pos) && b.patterns.All(p => mapGenerator.IsExist(p + pos)))
+                {
+                    var i = Instantiate(b, (Vector2)pos, Quaternion.identity);
+                    i.position = pos;
+                    AddCell(i);
+                }
+            }
+            if (Input.GetMouseButtonUp(1) && !EventSystem.current.IsPointerOverGameObject())
+            {
+                SetBuildingMode(false);
             }
         }
     }
-*/
+    public GameObject preview;
+
+
+    public void SetBuildingMode(bool flag)
+    {
+        isBuildingMode = flag;
+        preview.gameObject.SetActive(flag);
+    }
+
     public void AddCell(Cell building)
     {
         grids.Add(building);
     }
-    public bool IsExist(Cell building,Vector2Int pos)
+    public bool IsExist(Cell building, Vector2Int pos)
     {
         return grids.Any(p => !p.IsExist(building, pos)) || !building.patterns.All(p => mapGenerator.IsExist(p + pos));
     }
