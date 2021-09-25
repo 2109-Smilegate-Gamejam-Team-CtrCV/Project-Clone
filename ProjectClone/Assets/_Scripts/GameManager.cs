@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     public MapGenerator mapGenerator;
     public WaveController waveControl;
 
+    [SerializeField] Clone clonePrefab;
     public Clone clone;
     public Cell Building { get; internal set; }
 
@@ -27,7 +28,8 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         gamePresenter.Init();
         mapGenerator.Generator(this);
-        clone.transform.position = (Vector3Int)mapGenerator.size / 2;
+
+        clone = CreateClone();
 
         if (waveControl != null)
             waveControl.Init();
@@ -103,5 +105,20 @@ public class GameManager : Singleton<GameManager>
     public bool IsExist(Cell building, Vector2Int pos)
     {
         return grids.Any(p => !p.IsExist(building, pos)) || !building.patterns.All(p => mapGenerator.IsExist(p + pos));
+    }
+
+    public void CreateNextClone()
+    {
+        // todo : 클론이 죽고 다음 클론 생성
+        clone = CreateClone();
+    }
+
+    Clone CreateClone()
+    {
+        var pos = (Vector3Int)mapGenerator.size / 2;
+        Clone newClone = Instantiate(clonePrefab, pos, Quaternion.identity);
+        newClone.Init();
+
+        return newClone;
     }
 }

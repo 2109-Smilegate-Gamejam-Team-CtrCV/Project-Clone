@@ -4122,6 +4122,7 @@ MonoBehaviour:
   gamePresenter: {fileID: 1435828929}
   mapGenerator: {fileID: 1448690520}
   waveControl: {fileID: 1435828930}
+  clonePrefab: {fileID: 5590044767114331875, guid: 798d4d63804e3b84c99a42308098cfed, type: 3}
   clone: {fileID: 280651137}
   index: 0
   isBuildingMode: 0
