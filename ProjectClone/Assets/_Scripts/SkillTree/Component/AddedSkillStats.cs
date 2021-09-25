@@ -5,8 +5,8 @@ using UnityEngine;
 public class AddedSkillStats : MonoBehaviour
 {
     public float speed, healthPoint, mentalPoint;
-    public float miningDamage, miningSpeed, miningRange;
+    public float miningPower, miningSpeed, miningRange;
     public float buildingPower, buildingSpeed, buildingRange;
-    public int additionalExp;
-    public bool canMiningOver, gotAutoAttack;
+    public float additionalExp;
+    public bool canGetExtraMineral, gotAutoAttack;
 }
