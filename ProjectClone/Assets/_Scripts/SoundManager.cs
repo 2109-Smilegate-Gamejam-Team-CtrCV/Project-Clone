@@ -29,6 +29,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (_bgmDictionary.TryGetValue(title, out var audioSource))
         {
+            audioSource.volume = OptionManager.Instance.BGM * OptionManager.Instance.Master;
             audioSource.Play();
             _nowPlayingBGM?.Stop();
             _nowPlayingBGM = audioSource;
@@ -39,6 +40,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (_vfxDictionary.TryGetValue(name, out var audioSource))
         {
+            audioSource.volume = OptionManager.Instance.VFX * OptionManager.Instance.Master;
             audioSource.Play();
         }
     }
