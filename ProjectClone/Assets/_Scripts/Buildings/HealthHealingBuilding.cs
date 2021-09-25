@@ -17,12 +17,15 @@ public class HealthHealingBuilding : Building
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > healthHealDelay)
+        if(isCreate)
         {
-            timer -= healthHealDelay;
-            healthHealDelay += healthHealDelaySpace;
-            GameManager.Instance.gamePresenter.gameModel.HeartHeal(1);
+            timer += Time.deltaTime;
+            if (timer > healthHealDelay)
+            {
+                timer -= healthHealDelay;
+                healthHealDelay += healthHealDelaySpace;
+                GameManager.Instance.gamePresenter.gameModel.HeartHeal(1);
+            }
         }
     }
 }

@@ -241,7 +241,7 @@ public class Clone : Actor, IPlayable
     public void Build(GameObject target)
     {
         // todo : 건설 사정거리 내의 건설 대상을 좌클릭하면 건설 진행
-        var building = target.GetComponent<MiningObject>();
+        var building = target.GetComponent<Building>();
         if (building)
         {
             if (transform.position2D().IsInRange(building.transform.position2D(), totalBuildingRange))
@@ -250,7 +250,7 @@ public class Clone : Actor, IPlayable
                 {
                     Debug.LogFormat("build target name : " + target.name);
                     nextBuildTime = DateTime.Now.AddSeconds(totalBuildingSpeed);
-                    building.GetDamage(miningPower);
+                    building.AddCount();
                 }
             }
         }

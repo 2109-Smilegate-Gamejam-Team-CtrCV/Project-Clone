@@ -973,7 +973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &456626026
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9158,7 +9158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 0}
-  cut: 0.34
+  cut: 0.6
   spriteRenderer: {fileID: 1448690522}
   tilemap: {fileID: 877567375}
   tilemap1: {fileID: 1627353884}
