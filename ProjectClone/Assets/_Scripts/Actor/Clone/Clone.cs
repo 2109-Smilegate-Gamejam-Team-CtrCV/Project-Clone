@@ -122,7 +122,7 @@ public class Clone : Actor, IPlayable
     DateTime nextBuildTime;
     DateTime nextConsumeTime;
 
-    EMindState eMindState = EMindState.Stability;
+   public EMindState eMindState = EMindState.Stability;
     bool isDead = false;
 
     AddedSkillStats skillStats;
@@ -301,8 +301,8 @@ public class Clone : Actor, IPlayable
         // ���ӸŴ������� ó��
         Debug.Log("DEAD!!");
         isDead = true;
-
-        Destroy(gameObject);
+        animator.SetTrigger("Death");
+        Destroy(this);
         GameManager.Instance.CreateNextClone();
         SkillGridInitializer.Instance.Initialize();
     }

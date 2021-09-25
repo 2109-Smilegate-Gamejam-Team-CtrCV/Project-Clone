@@ -26,11 +26,22 @@ public class MentalHealingBuilding : Building
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+#if UNITY_EDITOR
+    protected override void OnDrawGizmosSelected()
+    {
+        base.OnDrawGizmosSelected();
+        Gizmos.color = new Color(0, 0.56f, 1);
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+#endif
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
             isPlayerEnter = true;
+            collision.GetComponent<Clone>().eMindState = EMindState.Stability;
         }
     }
 
@@ -39,6 +50,7 @@ public class MentalHealingBuilding : Building
         if (collision.CompareTag("Player"))
         {
             isPlayerEnter = false;
+            collision.GetComponent<Clone>().eMindState = EMindState.Instability;
         }
     }
 }

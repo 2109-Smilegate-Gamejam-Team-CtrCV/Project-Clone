@@ -9,8 +9,6 @@ public class CameraTargeter : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (target == null)
-            target = GameManager.Instance.clone.transform;
 
         var center = new Vector2(Screen.width, Screen.height) * 0.5f;
         var mouse = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);

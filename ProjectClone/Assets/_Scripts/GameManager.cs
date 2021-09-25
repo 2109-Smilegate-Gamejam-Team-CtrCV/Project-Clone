@@ -11,10 +11,10 @@ public class GameManager : Singleton<GameManager>
     public GamePresenter gamePresenter;
     public MapGenerator mapGenerator;
     public WaveController waveControl;
-
+    public CameraTargeter cameraTargeter;
     [SerializeField] Clone clonePrefab;
     public Clone clone;
-    public Cell Building { get; internal set; }
+    public BuildingItem Building { get; internal set; }
 
     public int index = 0;
     private List<Cell> grids;
@@ -29,8 +29,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         gamePresenter.Init();
         mapGenerator.Generator(this);
-
-        clone = CreateClone();
+        CreateNextClone();
 
         if (waveControl != null)
             waveControl.Init();
@@ -68,8 +67,8 @@ public class GameManager : Singleton<GameManager>
             preview.transform.position = (Vector3Int)pos;
             var b = Building;
             SpriteRenderer spriteRenderer = preview.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = b.GetComponent<SpriteRenderer>().sprite;
-            if (!IsExist(b, pos) && b.patterns.All(p => mapGenerator.IsExist(p + pos)))
+            spriteRenderer.sprite = b.Icon;
+            if (!IsExist(b.cell, pos) && b.cell.patterns.All(p => mapGenerator.IsExist(p + pos)))
                 spriteRenderer.color = new Color(0, 1, 0, 0.5f);
 
             else
@@ -77,9 +76,11 @@ public class GameManager : Singleton<GameManager>
 
             if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                if (!IsExist(b, pos) && b.patterns.All(p => mapGenerator.IsExist(p + pos)))
+                if (!IsExist(b.cell, pos) && b.cell.patterns.All(p => mapGenerator.IsExist(p + pos)))
                 {
-                    var i = Instantiate(b, (Vector2)pos, Quaternion.identity);
+                    gamePresenter.gameModel.mineral.Value -= b.Mineral;
+                    gamePresenter.gameModel.organism.Value -= b.Organism;
+                    var i = Instantiate(b.cell, (Vector2)pos, Quaternion.identity);
                     i.position = pos;
                     AddCell(i);
                 }
@@ -118,6 +119,7 @@ public class GameManager : Singleton<GameManager>
     {
         // todo : 클론이 죽고 다음 클론 생성
         clone = CreateClone();
+        cameraTargeter.target = clone.transform;
     }
 
     Clone CreateClone()
