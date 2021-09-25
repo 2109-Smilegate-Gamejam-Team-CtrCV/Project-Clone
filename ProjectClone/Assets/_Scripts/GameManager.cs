@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    [Header("스크립트 참조")]
+    public GamePresenter gamePresenter;
+    public MapGenerator gameGenerator;
+
     [SerializeField]
     private Building[] building;
-    public GamePresenter gamePresenter;
     public int index = 0;
     private List<Building> grids;
 
@@ -15,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         gamePresenter.Init();
+        gameGenerator.Generator();
         grids = new List<Building>();
     }
 

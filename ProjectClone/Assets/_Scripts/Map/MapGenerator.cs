@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MapGenerator: MonoBehaviour
 {
     public Texture2D texture;
     public float cut;
@@ -19,15 +19,18 @@ public class NewBehaviourScript : MonoBehaviour
     public Vector2Int spawnSize;
 
     public float[] array;
-    void Start()
+    public void Generator()
     {
         array = new float[size.x * size.y];
         texture = new Texture2D(size.x, size.y, TextureFormat.RGBA32, false);
            FastNoise fastNoise= new FastNoise();
-        fastNoise.SetFrequency(0.12f);
-        fastNoise.SetNoiseType(FastNoise.NoiseType.Value);
         fastNoise.SetSeed(Random.Range(0, 10000));
+        fastNoise.SetFrequency(0.12f);
+        fastNoise.SetFractalLacunarity(0);
+        fastNoise.SetNoiseType(FastNoise.NoiseType.Cellular);
         fastNoise.SetFractalType(FastNoise.FractalType.Billow);
+        fastNoise.SetCellularDistanceFunction(FastNoise.CellularDistanceFunction.Manhattan);
+        fastNoise.SetCellularReturnType(FastNoise.CellularReturnType.CellValue);
         var pixels = texture.GetPixels();
 
         for (int y = 0; y < size.y; y++)
@@ -59,11 +62,5 @@ public class NewBehaviourScript : MonoBehaviour
         texture.Apply();
         spriteRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, size.x, size.y), Vector2.one / 2);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
