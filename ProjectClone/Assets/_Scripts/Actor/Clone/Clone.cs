@@ -41,7 +41,7 @@ public class Clone : Actor, IPlayable
     DateTime nextBuildTime;
     DateTime nextConsumeTime;
 
-    EMindState eMindState = EMindState.Stability;
+   public EMindState eMindState = EMindState.Stability;
     bool isDead = false;
 
     protected override void Update()
@@ -212,12 +212,11 @@ public class Clone : Actor, IPlayable
 
     public override void Dead()
     {
-        // todo : clone을 죽게 하고 새로 스폰한다.
-        // 게임매니저에서 처리
+        
         Debug.Log("DEAD!!");
         isDead = true;
-
-        Destroy(gameObject);
+        animator.SetTrigger("Death");
+        Destroy(this);
         GameManager.Instance.CreateNextClone();
     }
 

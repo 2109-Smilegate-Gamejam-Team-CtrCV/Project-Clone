@@ -34,6 +34,8 @@ public class GameShopContextItem : MonoBehaviour, IPointerEnterHandler,IPointerE
         gameMainView.toolTipGameObject.gameObject.SetActive(true);
         gameMainView.toolTipGameObject.nameText.text = item.Name;
         gameMainView.toolTipGameObject.descriptionText.text = item.Description;
+        gameMainView.toolTipGameObject.mineralText.text = item.Mineral.ToString();
+        gameMainView.toolTipGameObject.organismText.text = item.Organism.ToString();
 
     }
 

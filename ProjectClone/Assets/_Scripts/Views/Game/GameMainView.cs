@@ -50,8 +50,6 @@ public class GameMainView : MonoBehaviour
     private Subject<int> subject = new Subject<int>();
 
 
-    private IObservable<int> observable;
-
     public float MetalGauge
     {
         set => metalGauge.fillAmount = value;
@@ -109,8 +107,15 @@ public class GameMainView : MonoBehaviour
             contextItem.Icon = item.Icon;
             contextItem.OnClick.Subscribe(_ =>
             {
-                GameManager.Instance.Building = item.cell;
-                GameManager.Instance.SetBuildingMode(true);
+                if(GameManager.Instance.gamePresenter.gameModel.organism.Value >= item.Organism && GameManager.Instance.gamePresenter.gameModel.organism.Value >= item.Organism)
+                {
+                    GameManager.Instance.Building = item;
+                    GameManager.Instance.SetBuildingMode(true);
+                }
+                else
+                {
+                    GameManager.Instance.SetBuildingMode(false);
+                }
             });
             contextItem.transform.localPosition = Vector3.zero;
         }

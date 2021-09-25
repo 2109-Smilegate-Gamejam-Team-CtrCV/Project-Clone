@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d946548db077cd94ba39ffc15526fa8d, type: 3}
   m_Name: BuildingItem 8
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: c3fb6ca922d00884da0bfdb31ecaa26a, type: 3}
+  Icon: {fileID: 21300000, guid: c6e2c38e378dfb240a6f48d676853e66, type: 3}
   Name: "\uD478\uB978 \uD683\uBD88"
   Description: "\uC815\uC2E0\uB825\uC744 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294 \uAC74\uBB3C"
-  Mineral: 12
-  Organism: 4
-  cell: {fileID: 94160191002180794, guid: e8901206a6b551943bc8a42af56f4253, type: 3}
+  Mineral: 0
+  Organism: 0
+  cell: {fileID: 2857666002793903974, guid: f8eea06b8851c2341bd5bb296efa95cb, type: 3}

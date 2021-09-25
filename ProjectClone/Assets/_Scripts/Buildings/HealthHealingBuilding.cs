@@ -28,4 +28,13 @@ public class HealthHealingBuilding : Building
             }
         }
     }
+#if UNITY_EDITOR
+    protected override void OnDrawGizmosSelected()
+    {
+        base.OnDrawGizmosSelected();
+        Gizmos.color = new Color(1, 0.56f, 0);
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+#endif
 }

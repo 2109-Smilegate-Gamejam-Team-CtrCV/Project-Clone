@@ -17,4 +17,15 @@ public class Bullet : MonoBehaviour
     {
         transform.position += (Vector3)velocity * Time.deltaTime;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            var enemy = collision.GetComponent<Enemy>();
+            enemy.GetDamage(damage);
+            Destroy(gameObject);
+
+        }
+    }
 }

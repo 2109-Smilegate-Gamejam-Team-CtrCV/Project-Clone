@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line1: {fileID: 265481988}
-  line2: {fileID: 0}
+  line2: {fileID: 2012301227}
   startButton: {fileID: 1528710877}
   creditButton: {fileID: 728160772}
   optionButton: {fileID: 1910087560}
