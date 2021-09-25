@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class GamePresenter : MonoBehaviour
@@ -7,9 +6,12 @@ public class GamePresenter : MonoBehaviour
     [SerializeField]
     private GameMainView gameMainView;
 
-    private void Awake()
+    public GameModel gameModel;
+    public void Init()
     {
-        gameMainView.SetHeart(10);
-        gameMainView.MetalGauge = 0.1f;       
+        gameModel = new GameModel();
+
+        gameModel.mineral.Subscribe(value => gameMainView.MineralText = value.ToString());
+        gameModel.organism.Subscribe(value => gameMainView.OrganismText = value.ToString());
     }
 }

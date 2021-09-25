@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +15,26 @@ public class GameMainView : MonoBehaviour
     [SerializeField]
     private Image metalGauge;
 
+    [SerializeField]
+    private TextMeshProUGUI mineralText;
+
+    [SerializeField]
+    private TextMeshProUGUI organismText;
+
+
     public float MetalGauge
     {
         set => metalGauge.fillAmount = value;
+    }
+
+    public string MineralText
+    {
+        set => mineralText.text = $"광물 : {value}";
+    }
+
+    public string OrganismText
+    {
+        set => organismText.text = $"유기체 : {value}";
     }
 
     public void SetHeart(int heart)
