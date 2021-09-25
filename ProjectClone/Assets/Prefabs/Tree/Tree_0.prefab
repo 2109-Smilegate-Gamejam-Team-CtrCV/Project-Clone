@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 3892427038225237546}
   - component: {fileID: 3892427038225237545}
   - component: {fileID: 8141732311003912901}
+  - component: {fileID: -7596708504132797806}
+  - component: {fileID: -6789025421568424225}
   m_Layer: 0
   m_Name: Tree_0
-  m_TagString: Untagged
+  m_TagString: Mining
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,3 +101,35 @@ MonoBehaviour:
   patterns:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
+--- !u!58 &-7596708504132797806
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892427038225237463}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1, y: 1}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &-6789025421568424225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892427038225237463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b80b629ff4cad34a8cc20c72b6c53b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  maxHP: 20
+  eResource: 0
+  amount: 10

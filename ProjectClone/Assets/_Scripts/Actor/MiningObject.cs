@@ -8,10 +8,10 @@ public enum EResource
     Organic,
 }
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class MiningObject : MonoBehaviour, IGatherable
 {
-    [HideInInspector] public int HP;
+    public int HP;
     public int maxHP = 20;
     public EResource eResource;
     public int amount = 10;
@@ -48,6 +48,8 @@ public class MiningObject : MonoBehaviour, IGatherable
 
 public interface IGatherable
 {
+    public bool GetDamage(int power);
+    public void GainResource();
 }
 
 public interface IBuildable

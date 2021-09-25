@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 94160191002180792}
   - component: {fileID: 94160191002180795}
   - component: {fileID: 94160191002180794}
+  - component: {fileID: -2148904720009268401}
+  - component: {fileID: -3958297923014039533}
   m_Layer: 0
   m_Name: Stone_0
-  m_TagString: Untagged
+  m_TagString: Mining
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,3 +100,35 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   patterns:
   - {x: 0, y: 0}
+--- !u!58 &-2148904720009268401
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94160191002181445}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &-3958297923014039533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94160191002181445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b80b629ff4cad34a8cc20c72b6c53b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  maxHP: 20
+  eResource: 0
+  amount: 10
