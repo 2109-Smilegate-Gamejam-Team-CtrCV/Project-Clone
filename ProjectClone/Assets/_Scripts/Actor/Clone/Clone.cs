@@ -11,9 +11,10 @@ public enum EMindState
 
 public class Clone : Actor, IPlayable
 {
-    public int mental;
-    public int maxMental = 30;
-    public int consumeMental = 1;
+    public float mental;
+    public float maxMental = 30;
+    public float consumeMental = 1;
+    public float totalCousumeMental { get { return eMindState == EMindState.Stability ? consumeMental : consumeMental * 0.5f; } }
 
     [Header("Ã¤±¼")]
 #if UNITY_EDITOR
@@ -185,9 +186,12 @@ public class Clone : Actor, IPlayable
         // todo : 1ÃÊ¸¶´Ù ¸àÅ»À» ±ï´Â´Ù.
         if (nextConsumeTime.IsEnoughTime())
         {
-            nextConsumeTime = DateTime.Now.AddSeconds(1f);
-            mental = Mathf.Clamp(mental - consumeMental, 0, maxMental);
-            GameManager.Instance.gamePresenter.gameModel.AddMental(-consumeMental);
+            float nextTime = eMindState == EMindState.Stability ? 1f : 0.5f;
+            nextConsumeTime = DateTime.Now.AddSeconds(nextTime);
+
+            mental = Mathf.Clamp(mental - totalCousumeMental, 0, maxMental);
+            GameManager.Instance.gamePresenter.gameMainView.MetalGauge = mental / maxMental;
+            //GameManager.Instance.gamePresenter.gameModel.AddMental(-totalCousumeMental);
 
             if (mental <= 0)
             {
@@ -196,6 +200,14 @@ public class Clone : Actor, IPlayable
         }
 
         return mental <= 0;
+    }
+
+    public override bool GetDamage(int power)
+    {
+        bool isDead = base.GetDamage(power);
+        GameManager.Instance.gamePresenter.gameMainView.SetHeart(HP);
+
+        return isDead;
     }
 
     public override void Dead()
