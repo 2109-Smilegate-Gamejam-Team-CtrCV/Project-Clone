@@ -66,7 +66,7 @@ public class MapGenerator: MonoBehaviour
                 tilemap.SetTile(new Vector3Int(x, y, 0), v ? grass : water);
 
                 exist.Add(new Vector2Int(x, y), v);
-                if (value > cut && Random.Range(0, 100.0f) < 3.0f)
+                if (value > cut && Random.Range(0, 100.0f) < 1.0f)
                 {
                     tilemap1.SetTile(new Vector3Int(x, y, 0), random);
                 }
