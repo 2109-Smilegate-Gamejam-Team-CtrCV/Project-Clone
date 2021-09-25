@@ -15,7 +15,7 @@ public class GameShopContextItem : MonoBehaviour, IPointerEnterHandler,IPointerE
     private Button button;
 
 
-
+    public BuildingItem item;
     public GameMainView gameMainView;
 
 
@@ -31,11 +31,14 @@ public class GameShopContextItem : MonoBehaviour, IPointerEnterHandler,IPointerE
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        gameMainView.toolTip = true;
+        gameMainView.toolTipGameObject.gameObject.SetActive(true);
+        gameMainView.toolTipGameObject.nameText.text = item.Name;
+        gameMainView.toolTipGameObject.descriptionText.text = item.Description;
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        gameMainView.toolTip = false;
+        gameMainView.toolTipGameObject.gameObject.SetActive(false);
     }
 }

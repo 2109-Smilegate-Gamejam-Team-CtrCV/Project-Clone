@@ -302,7 +302,6 @@ RectTransform:
   m_Children:
   - {fileID: 835392141}
   - {fileID: 432564850}
-  - {fileID: 146393447}
   m_Father: {fileID: 2124514701}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -476,17 +475,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146393446}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1479771248}
-  m_Father: {fileID: 70847474}
-  m_RootOrder: 2
+  m_Father: {fileID: 2124514701}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 8}
+  m_AnchoredPosition: {x: 560.00006, y: 8}
   m_SizeDelta: {x: 494.4659, y: 197.4187}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &146393448
@@ -503,7 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.59487385, g: 0.7169812, b: 0.4295123, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -539,7 +538,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6a60b21be7a644c9475708bec7ca9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rect: {fileID: 0}
+  rect: {fileID: 146393447}
+  nameText: {fileID: 862550764}
+  descriptionText: {fileID: 690826485}
 --- !u!1 &202505232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,7 +1481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2205,7 +2206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -10504,6 +10505,7 @@ RectTransform:
   - {fileID: 700988556}
   - {fileID: 1049525883}
   - {fileID: 70847474}
+  - {fileID: 146393447}
   m_Father: {fileID: 1393707447}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10574,7 +10576,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8ba906c05ae17cc46a0fb8d6144232dd, type: 3}
   - {fileID: 21300000, guid: 56d93bf695a9fd641b16021681f098ae, type: 3}
   - {fileID: 21300000, guid: 13efcd97a47804045b9ae64ea2beae5a, type: 3}
-  toolTipGameObject: {fileID: 146393446}
+  toolTipGameObject: {fileID: 146393450}
   shopContextItem: {fileID: -92615912639182388, guid: b0574dbaf0f87584a8a7ceab6247e31d, type: 3}
 --- !u!224 &4350097882790878336
 RectTransform:
