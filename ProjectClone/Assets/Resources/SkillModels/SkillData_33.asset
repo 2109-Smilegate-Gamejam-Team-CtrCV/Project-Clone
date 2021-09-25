@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f559b8eb4bd8d944b6010b2766d18f0, type: 3}
   m_Name: SkillData_33
   m_EditorClassIdentifier: 
+  skillIcon: {fileID: 21300000, guid: 057481ac099a90143bba5c7ca91d4a48, type: 3}
   skillType: 5
   value: 0.9
   skillTitle: "\uCC44\uAD74 \uC0AC\uC815\uAC70\uB9AC \uC99D\uAC00"

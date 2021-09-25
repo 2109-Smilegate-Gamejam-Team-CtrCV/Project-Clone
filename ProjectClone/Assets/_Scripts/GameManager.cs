@@ -49,6 +49,16 @@ public class GameManager : Singleton<GameManager>
         {
             SetBuildingMode(!isBuildingMode);
         }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if(!gamePresenter.gameSkillView.gameObject.activeSelf)
+                gamePresenter.gameSkillView.Show();
+            else
+                gamePresenter.gameSkillView.HIde();
+
+        }
+
+
         if (isBuildingMode)
         {
             var pos = Utility.World2Grid(Camera.main.ScreenToWorldPoint(Input.mousePosition));

@@ -23,7 +23,7 @@ public class TitleOptionView : MonoBehaviour
     private Slider vfxVolume;
 
 
-    public IObservable<Unit> CancleClick
+    public IObservable<Unit> CancelClick
     {
         get => cancleButton.OnClickAsObservable();
     }
