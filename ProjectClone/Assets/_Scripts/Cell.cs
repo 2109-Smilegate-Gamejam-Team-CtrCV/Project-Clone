@@ -9,6 +9,11 @@ public class Cell : MonoBehaviour
     [SerializeField]
     public List<Vector2Int> patterns;
 
+    private void Awake()
+    {
+        GetComponent<Renderer>().sortingOrder = -Utility.World2Grid(transform.position).y;
+    }
+
     public bool IsExist(Cell cell, Vector2Int pos)
     {
         bool flag = true;

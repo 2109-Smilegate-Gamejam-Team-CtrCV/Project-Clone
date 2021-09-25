@@ -257,6 +257,11 @@ RectTransform:
   m_AnchoredPosition: {x: 40, y: 0}
   m_SizeDelta: {x: -80, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &99631281 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5590044767114331878, guid: 798d4d63804e3b84c99a42308098cfed, type: 3}
+  m_PrefabInstance: {fileID: 1742206835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &280651137 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5590044767114331875, guid: 798d4d63804e3b84c99a42308098cfed, type: 3}
@@ -854,6 +859,7 @@ GameObject:
   - component: {fileID: 1278604116}
   - component: {fileID: 1278604115}
   - component: {fileID: 1278604114}
+  - component: {fileID: 1278604117}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -926,6 +932,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1278604117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278604113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4767060b147bdd04294a97aa6326e9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 99631281}
 --- !u!1 &1393707443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,7 +1148,7 @@ MonoBehaviour:
   tilemap1: {fileID: 1627353884}
   grass: {fileID: 11400000, guid: fc2c68ae69a673b4b9d5abe041705069, type: 2}
   water: {fileID: 11400000, guid: f2c2708edb7af3e42a29609000d45d06, type: 2}
-  random: {fileID: 0}
+  random: {fileID: 11400000, guid: 8a4151aeb5932ce47858f070f6691af1, type: 2}
   size: {x: 64, y: 64}
   spawnSize: {x: 0, y: 0}
   array: []
