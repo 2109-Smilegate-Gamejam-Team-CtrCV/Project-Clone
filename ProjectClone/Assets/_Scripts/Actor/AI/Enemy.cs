@@ -16,7 +16,6 @@ public class Enemy : Actor, IAttackabale
     DateTime nextAttackTime;
     Vector2 moveDir;
 
-    [SerializeField]
     Clone targetClone;
 
     public override void Init()
