@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GamePresenter : MonoBehaviour
 {
-    [SerializeField]
-    private GameMainView gameMainView;
+    public GameMainView gameMainView;
+
+    public GameSkillView gameSkillView;
 
     [SerializeField]
     private BuildShopList[] buildShopList;
