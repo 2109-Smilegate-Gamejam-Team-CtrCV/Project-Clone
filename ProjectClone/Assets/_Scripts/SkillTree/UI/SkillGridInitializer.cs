@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillGridInitializer : MonoBehaviour
 {
@@ -46,6 +47,8 @@ public class SkillGridInitializer : MonoBehaviour
                             cells[_arr[i, j] - 1].adjCell.Add(cells[value - 1]);
                         }
                     }
+
+                    cells[_arr[i, j] - 1].gameObject.SetActive(cells[_arr[i, j] - 1].canUnlock);
                 }
             }
         }
