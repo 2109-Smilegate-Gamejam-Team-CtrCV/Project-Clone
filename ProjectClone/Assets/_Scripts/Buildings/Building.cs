@@ -9,13 +9,13 @@ public abstract class Building : Cell
 {
     [Header("°Ç¼³")]
     public int createCount;
-    public int createCounter;
+    private int createCounter;
     public bool isCreate;
 
 
     private void Start()
     {
-
+        createCounter = 0;
         GetComponent<SpriteRenderer>().material.SetFloat("_Gray", 0);
 
         GetComponent<SpriteRenderer>().color = Color.gray;

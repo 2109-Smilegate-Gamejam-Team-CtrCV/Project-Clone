@@ -16,6 +16,6 @@ MonoBehaviour:
   Name: "\uC911\uAE09 \uB9C8\uBC95\uBD09 \uD0C0\uC6CC"
   Description: "\uC77C\uBC18\uC801\uC778 \uACF5\uACA9\uC744 \uD558\uB294 \uB9C8\uBC95\uBD09
     \uD0C0\uC6CC"
-  Mineral: 25
-  Organism: 15
-  cell: {fileID: 94160191002180794, guid: e8901206a6b551943bc8a42af56f4253, type: 3}
+  Mineral: 20
+  Organism: 20
+  cell: {fileID: 7807206166843505674, guid: dca059ab7b716064683388e5bcc462f2, type: 3}
