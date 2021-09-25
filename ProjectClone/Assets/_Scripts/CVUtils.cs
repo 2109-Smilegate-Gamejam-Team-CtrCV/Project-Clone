@@ -24,13 +24,18 @@ public static class CVUtils
         return squareRadius >= sqrDistance; // 제곱 거리 >= 실 거리
     }
 
-    public static void SetNextTime(this DateTime curTime, float seconds)
-    {
-        curTime = DateTime.Now.AddSeconds(seconds);
-    }
+    //public static void SetNextTime(this DateTime curTime, float seconds)
+    //{
+    //    curTime = DateTime.Now.AddSeconds(seconds);
+    //}
 
     public static bool IsEnoughTime(this DateTime targetTime)
     {
         return targetTime <= DateTime.Now;
+    }
+
+    public static bool IsNullOrEmpty(this string str)
+    {
+        return str == null || str.Length < 1;
     }
 }

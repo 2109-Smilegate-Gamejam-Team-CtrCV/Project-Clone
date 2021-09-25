@@ -23,6 +23,8 @@ public class Enemy : Actor, IAttackabale
     {
         base.Init();
 
+        EnemyTags = new string[] { "Player" };
+
         nextAttackTime = DateTime.Now;
     }
 
@@ -31,8 +33,8 @@ public class Enemy : Actor, IAttackabale
         if (targetClone == null)
             return;
 
-        if (IsAttackRange())
-            return;
+        //if (IsAttackRange())
+        //    return;
 
         moveDir = (targetClone.transform.position2D() - transform.position2D()).normalized;
         transform.Translate(moveDir * moveSpeed * Time.deltaTime);
@@ -40,12 +42,11 @@ public class Enemy : Actor, IAttackabale
 
     public void Attack()
     {
-        //if (nextAttackTime.IsEnoughTime() == false || IsAttackRange() == false)
-        if (nextAttackTime.IsEnoughTime() == false && IsAttackRange() == false)
+        if (nextAttackTime.IsEnoughTime() == false || IsAttackRange() == false)
             return;
 
         Debug.Log("attack player");
-        nextAttackTime.SetNextTime(attackSpeed);
+        nextAttackTime = DateTime.Now.AddSeconds(attackSpeed);
 
         // todo : 투사체 발사
     }
@@ -75,7 +76,7 @@ public class Enemy : Actor, IAttackabale
         Gizmos.DrawWireSphere(transform.position, attackRadius);
 
         Gizmos.color = moveGizmoColor;
-        Gizmos.DrawRay(transform.position, moveDir);
+        Gizmos.DrawRay(transform.position, targetClone.transform.position2D() - transform.position2D());
     }
 #endif
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public enum EMindState
 {
@@ -11,25 +12,26 @@ public enum EMindState
 
 public class Clone : Actor, IPlayable
 {
-    [HideInInspector] public int mental;
+    public int mental;
     public int maxMental = 30;
     public int consumeMental = 1;
 
-    [Header("채굴(노랑)")]
+    [Header("채굴")]
 #if UNITY_EDITOR
     [SerializeField] Color miningGizmoColor = Color.yellow;
 #endif
     public int miningPower = 3;
     public float miningSpeed = 1.3f;
     public float miningRange = 2f;
+    public float miningRate = 1f; // 자원 획득 배율
 
     // 자원은 매니저에서 갖는게?
     public int mineral = 0; 
     public int organic = 0;
 
-    [Header("건설(초록)")]
+    [Header("건설")]
 #if UNITY_EDITOR
-    [SerializeField] Color buildingGizmoColor = Color.green;
+    [SerializeField] Color buildingGizmoColor = Color.blue;
 #endif
     public int buildingPower = 3;
     public float buildingSpeed = 1.3f;
@@ -40,25 +42,36 @@ public class Clone : Actor, IPlayable
     DateTime nextConsumeTime;
 
     EMindState eMindState = EMindState.Stability;
+    bool isDead = false;
 
     protected override void Update()
     {
-        base.Update();
+        if (isDead)
+            return;
+
+        ReduceMental();
 
         if (Input.GetMouseButton(0))
         {
             ClickObject();
         }
+
+        base.Update();
+        //Accelerate();
     }
 
     public override void Init()
     {
         base.Init();
 
-        mental = maxMental;
+        EnemyTags = new string[] { "Enemy" };
 
-        nextBuildTime = DateTime.Now;
+        mental = maxMental;
+        isDead = false;
+
         nextMiningTime = DateTime.Now;
+        nextBuildTime = DateTime.Now;
+        nextConsumeTime = DateTime.Now;
     }
 
     public override void Move()
@@ -86,6 +99,15 @@ public class Clone : Actor, IPlayable
         }
 
         transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+        SetMoveAnimation(moveDir);
+    }
+
+    void Accelerate()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        rb.velocity = new Vector2(horizontal, vertical) * moveSpeed;
     }
 
     public void ClickObject()
@@ -97,6 +119,8 @@ public class Clone : Actor, IPlayable
         var hit = Physics2D.Raycast(ray.origin, ray.direction);
         if (hit.collider != null)
         {
+            // todo : 호버링된 오브젝트에 아웃라인 주면 좋을듯?
+
             //Debug.LogFormat("click target name : " + hit.collider.name);
 
             if (hit.collider.CompareTag("Mining"))
@@ -121,7 +145,7 @@ public class Clone : Actor, IPlayable
                 if (nextMiningTime.IsEnoughTime())
                 {
                     Debug.LogFormat("mine target name : " + target.name);
-                    nextMiningTime.SetNextTime(miningSpeed);
+                    nextMiningTime = DateTime.Now.AddSeconds(miningSpeed);
                     mining.GainResource();
                 }
             }
@@ -139,7 +163,7 @@ public class Clone : Actor, IPlayable
                 if (nextMiningTime.IsEnoughTime())
                 {
                     Debug.LogFormat("build target name : " + target.name);
-                    nextMiningTime.SetNextTime(miningSpeed);
+                    nextMiningTime = DateTime.Now.AddSeconds(miningSpeed);
                     building.GainResource();
                 }
             }
@@ -151,6 +175,8 @@ public class Clone : Actor, IPlayable
         // todo : 1초마다 멘탈을 깍는다.
         if (nextConsumeTime.IsEnoughTime())
         {
+            nextConsumeTime = DateTime.Now.AddSeconds(1f);
+
             mental = Mathf.Clamp(mental - consumeMental, 0, maxMental);
             if (mental <= 0)
             {
@@ -164,12 +190,26 @@ public class Clone : Actor, IPlayable
     public override void Dead()
     {
         // todo : clone을 죽게 하고 새로 스폰한다.
+        // 게임매니저에서 처리
+        Debug.Log("DEAD!!");
+        isDead = true;
     }
 
     public void SetMindState(EMindState newState)
     {
         eMindState = newState;
     }
+
+#region Animation
+    public void SetMoveAnimation(Vector2 moveDir)
+    {
+        animator.SetBool("Walk", moveDir != Vector2.zero);
+
+        if (moveDir.x != 0)
+            render.flipX = moveDir.x > 0;
+    }
+
+#endregion
 
 #if UNITY_EDITOR
     void OnDrawGizmos()

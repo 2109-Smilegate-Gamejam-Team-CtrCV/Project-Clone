@@ -36,7 +36,8 @@ public class MiningObject : MonoBehaviour, IGatherable
 
     public void GainResource()
     {
-        //todo : amount¸¸Å­ eResource È¹µæ
+        // todo : amount¸¸Å­ eResource È¹µæ
+        // todo : È¹µæ ¿¬Ãâ ÇÊ¿ä -> µå¶ø µÈ °É ÁÝ´ø°¡, type + amount ui ÇÊ¿ä
     }
 
     public void ReturnToPool()
