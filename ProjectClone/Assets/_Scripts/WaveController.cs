@@ -22,10 +22,10 @@ public class WaveController : MonoBehaviour
     {
         isInit = true;
         generator = GameManager.Instance.mapGenerator;
-        Reset();
+        ResetGame();
     }
 
-    public void Reset()
+    public void ResetGame()
     {
         waveLevel = 0;
         nextWaveTime = System.DateTime.Now;
@@ -34,7 +34,7 @@ public class WaveController : MonoBehaviour
         {
             for (int i = 0; i < portalList.Count; ++i)
             {
-                portalList[i].Reset();
+                portalList[i].ResetGame();
                 Destroy(portalList[i].gameObject);
             }
 

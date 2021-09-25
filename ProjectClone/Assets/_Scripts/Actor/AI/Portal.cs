@@ -54,7 +54,7 @@ public class Portal : Cell
         SummonEnemy(enemySummonCounts);
     }
 
-    public void Reset()
+    public void ResetGame()
     {
         if (enemyList.Count > 0)
         {
