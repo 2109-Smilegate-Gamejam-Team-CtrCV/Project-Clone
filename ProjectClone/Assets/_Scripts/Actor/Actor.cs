@@ -43,6 +43,8 @@ public class Actor : MonoBehaviour, IReboundable
     public virtual bool GetDamage(int power)
     {
         HP = Mathf.Clamp(HP - power, 0, maxHP);
+        Debug.LogFormat("{0} HP : {1}", gameObject.name, HP);
+
         if (HP <= 0)
         {
             Dead();
@@ -59,6 +61,15 @@ public class Actor : MonoBehaviour, IReboundable
         {
             Vector2 reboundDir = (transform.position2D() - collision.transform.position2D()).normalized;
             Rebound(reboundDir);
+
+            // 이걸 어떻게 고치지...
+            int attackPower = 0;
+            if (gameObject.CompareTag("Enemy"))
+                attackPower = gameObject.GetComponent<Enemy>().attackPower;
+            else if (collision.collider.CompareTag("Enemy"))
+                attackPower = collision.collider.GetComponent<Enemy>().attackPower;
+
+            GetDamage(attackPower);
         }
     }
 
