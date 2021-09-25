@@ -97,6 +97,7 @@ public class Clone : Actor, IPlayable
             moveDir += Vector2.right;
         }
 
+        moveDir = moveDir.normalized;
         transform.Translate(moveDir * moveSpeed * Time.deltaTime);
         SetMoveAnimation(moveDir);
     }
