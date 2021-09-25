@@ -8,7 +8,7 @@ public class GameManager : Singleton<GameManager>
     [Header("스크립트 참조")]
     public GamePresenter gamePresenter;
     public MapGenerator mapGenerator;
-
+    public WaveController waveControl;
 
     public Clone clone;
 
@@ -24,7 +24,9 @@ public class GameManager : Singleton<GameManager>
         gamePresenter.Init();
         mapGenerator.Generator(this);
         clone.transform.position = (Vector3Int)mapGenerator.size / 2;
-   
+
+        if (waveControl != null)
+            waveControl.Init();
     }
 
 /*    private void Update()
