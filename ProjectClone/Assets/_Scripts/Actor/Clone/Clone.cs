@@ -11,6 +11,7 @@ public enum EMindState
 
 public class Clone : Actor, IPlayable
 {
+    #region Player Stat Inspector
     public float mental;
     public float maxMental = 30;
     public float consumeMental = 1;
@@ -25,10 +26,6 @@ public class Clone : Actor, IPlayable
     public float miningRange = 2f;
     public float miningRate = 1f; // 자원 획득 배율
 
-    // 자원은 매니저에서 갖는게?
-    public int mineral = 0; 
-    public int organic = 0;
-
     [Header("건설")]
 #if UNITY_EDITOR
     [SerializeField] Color buildingGizmoColor = Color.blue;
@@ -36,6 +33,90 @@ public class Clone : Actor, IPlayable
     public int buildingPower = 3;
     public float buildingSpeed = 1.3f;
     public float buildingRange = 1f;
+    #endregion
+
+    #region skill Stat Apply
+    public float totalMoveSpeed
+    {
+        get
+        {
+            return skillStats == null ? moveSpeed : moveSpeed + skillStats.speed;
+        }
+    }
+
+    public float totalMaxHP
+    {
+        get
+        {
+            return skillStats == null ? maxHP : maxHP + skillStats.healthPoint;
+        }
+    }
+
+    public float totalMaxMental
+    {
+        get
+        {
+            return skillStats == null ? maxMental : maxMental + skillStats.mentalPoint;
+        }
+    }
+
+    public int totalMiningPower
+    {
+        get
+        {
+            return skillStats == null ? miningPower : miningPower + skillStats.miningPower;
+        }
+    }
+
+    public float totalMiningSpeed
+    {
+        get
+        {
+            return skillStats == null ? miningSpeed : miningSpeed + skillStats.miningSpeed;
+        }
+    }
+
+    public float totalMiningRange
+    {
+        get
+        {
+            return skillStats == null ? miningRange : miningRange + skillStats.miningRange;
+        }
+    }
+
+    public float totalMiningRate
+    {
+        get
+        {
+            return skillStats == null ? miningRate : miningRate * 1.3f;
+        }
+    }
+
+    public float totalBuildingPower
+    {
+        get
+        {
+            return skillStats == null ? buildingPower : buildingPower + skillStats.buildingPower;
+        }
+    }
+
+    public float totalBuildingSpeed
+    {
+        get
+        {
+            return skillStats != null ? buildingSpeed : buildingSpeed + skillStats.buildingSpeed;
+        }
+    }
+
+    public float totalBuildingRange
+    {
+        get
+        {
+            return skillStats != null ? buildingRange : buildingRange + skillStats.buildingRange;
+        }
+    }
+
+    #endregion
 
     DateTime nextMiningTime;
     DateTime nextBuildTime;
@@ -43,6 +124,8 @@ public class Clone : Actor, IPlayable
 
     EMindState eMindState = EMindState.Stability;
     bool isDead = false;
+
+    AddedSkillStats skillStats;
 
     protected override void Update()
     {
@@ -66,12 +149,14 @@ public class Clone : Actor, IPlayable
 
         EnemyTags = new string[] { "Enemy" };
 
-        mental = maxMental;
+        mental = totalMaxMental;
         isDead = false;
 
         nextMiningTime = DateTime.Now;
         nextBuildTime = DateTime.Now;
         nextConsumeTime = DateTime.Now;
+
+        skillStats = gameObject.AddComponent<AddedSkillStats>();
     }
 
     public override void Move()
@@ -99,7 +184,7 @@ public class Clone : Actor, IPlayable
         }
 
         moveDir = moveDir.normalized;
-        transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+        transform.Translate(moveDir * totalMoveSpeed * Time.deltaTime);
         SetMoveAnimation(moveDir);
     }
 
@@ -108,7 +193,7 @@ public class Clone : Actor, IPlayable
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2(horizontal, vertical) * moveSpeed;
+        rb.velocity = new Vector2(horizontal, vertical) * totalMoveSpeed;
     }
 
     public void ClickObject()
@@ -141,13 +226,13 @@ public class Clone : Actor, IPlayable
         var mining = target.GetComponent<MiningObject>();
         if (mining)
         {
-            if (transform.position2D().IsInRange(mining.transform.position2D(), miningRange))
+            if (transform.position2D().IsInRange(mining.transform.position2D(), totalMiningRange))
             {
                 if (nextMiningTime.IsEnoughTime())
                 {
                     Debug.LogFormat("mine target name : " + target.name);
-                    nextMiningTime = DateTime.Now.AddSeconds(miningSpeed);
-                    mining.GetDamage(miningPower);
+                    nextMiningTime = DateTime.Now.AddSeconds(totalMiningSpeed);
+                    mining.GetDamage(totalMiningPower);
                 }
             }
         }
@@ -159,12 +244,12 @@ public class Clone : Actor, IPlayable
         var building = target.GetComponent<MiningObject>();
         if (building)
         {
-            if (transform.position2D().IsInRange(building.transform.position2D(), buildingRange))
+            if (transform.position2D().IsInRange(building.transform.position2D(), totalBuildingRange))
             {
                 if (nextBuildTime.IsEnoughTime())
                 {
                     Debug.LogFormat("build target name : " + target.name);
-                    nextBuildTime = DateTime.Now.AddSeconds(buildingSpeed);
+                    nextBuildTime = DateTime.Now.AddSeconds(totalBuildingSpeed);
                     building.GetDamage(miningPower);
                 }
             }
@@ -173,7 +258,7 @@ public class Clone : Actor, IPlayable
 
     public void GainResource(EResource eResource, int amount)
     {
-        amount = (int)(amount * miningRate);
+        amount = (int)(amount * totalMiningRange);
 
         if (eResource == EResource.Mineral)
             GameManager.Instance.gamePresenter.gameModel.AddMineral(amount);
@@ -189,8 +274,8 @@ public class Clone : Actor, IPlayable
             float nextTime = eMindState == EMindState.Stability ? 1f : 0.5f;
             nextConsumeTime = DateTime.Now.AddSeconds(nextTime);
 
-            mental = Mathf.Clamp(mental - totalCousumeMental, 0, maxMental);
-            GameManager.Instance.gamePresenter.gameMainView.MetalGauge = mental / maxMental;
+            mental = Mathf.Clamp(mental - totalCousumeMental, 0, totalMaxMental);
+            GameManager.Instance.gamePresenter.gameMainView.MetalGauge = mental / totalMaxMental;
             //GameManager.Instance.gamePresenter.gameModel.AddMental(-totalCousumeMental);
 
             if (mental <= 0)
@@ -241,10 +326,10 @@ public class Clone : Actor, IPlayable
     void OnDrawGizmos()
     {
         Gizmos.color = miningGizmoColor;
-        Gizmos.DrawWireSphere(transform.position, miningRange);
+        Gizmos.DrawWireSphere(transform.position, totalMiningRange);
 
         Gizmos.color = buildingGizmoColor;
-        Gizmos.DrawWireSphere(transform.position, buildingRange);
+        Gizmos.DrawWireSphere(transform.position, totalBuildingRange);
     }
 #endif
 }

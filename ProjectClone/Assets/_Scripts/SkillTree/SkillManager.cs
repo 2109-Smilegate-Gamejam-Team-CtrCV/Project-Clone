@@ -7,7 +7,7 @@ public class SkillManager : Singleton<SkillManager>
 
     public void GetSkill(SkillData skillData)
     {
-        currentSkillStats ??= GameManager.Instance.clone.gameObject.AddComponent<AddedSkillStats>();
+        currentSkillStats ??= GameManager.Instance.clone.gameObject.GetComponent<AddedSkillStats>();
         
         switch (skillData.skillType)
         {
@@ -21,7 +21,7 @@ public class SkillManager : Singleton<SkillManager>
                 currentSkillStats.mentalPoint += skillData.value;
                 break;
             case SkillData.SkillType.IncreaseMiningPower:
-                currentSkillStats.miningPower += skillData.value;
+                currentSkillStats.miningPower += (int)skillData.value;
                 break;
             case SkillData.SkillType.IncreaseMiningSpeed:
                 currentSkillStats.miningSpeed += skillData.value;

@@ -23,8 +23,6 @@ public class Actor : MonoBehaviour, IReboundable
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
-        Init();
     }
 
     protected virtual void Update()
