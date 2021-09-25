@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: BuildingItem 2
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: c3fb6ca922d00884da0bfdb31ecaa26a, type: 3}
-  Name: asdasd
-  Description: asds
-  Mineral: 0
-  Organism: 0
+  Name: "\uD30C\uBA78\uC758 \uB9C8\uBC95\uBD09 \uD0C0\uC6CC"
+  Description: "\uAC15\uB825\uD55C \uACF5\uACA9\uC744 \uD558\uB294 \uB9C8\uBC95\uBD09
+    \uD0C0\uC6CC"
+  Mineral: 72
+  Organism: 60
   cell: {fileID: 94160191002180794, guid: e8901206a6b551943bc8a42af56f4253, type: 3}
