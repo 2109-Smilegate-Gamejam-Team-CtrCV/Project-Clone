@@ -15,7 +15,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: c3fb6ca922d00884da0bfdb31ecaa26a, type: 3}
   Name: "\uC911\uAE09 \uB9C8\uBC95\uBD09 \uD0C0\uC6CC"
   Description: "\uC77C\uBC18\uC801\uC778 \uACF5\uACA9\uC744 \uD558\uB294 \uB9C8\uBC95\uBD09
-    \uD0C0\uC6CC"
-  Mineral: 20
-  Organism: 20
+    \uD0C0\uC6CC\n1<sprite name=Bow>/1\uCD08"
+  Mineral: 25
+  Organism: 15
   cell: {fileID: 7807206166843505674, guid: dca059ab7b716064683388e5bcc462f2, type: 3}
