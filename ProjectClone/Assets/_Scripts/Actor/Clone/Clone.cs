@@ -11,112 +11,31 @@ public enum EMindState
 
 public class Clone : Actor, IPlayable
 {
-    #region Player Stat Inspector
     public float mental;
     public float maxMental = 30;
     public float consumeMental = 1;
     public float totalCousumeMental { get { return eMindState == EMindState.Stability ? consumeMental : consumeMental * 0.5f; } }
 
-    [Header("Ã¤ï¿½ï¿½")]
+    [Header("Ã¤±¼")]
 #if UNITY_EDITOR
     [SerializeField] Color miningGizmoColor = Color.yellow;
 #endif
     public int miningPower = 3;
     public float miningSpeed = 1.3f;
     public float miningRange = 2f;
-    public float miningRate = 1f; // ï¿½Ú¿ï¿½ È¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float miningRate = 1f; // ÀÚ¿ø È¹µæ ¹èÀ²
 
-    [Header("ï¿½Ç¼ï¿½")]
+    // ÀÚ¿øÀº ¸Å´ÏÀú¿¡¼­ °®´Â°Ô?
+    public int mineral = 0; 
+    public int organic = 0;
+
+    [Header("°Ç¼³")]
 #if UNITY_EDITOR
     [SerializeField] Color buildingGizmoColor = Color.blue;
 #endif
     public int buildingPower = 3;
     public float buildingSpeed = 1.3f;
     public float buildingRange = 1f;
-    #endregion
-
-    #region skill Stat Apply
-    public float totalMoveSpeed
-    {
-        get
-        {
-            return skillStats == null ? moveSpeed : moveSpeed + skillStats.speed;
-        }
-    }
-
-    public float totalMaxHP
-    {
-        get
-        {
-            return skillStats == null ? maxHP : maxHP + skillStats.healthPoint;
-        }
-    }
-
-    public float totalMaxMental
-    {
-        get
-        {
-            return skillStats == null ? maxMental : maxMental + skillStats.mentalPoint;
-        }
-    }
-
-    public int totalMiningPower
-    {
-        get
-        {
-            return skillStats == null ? miningPower : miningPower + skillStats.miningPower;
-        }
-    }
-
-    public float totalMiningSpeed
-    {
-        get
-        {
-            return skillStats == null ? miningSpeed : miningSpeed + skillStats.miningSpeed;
-        }
-    }
-
-    public float totalMiningRange
-    {
-        get
-        {
-            return skillStats == null ? miningRange : miningRange + skillStats.miningRange;
-        }
-    }
-
-    public float totalMiningRate
-    {
-        get
-        {
-            return skillStats == null ? miningRate : miningRate * 1.3f;
-        }
-    }
-
-    public float totalBuildingPower
-    {
-        get
-        {
-            return skillStats == null ? buildingPower : buildingPower + skillStats.buildingPower;
-        }
-    }
-
-    public float totalBuildingSpeed
-    {
-        get
-        {
-            return skillStats != null ? buildingSpeed : buildingSpeed + skillStats.buildingSpeed;
-        }
-    }
-
-    public float totalBuildingRange
-    {
-        get
-        {
-            return skillStats != null ? buildingRange : buildingRange + skillStats.buildingRange;
-        }
-    }
-
-    #endregion
 
     DateTime nextMiningTime;
     DateTime nextBuildTime;
@@ -124,8 +43,6 @@ public class Clone : Actor, IPlayable
 
    public EMindState eMindState = EMindState.Stability;
     bool isDead = false;
-
-    AddedSkillStats skillStats;
 
     protected override void Update()
     {
@@ -149,14 +66,12 @@ public class Clone : Actor, IPlayable
 
         EnemyTags = new string[] { "Enemy" };
 
-        mental = totalMaxMental;
+        mental = maxMental;
         isDead = false;
 
         nextMiningTime = DateTime.Now;
         nextBuildTime = DateTime.Now;
         nextConsumeTime = DateTime.Now;
-
-        skillStats = gameObject.AddComponent<AddedSkillStats>();
     }
 
     public override void Move()
@@ -184,7 +99,7 @@ public class Clone : Actor, IPlayable
         }
 
         moveDir = moveDir.normalized;
-        transform.Translate(moveDir * totalMoveSpeed * Time.deltaTime);
+        transform.Translate(moveDir * moveSpeed * Time.deltaTime);
         SetMoveAnimation(moveDir);
     }
 
@@ -193,7 +108,7 @@ public class Clone : Actor, IPlayable
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2(horizontal, vertical) * totalMoveSpeed;
+        rb.velocity = new Vector2(horizontal, vertical) * moveSpeed;
     }
 
     public void ClickObject()
@@ -205,7 +120,7 @@ public class Clone : Actor, IPlayable
         var hit = Physics2D.Raycast(ray.origin, ray.direction);
         if (hit.collider != null)
         {
-            // todo : È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
+            // todo : È£¹ö¸µµÈ ¿ÀºêÁ§Æ®¿¡ ¾Æ¿ô¶óÀÎ ÁÖ¸é ÁÁÀ»µí?
 
             //Debug.LogFormat("click target name : " + hit.collider.name);
 
@@ -222,17 +137,17 @@ public class Clone : Actor, IPlayable
 
     public void Mine(GameObject target)
     {
-        // todo : Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½Ï¸ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // todo : Ã¤±¼ »çÁ¤°Å¸® ³»ÀÇ Ã¤±¼ ´ë»óÀ» ÁÂÅ¬¸¯ÇÏ¸é Ã¤±¼ ÁøÇà
         var mining = target.GetComponent<MiningObject>();
         if (mining)
         {
-            if (transform.position2D().IsInRange(mining.transform.position2D(), totalMiningRange))
+            if (transform.position2D().IsInRange(mining.transform.position2D(), miningRange))
             {
                 if (nextMiningTime.IsEnoughTime())
                 {
                     Debug.LogFormat("mine target name : " + target.name);
-                    nextMiningTime = DateTime.Now.AddSeconds(totalMiningSpeed);
-                    mining.GetDamage(totalMiningPower);
+                    nextMiningTime = DateTime.Now.AddSeconds(miningSpeed);
+                    mining.GetDamage(miningPower);
                 }
             }
         }
@@ -240,16 +155,16 @@ public class Clone : Actor, IPlayable
 
     public void Build(GameObject target)
     {
-        // todo : ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // todo : °Ç¼³ »çÁ¤°Å¸® ³»ÀÇ °Ç¼³ ´ë»óÀ» ÁÂÅ¬¸¯ÇÏ¸é °Ç¼³ ÁøÇà
         var building = target.GetComponent<Building>();
         if (building)
         {
-            if (transform.position2D().IsInRange(building.transform.position2D(), totalBuildingRange))
+            if (transform.position2D().IsInRange(building.transform.position2D(), buildingRange))
             {
                 if (nextBuildTime.IsEnoughTime())
                 {
                     Debug.LogFormat("build target name : " + target.name);
-                    nextBuildTime = DateTime.Now.AddSeconds(totalBuildingSpeed);
+                    nextBuildTime = DateTime.Now.AddSeconds(buildingSpeed);
                     building.AddCount();
                 }
             }
@@ -258,7 +173,7 @@ public class Clone : Actor, IPlayable
 
     public void GainResource(EResource eResource, int amount)
     {
-        amount = (int)(amount * totalMiningRange);
+        amount = (int)(amount * miningRate);
 
         if (eResource == EResource.Mineral)
             GameManager.Instance.gamePresenter.gameModel.AddMineral(amount);
@@ -268,14 +183,14 @@ public class Clone : Actor, IPlayable
 
     bool ReduceMental()
     {
-        // todo : 1ï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½ï¿½Å»ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
+        // todo : 1ÃÊ¸¶´Ù ¸àÅ»À» ±ï´Â´Ù.
         if (nextConsumeTime.IsEnoughTime())
         {
             float nextTime = eMindState == EMindState.Stability ? 1f : 0.5f;
             nextConsumeTime = DateTime.Now.AddSeconds(nextTime);
 
-            mental = Mathf.Clamp(mental - totalCousumeMental, 0, totalMaxMental);
-            GameManager.Instance.gamePresenter.gameMainView.MetalGauge = mental / totalMaxMental;
+            mental = Mathf.Clamp(mental - totalCousumeMental, 0, maxMental);
+            GameManager.Instance.gamePresenter.gameMainView.MetalGauge = mental / maxMental;
             //GameManager.Instance.gamePresenter.gameModel.AddMental(-totalCousumeMental);
 
             if (mental <= 0)
@@ -297,14 +212,12 @@ public class Clone : Actor, IPlayable
 
     public override void Dead()
     {
-        // todo : cloneï¿½ï¿½ ï¿½×°ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
-        // ï¿½ï¿½ï¿½Ó¸Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+        
         Debug.Log("DEAD!!");
         isDead = true;
         animator.SetTrigger("Death");
         Destroy(this);
         GameManager.Instance.CreateNextClone();
-        SkillGridInitializer.Instance.Initialize();
     }
 
     public void SetMindState(EMindState newState)
@@ -327,10 +240,10 @@ public class Clone : Actor, IPlayable
     void OnDrawGizmos()
     {
         Gizmos.color = miningGizmoColor;
-        Gizmos.DrawWireSphere(transform.position, totalMiningRange);
+        Gizmos.DrawWireSphere(transform.position, miningRange);
 
         Gizmos.color = buildingGizmoColor;
-        Gizmos.DrawWireSphere(transform.position, totalBuildingRange);
+        Gizmos.DrawWireSphere(transform.position, buildingRange);
     }
 #endif
 }
