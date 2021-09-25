@@ -10703,7 +10703,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: c48fe0d41458a6041a91a01d22a47ceb, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097882790878342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10880,7 +10879,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 436c3b9fc5f1d9a47b9424991b9c1e1a, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883117211268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11019,7 +11017,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: b0207c0d9ead64743a15ce8ebd3ce88a, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883132039072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11036,7 +11033,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 750a59916de9ae847a605f00e5bf15da, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883132039074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11277,7 +11273,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 19a3c7bd2123a644188905299217a9a7, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!1 &4350097883146827709
 GameObject:
   m_ObjectHideFlags: 0
@@ -11436,7 +11431,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 32d41ed8b1e90e24a91704ea9a064c8a, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883228969460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11575,7 +11569,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 0b45852aa6ecf7f4c8d4026d7ea46dbe, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!222 &4350097883295921170
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11600,7 +11593,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 11d84a7ebb075b9488f44b08e2ffe29b, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883295921196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11779,7 +11771,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 83f646bd0a3e2d242b19e361149a196e, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883303833470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11954,7 +11945,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: b222bd39c95eddf41a2577083240b387, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883485561526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12057,7 +12047,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 0d62e829bb0e5604ba42047d4a331206, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883502339006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12156,7 +12145,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: a6d0dac25978a344b825237689fb1f90, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883510545122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12351,6 +12339,7 @@ MonoBehaviour:
   - {fileID: 4350097884194484271}
   - {fileID: 4350097882790878340}
   - {fileID: 4350097884636377197}
+  mainCell: {fileID: 4350097884454387419}
 --- !u!114 &4350097883643325072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12367,7 +12356,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: e3470742d384c3c4c92f95a433b9b651, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883643325074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12590,7 +12578,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: e09c61beb2ae4084a88bdcef0ca7036b, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883667021398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12767,7 +12754,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 8b8276fd3ce268744a08526b0fcbe84e, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!224 &4350097883731434536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12868,7 +12854,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: cd197fa1bb097f64a8930d120c326116, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883731434542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13042,7 +13027,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 57b011417dee07848a3585a48bd9170a, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883880365774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13181,7 +13165,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: fb452da08a6b0f4449a3cf613b0b1225, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883908102734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13320,7 +13303,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 00299c5f2e28ec04abbd30e5cda5573f, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097883970152414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13459,7 +13441,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 633e6ad4a0216fe47b4cc31d15c27fab, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884006170346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13634,7 +13615,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: f9f07a893a7c9e945ae8662ba443f361, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884052934922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13737,7 +13717,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 6547e18f3422f024cba33771b786e5f0, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884081352686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13950,7 +13929,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: b9a01067c05aa9544a4ff1c3cc151b5f, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!1 &4350097884136743256
 GameObject:
   m_ObjectHideFlags: 0
@@ -14015,7 +13993,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 0d148490d7a2d8f4d883101aff076fdc, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884136743262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14228,7 +14205,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 9278ea8a3e4e8ee468ea4c3b1b9e83d3, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884194484264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14367,7 +14343,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: b58109da6c3d6bd4189363cb5bd6621f, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!1 &4350097884227276101
 GameObject:
   m_ObjectHideFlags: 0
@@ -14506,7 +14481,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 779d3b7e13a34c04d8c112711c939de6, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!1 &4350097884251419112
 GameObject:
   m_ObjectHideFlags: 0
@@ -14571,7 +14545,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 9d605acc1e53ef741b2e99df3f0d2223, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884251419118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14710,7 +14683,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 72cad664e1c064c47a60d6b41bc4281b, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884255336650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14923,7 +14895,6 @@ MonoBehaviour:
   canUnlock: 1
   skillData: {fileID: 11400000, guid: f3c432bcd5bdcc344ac1fa28fe8e0096, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!222 &4350097884468606226
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14948,7 +14919,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 1dbc910e83310af4fa25747ef71d9f22, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884468606252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15201,7 +15171,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 3d4400e162424d444bb1a424f405e9fb, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884536664772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15340,7 +15309,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: c51f667cceb98b74aa23e3e7e426fc94, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!1 &4350097884636377192
 GameObject:
   m_ObjectHideFlags: 0
@@ -15405,7 +15373,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 54edda005d98d8b4cb41c0f46205916e, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884636377198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15504,7 +15471,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 108ba75c6b4f21442bba089b08dfb81d, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884857635356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15683,7 +15649,6 @@ MonoBehaviour:
   canUnlock: 0
   skillData: {fileID: 11400000, guid: 7b0f29d9c1cabc640b2abb5015a2202e, type: 2}
   adjCell: []
-  icon: {fileID: 0}
 --- !u!114 &4350097884885673278
 MonoBehaviour:
   m_ObjectHideFlags: 0

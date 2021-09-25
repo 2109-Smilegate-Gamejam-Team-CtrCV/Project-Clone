@@ -28,9 +28,15 @@ public class SkillGridInitializer : MonoBehaviour
     };
 
     [SerializeField] private SkillCell[] cells;
+    [SerializeField] private SkillCell mainCell;
     
     // Start is called before the first frame update
     private void Start()
+    {
+        Initialize();
+    }
+
+    public void Initialize()
     {
         for (int i = 0; i < _arr.GetLength(0); i++)
         {
@@ -38,7 +44,9 @@ public class SkillGridInitializer : MonoBehaviour
             {
                 if (_arr[i, j] > 0)
                 {
-                    foreach (var valueTuple in ArrayDirection.Where(pair =>
+                    var cell = cells[_arr[i, j] - 1];
+                    
+                    foreach (var (item1, item2) in ArrayDirection.Where(pair =>
                     {
                         var newI = i + pair.Item1;
                         var newJ = j + pair.Item2;
@@ -46,16 +54,24 @@ public class SkillGridInitializer : MonoBehaviour
                         return newI >= 0 && newI < _arr.GetLength(0) && newJ >= 0 && newJ < _arr.GetLength(1);
                     }))
                     {
-                        var value = _arr[i + valueTuple.Item1, j + valueTuple.Item2];
+                        var value = _arr[i + item1, j + item2];
                         if (value > 0)
                         {
-                            cells[_arr[i, j] - 1].adjCell.Add(cells[value - 1]);
+                            cell.adjCell.Add(cells[value - 1]);
                         }
                     }
 
-                    cells[_arr[i, j] - 1].gameObject.SetActive(cells[_arr[i, j] - 1].canUnlock);
+                    cell.gameObject.SetActive(cells[_arr[i, j] - 1].canUnlock);
+                    cell.canUnlock = cell.isUnlocked = false;
                 }
             }
         }
+        
+        mainCell.canUnlock = mainCell.isUnlocked = true;
+        mainCell.adjCell.ForEach(cell =>
+        {
+            cell.gameObject.SetActive(true);
+            cell.canUnlock = true;
+        });
     }
 }

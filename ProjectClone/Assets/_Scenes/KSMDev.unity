@@ -676,6 +676,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7446642185777080753, guid: 5669cc375a9e4f247a786ad11f8917a5, type: 3}
+      propertyPath: mainCell
+      value: 
+      objectReference: {fileID: 248090547}
+    - target: {fileID: 7446642185777080753, guid: 5669cc375a9e4f247a786ad11f8917a5, type: 3}
       propertyPath: cells.Array.size
       value: 36
       objectReference: {fileID: 0}
