@@ -11,10 +11,12 @@ public class SkillData : ScriptableObject
         IncreaseMaxHp,
         IncreaseMaxMp,
         IncreaseMiningPower,
-        DecreaseMiningSpeed,
+        IncreaseMiningSpeed,
+        IncreaseMiningRange,
         IncreaseBuildingRange,
+        IncreaseBuildingSpeed,
         IncreaseAdditionalExp,
-        IncreaseMiningAmount,
+        AddExtraMineral,
         AddAutoAttacking
     }
 
