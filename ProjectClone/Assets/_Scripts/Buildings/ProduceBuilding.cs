@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,7 +41,9 @@ public class ProduceBuilding : Building
     private void Give()
     {
         Debug.Log("È¹µæ");
-        if(produceItemType == ProduceItemType.Mineral)
+
+        transform.DOScaleY(1, 0.5f).From(1.2f);
+        if (produceItemType == ProduceItemType.Mineral)
         {
             GameManager.Instance.gamePresenter.gameModel.AddMineral(itemCount);
         }
