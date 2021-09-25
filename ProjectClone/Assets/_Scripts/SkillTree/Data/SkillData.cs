@@ -19,7 +19,7 @@ public class SkillData : ScriptableObject
         AddExtraMineral,
         AddAutoAttacking
     }
-
+    public Sprite skillIcon;
     public SkillType skillType;
     public float value;
     public string skillTitle;
