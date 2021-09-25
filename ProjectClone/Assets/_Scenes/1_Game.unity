@@ -9417,6 +9417,8 @@ MonoBehaviour:
   size: {x: 256, y: 256}
   spawnSize: {x: 0, y: 0}
   array: []
+  treeCount: 50
+  stoneCount: 50
   stones:
   - {fileID: 94160191002180794, guid: 58431f964b5c39b4397e74727c47fc5c, type: 3}
   - {fileID: 94160191002180794, guid: e8901206a6b551943bc8a42af56f4253, type: 3}
