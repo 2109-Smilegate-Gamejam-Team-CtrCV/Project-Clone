@@ -29,16 +29,17 @@ public class MapGenerator: MonoBehaviour
     {
         return exist.ContainsKey(pos) && exist[pos];
     }
-
+    public int minSize;
     public void Generator(GameManager gameManager)
     {
         exist = new Dictionary<Vector2Int, bool>();
         array = new float[size.x * size.y];
         texture = new Texture2D(size.x, size.y, TextureFormat.RGBA32, false);
         FastNoise fastNoise= new FastNoise();
-        fastNoise.SetFrequency(0.12f);
+        fastNoise.SetFrequency(0.11f);
         fastNoise.SetFractalLacunarity(0);
         fastNoise.SetNoiseType(FastNoise.NoiseType.Cellular);
+        fastNoise.SetCellularJitter(1.5f);
         fastNoise.SetFractalType(FastNoise.FractalType.Billow);
         fastNoise.SetCellularDistanceFunction(FastNoise.CellularDistanceFunction.Manhattan);
         fastNoise.SetCellularReturnType(FastNoise.CellularReturnType.CellValue);
@@ -53,6 +54,54 @@ public class MapGenerator: MonoBehaviour
                 var center = new Vector2Int(size.x / 2, size.y / 2);
                 if ((x-center.x)*(x- center.x) + (y - center.y) * (y - center.y) < 300) 
                     array[y * size.x + x] = 1;
+
+
+                bool v = (array[y * size.x + x] > cut);
+                exist.Add(new Vector2Int(x, y), v);
+            }
+        }
+        Vector2Int[] dir = new Vector2Int[]
+        {
+
+            new Vector2Int(1,0),
+            new Vector2Int(-1,0),
+            new Vector2Int(0,1),
+            new Vector2Int(0,-1),
+        };
+        bool[] e = new bool[size.x * size.y];
+        for (int y = 0; y < size.y; y++)
+        {
+            for (int x = 0; x < size.x; x++)
+            {
+
+                if (!exist[new Vector2Int(x,y)]) continue;
+
+                List<Vector2Int> list = new List<Vector2Int>();
+                Queue<Vector2Int> queue = new Queue<Vector2Int>();
+                queue.Enqueue(new Vector2Int() { x=x, y=y });
+                while (queue.Count > 0)
+                {
+                    var pos = queue.Dequeue();
+                    foreach (var item in dir)
+                    {
+                        var newPos = item + pos;
+                        if (newPos.x >= 0 && newPos.y >= 0 && newPos.x < size.x && newPos.y < size.y && !e[newPos.y * size.x + newPos.x] && exist[newPos])
+                        {
+                            e[newPos.y * size.x + newPos.x] = true;
+                            list.Add(newPos);
+                            queue.Enqueue(newPos);
+                        }
+                    }
+                }
+
+                if(list.Count < minSize)
+                {
+                    foreach (var item in list)
+                    {
+                        array[item.y * size.x + item.x] = 0;
+                        exist[item] = false;
+                    }
+                }
             }
         }
 
@@ -62,10 +111,9 @@ public class MapGenerator: MonoBehaviour
             {
                 float value = array[y * size.x + x];
                 pixels[y * size.x + x] = (value > cut) ? Color.green : Color.blue;
-                bool v = (value > cut);
+                var v = exist[new Vector2Int(x, y)];
                 tilemap.SetTile(new Vector3Int(x, y, 0), v ? grass : water);
 
-                exist.Add(new Vector2Int(x, y), v);
                 if (value > cut && Random.Range(0, 100.0f) < 1.0f)
                 {
                     tilemap1.SetTile(new Vector3Int(x, y, 0), random);
