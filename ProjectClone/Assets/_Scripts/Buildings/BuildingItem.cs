@@ -6,6 +6,8 @@ using UnityEngine;
 public class BuildingItem : ScriptableObject
 {
     public Sprite Icon;
+    public string Name;
+    public string Description;
     public int Mineral;
     public int Organism;
     public Cell cell;

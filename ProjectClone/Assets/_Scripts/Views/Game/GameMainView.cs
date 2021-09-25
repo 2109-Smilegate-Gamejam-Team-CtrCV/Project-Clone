@@ -40,6 +40,9 @@ public class GameMainView : MonoBehaviour
     private Sprite[] shopHeaderSprite;
 
     [SerializeField]
+    public ShopToolTip toolTipGameObject;
+    
+    [SerializeField]
     private GameShopContextItem shopContextItem;
 
 
@@ -101,6 +104,8 @@ public class GameMainView : MonoBehaviour
         foreach (var item in buildingItems)
         {
             var contextItem = Instantiate(shopContextItem, shopContextTransform);
+            contextItem.gameMainView = this;
+            contextItem.item = item;
             contextItem.Icon = item.Icon;
             contextItem.OnClick.Subscribe(_ =>
             {

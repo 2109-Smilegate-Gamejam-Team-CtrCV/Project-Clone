@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,6 +88,7 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
+
     public GameObject preview;
 
 
@@ -94,6 +96,11 @@ public class GameManager : Singleton<GameManager>
     {
         isBuildingMode = flag;
         preview.gameObject.SetActive(flag);
+    }
+
+    public void RemoveCell(Cell building)
+    {
+        grids.Remove(building);
     }
 
     public void AddCell(Cell building)

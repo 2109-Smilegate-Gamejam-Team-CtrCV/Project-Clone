@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,8 @@ public class MiningObject : MonoBehaviour, IGatherable
 
     void Awake()
     {
-        Init();    
+        Init();
+        GetComponent<SpriteRenderer>().material = new Material(GetComponent<SpriteRenderer>().material.shader);
     }
 
     public void Init()
@@ -30,6 +32,8 @@ public class MiningObject : MonoBehaviour, IGatherable
     {
         HP = Mathf.Clamp(HP - power, 0, maxHP);
         Debug.Log("cur hp : " + HP);
+        transform.DOShakePosition(0.25f,new Vector2(0.35f, 0.2f),50);
+        GetComponent<SpriteRenderer>().material.DOColor(Color.black, "_Addtive", 0.25f).From(Color.white);
         if (HP <= 0)
         {
             GainResource();
@@ -48,7 +52,19 @@ public class MiningObject : MonoBehaviour, IGatherable
 
     public void ReturnToPool()
     {
-        Destroy(gameObject);
+        if (eResource == EResource.Organism)
+        {
+            GetComponent<SpriteRenderer>().DOFade(0, 0.5f).From(1);
+            transform.DORotate(new Vector3(0, 0, 90),0.5f);
+
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().DOFade(0, 0.5f).From(1);
+            transform.DOScaleY(0.1f, 0.5f);
+        }
+
+        Destroy(gameObject,0.5f);
     }
 }
 
