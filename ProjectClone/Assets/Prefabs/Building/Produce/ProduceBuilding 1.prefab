@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6237092265049229275}
   - component: {fileID: 6647346757942973298}
   m_Layer: 0
-  m_Name: ProduceBuilding 2
+  m_Name: ProduceBuilding 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,9 +47,12 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   patterns:
   - {x: 0, y: 0}
+  - {x: 0, y: 1}
+  - {x: 1, y: 0}
+  - {x: 1, y: 1}
   delayTimer: 3
   produceItemType: 0
-  itemCount: 15
+  itemCount: 2
 --- !u!212 &6647346757942973298
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +93,7 @@ SpriteRenderer:
   m_SortingLayerID: -208281097
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5f26dff75089eb145be0c46565845178, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e89798c0338ea47469e7928e2f873222, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

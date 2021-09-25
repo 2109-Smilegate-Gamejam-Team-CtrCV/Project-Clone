@@ -9038,12 +9038,19 @@ MonoBehaviour:
     buildingItems:
     - {fileID: 11400000, guid: 45ba0216a30e24245be09a1c35db5a1a, type: 2}
     - {fileID: 11400000, guid: 6e03eb5531ca9a1419dff4cd07ce6441, type: 2}
+    - {fileID: 11400000, guid: b55ecc455f5f5d94e947f73417c8c8a0, type: 2}
   - Name: "\uC790\uC6D0"
     buildingItems:
-    - {fileID: 11400000, guid: 45ba0216a30e24245be09a1c35db5a1a, type: 2}
+    - {fileID: 11400000, guid: 7554633c8a5212e44bdca1f6b9240b34, type: 2}
+    - {fileID: 11400000, guid: 746661421d7f7f54498b883a6e8abd90, type: 2}
+    - {fileID: 11400000, guid: ce2b7e7f278abc1428566f89249d4060, type: 2}
+    - {fileID: 11400000, guid: 1a7d48a8a8363124c969aa28b0db0e57, type: 2}
   - Name: "\uD2B9\uC218"
     buildingItems:
-    - {fileID: 11400000, guid: 45ba0216a30e24245be09a1c35db5a1a, type: 2}
+    - {fileID: 11400000, guid: f9a37adf74ec9634fb9c0f490afb1db3, type: 2}
+    - {fileID: 11400000, guid: 274301ac0cb9e8441adfd352daabf650, type: 2}
+    - {fileID: 11400000, guid: 3ef4a60594d34fc44894cd41fe53dc64, type: 2}
+    - {fileID: 11400000, guid: cae0dc6a0ed33f84ea7afa6c56f65ec7, type: 2}
 --- !u!114 &1435828930
 MonoBehaviour:
   m_ObjectHideFlags: 0
