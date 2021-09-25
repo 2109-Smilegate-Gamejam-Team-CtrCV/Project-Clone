@@ -26,6 +26,8 @@ public class Enemy : Actor, IAttackabale
         EnemyTags = new string[] { "Player" };
 
         nextAttackTime = DateTime.Now;
+
+        SetTarget(GameManager.Instance.clone);
     }
 
     public override void Move()
@@ -62,6 +64,7 @@ public class Enemy : Actor, IAttackabale
     public override void Dead()
     {
         // todo : »ç¸Á Ã³¸®
+        Destroy(gameObject);
     }
 
     public void SetTarget(Clone clone)
@@ -75,8 +78,11 @@ public class Enemy : Actor, IAttackabale
         Gizmos.color = attackGizmoColor;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
 
-        Gizmos.color = moveGizmoColor;
-        Gizmos.DrawRay(transform.position, targetClone.transform.position2D() - transform.position2D());
+        if (targetClone != null)
+        {
+            Gizmos.color = moveGizmoColor;
+            Gizmos.DrawRay(transform.position, targetClone.transform.position2D() - transform.position2D());
+        }
     }
 #endif
 }

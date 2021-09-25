@@ -241,6 +241,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &121037527 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5590044767114331878, guid: 798d4d63804e3b84c99a42308098cfed, type: 3}
+  m_PrefabInstance: {fileID: 5590044767355718778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &312822425 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5590044767114331875, guid: 798d4d63804e3b84c99a42308098cfed, type: 3}
@@ -674,11 +679,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -717,12 +722,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 855758226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b1ec39e9e64ca4f8d09a7992b1a70e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4767060b147bdd04294a97aa6326e9d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followTarget: {fileID: 312822425}
-  horizontalOffset: 10
-  verticalOffset: 10
+  target: {fileID: 121037527}
 --- !u!1 &995427674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1019,36 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1100243851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1100243852}
+  m_Layer: 0
+  m_Name: MousePointer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1100243852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100243851}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252000454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,7 +1194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   gamePresenter: {fileID: 1452636035}
-  gameGenerator: {fileID: 1876098809}
+  mapGenerator: {fileID: 0}
+  clone: {fileID: 0}
   building:
   - {fileID: -5312975167922376072, guid: e936390276011294787b3a5b20bb3ad2, type: 3}
   - {fileID: -5312975167922376072, guid: 45fdebe11847efe458b01929976a4499, type: 3}
@@ -1992,6 +2026,8 @@ MonoBehaviour:
   size: {x: 64, y: 64}
   spawnSize: {x: 0, y: 0}
   array: []
+  stones: []
+  trees: []
 --- !u!212 &1876098810
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2143,7 +2179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5590044767114331878, guid: 798d4d63804e3b84c99a42308098cfed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -7.64
       objectReference: {fileID: 0}
     - target: {fileID: 5590044767114331878, guid: 798d4d63804e3b84c99a42308098cfed, type: 3}
       propertyPath: m_LocalRotation.w

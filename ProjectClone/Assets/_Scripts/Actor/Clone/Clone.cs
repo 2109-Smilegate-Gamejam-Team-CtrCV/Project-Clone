@@ -145,7 +145,7 @@ public class Clone : Actor, IPlayable
                 {
                     Debug.LogFormat("mine target name : " + target.name);
                     nextMiningTime = DateTime.Now.AddSeconds(miningSpeed);
-                    mining.GainResource();
+                    mining.GetDamage(miningPower);
                 }
             }
         }
@@ -157,16 +157,26 @@ public class Clone : Actor, IPlayable
         var building = target.GetComponent<MiningObject>();
         if (building)
         {
-            if (transform.position2D().IsInRange(building.transform.position2D(), miningRange))
+            if (transform.position2D().IsInRange(building.transform.position2D(), buildingRange))
             {
-                if (nextMiningTime.IsEnoughTime())
+                if (nextBuildTime.IsEnoughTime())
                 {
                     Debug.LogFormat("build target name : " + target.name);
-                    nextMiningTime = DateTime.Now.AddSeconds(miningSpeed);
-                    building.GainResource();
+                    nextBuildTime = DateTime.Now.AddSeconds(buildingSpeed);
+                    building.GetDamage(miningPower);
                 }
             }
         }
+    }
+
+    public void GainResource(EResource eResource, int amount)
+    {
+        amount = (int)(amount * miningRate);
+
+        if (eResource == EResource.Mineral)
+            GameManager.Instance.gamePresenter.gameModel.AddMineral(amount);
+        else
+            GameManager.Instance.gamePresenter.gameModel.AddOrganism(amount);
     }
 
     bool ReduceMental()
@@ -175,8 +185,9 @@ public class Clone : Actor, IPlayable
         if (nextConsumeTime.IsEnoughTime())
         {
             nextConsumeTime = DateTime.Now.AddSeconds(1f);
-
             mental = Mathf.Clamp(mental - consumeMental, 0, maxMental);
+            GameManager.Instance.gamePresenter.gameModel.AddMental(-consumeMental);
+
             if (mental <= 0)
             {
                 Dead();
