@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillGridInitializer : MonoBehaviour
+public class SkillGridInitializer : Singleton<SkillGridInitializer>
 {
     private readonly int[,] _arr =
     {
@@ -61,13 +62,14 @@ public class SkillGridInitializer : MonoBehaviour
                         }
                     }
 
-                    cell.gameObject.SetActive(cells[_arr[i, j] - 1].canUnlock);
                     cell.canUnlock = cell.isUnlocked = false;
+                    cell.gameObject.SetActive(false);
                 }
             }
         }
         
         mainCell.canUnlock = mainCell.isUnlocked = true;
+        mainCell.gameObject.SetActive(true);
         mainCell.adjCell.ForEach(cell =>
         {
             cell.gameObject.SetActive(true);

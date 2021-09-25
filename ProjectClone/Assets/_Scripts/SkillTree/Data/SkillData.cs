@@ -17,7 +17,8 @@ public class SkillData : ScriptableObject
         IncreaseBuildingSpeed,
         IncreaseAdditionalExp,
         AddExtraMineral,
-        AddAutoAttacking
+        AddAutoAttacking,
+        AddExtraLife
     }
     public Sprite skillIcon;
     public SkillType skillType;

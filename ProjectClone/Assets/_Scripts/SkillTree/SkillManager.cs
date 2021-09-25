@@ -7,7 +7,7 @@ public class SkillManager : Singleton<SkillManager>
 
     public void GetSkill(SkillData skillData)
     {
-        currentSkillStats ??= GameManager.Instance.clone.gameObject.GetComponent<AddedSkillStats>() ??
+        currentSkillStats = GameManager.Instance.clone.gameObject.GetComponent<AddedSkillStats>() ??
                               GameManager.Instance.clone.gameObject.AddComponent<AddedSkillStats>();
         
         switch (skillData.skillType)
