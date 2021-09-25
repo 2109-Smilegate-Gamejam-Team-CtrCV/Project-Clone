@@ -40,6 +40,8 @@ public class GameMainView : MonoBehaviour
     private Sprite[] shopHeaderSprite;
 
     [SerializeField]
+    private GameObject toolTipGameObject;
+    [SerializeField]
     private GameShopContextItem shopContextItem;
 
 
@@ -48,6 +50,10 @@ public class GameMainView : MonoBehaviour
 
 
     private IObservable<int> observable;
+    public bool toolTip
+    {
+        set => toolTipGameObject.SetActive(value);
+    }
 
     public float MetalGauge
     {
@@ -101,6 +107,7 @@ public class GameMainView : MonoBehaviour
         foreach (var item in buildingItems)
         {
             var contextItem = Instantiate(shopContextItem, shopContextTransform);
+            contextItem.gameMainView = this;
             contextItem.Icon = item.Icon;
             contextItem.OnClick.Subscribe(_ =>
             {
