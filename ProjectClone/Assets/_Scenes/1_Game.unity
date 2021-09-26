@@ -9097,7 +9097,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.65882355, b: 0.9529412, a: 0}
+  m_BackGroundColor: {r: 0.21568628, g: 0.6784314, b: 0.63529414, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -9886,6 +9886,9 @@ MonoBehaviour:
   clonePrefab: {fileID: 5590044767114331875, guid: 798d4d63804e3b84c99a42308098cfed, type: 3}
   clone: {fileID: 0}
   index: 0
+  cells:
+  - {fileID: 5996094074036613266, guid: 10b48049e78a5b04c8847d53c4185bec, type: 3}
+  - {fileID: 2857666002793903974, guid: f8eea06b8851c2341bd5bb296efa95cb, type: 3}
   isBuildingMode: 0
   preview: {fileID: 456626025}
 --- !u!4 &1435828928
@@ -10056,7 +10059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4068ba906c7292d429842631d656d649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 0}
   cut: 0.5
   spriteRenderer: {fileID: 1448690522}
   tilemap: {fileID: 877567375}
@@ -10067,8 +10069,8 @@ MonoBehaviour:
   size: {x: 256, y: 256}
   spawnSize: {x: 0, y: 0}
   array: []
-  treeCount: 100
-  stoneCount: 100
+  treeCount: 125
+  stoneCount: 125
   stones:
   - {fileID: 94160191002180794, guid: 58431f964b5c39b4397e74727c47fc5c, type: 3}
   - {fileID: 94160191002180794, guid: e8901206a6b551943bc8a42af56f4253, type: 3}

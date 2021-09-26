@@ -16,9 +16,17 @@ public abstract class Building : Cell
     private void Start()
     {
         createCounter = 0;
-        GetComponent<SpriteRenderer>().material.SetFloat("_Gray", 0);
+        if(isCreate)
+        {
 
-        GetComponent<SpriteRenderer>().color = Color.gray;
+            GetComponent<SpriteRenderer>().material.SetFloat("_Gray", 1);
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().material.SetFloat("_Gray", 0);
+            GetComponent<SpriteRenderer>().color = Color.gray;
+        }
     }
 
     internal void AddCount(float damage)
@@ -36,5 +44,12 @@ public abstract class Building : Cell
                 isCreate = true;
             }
         }
+    }
+    public void SetCreateActive()
+    {
+        isCreate = true;
+
+        GetComponent<SpriteRenderer>().material.SetFloat("_Gray", 1);
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

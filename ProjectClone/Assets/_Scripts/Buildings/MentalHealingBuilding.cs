@@ -41,7 +41,7 @@ public class MentalHealingBuilding : Building
         if(collision.CompareTag("Player"))
         {
             isPlayerEnter = true;
-            collision.GetComponent<Clone>().eMindState = EMindState.Stability;
+            collision.GetComponent<Clone>().SetMindState(EMindState.Stability);
         }
     }
 
@@ -50,7 +50,7 @@ public class MentalHealingBuilding : Building
         if (collision.CompareTag("Player"))
         {
             isPlayerEnter = false;
-            collision.GetComponent<Clone>().eMindState = EMindState.Instability;
+            collision.GetComponent<Clone>().SetMindState(EMindState.Instability);
         }
     }
 }

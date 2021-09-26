@@ -10,6 +10,8 @@ public class TitlePresenter : MonoBehaviour
     private TitleMainView mainView;
     [SerializeField]
     private TitleOptionView optionView;
+    [SerializeField]
+    private GameObject creditView;
 
 
     private void Awake()
@@ -19,6 +21,7 @@ public class TitlePresenter : MonoBehaviour
         SoundManager.Instance.AdjustFxVoulme(OptionManager.Instance.VFX);
         SoundManager.Instance.PlayBGMSound("BGM");
         mainView.StartClick.Subscribe(_ => SceneManager.LoadScene(1));
+        mainView.CreditClick.Subscribe(_ => creditView.SetActive(true));
         mainView.OptionClick.Subscribe(_ => optionView.Show());
         mainView.ExitClick.Subscribe(_ => Application.Quit());
 
