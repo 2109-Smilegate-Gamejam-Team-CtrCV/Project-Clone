@@ -9,8 +9,10 @@ public class WaveController : MonoBehaviour
     public int waveLevel = 0;
     public bool isMonsterCarnival { get { return waveLevel % 5 == 0; } }
     public bool isAddPortal { get { return waveLevel % 20 == 0; } }
+    public float waveReadyTime = 60f;
     public float waveDelayTime = 15f;
     public float delayIncreaseTime = 1.5f;
+    public int portalRadius = 35; // 포탈 생성 반경
 
     System.DateTime nextWaveTime;
 
@@ -28,7 +30,7 @@ public class WaveController : MonoBehaviour
     public void ResetGame()
     {
         waveLevel = 0;
-        nextWaveTime = System.DateTime.Now;
+        nextWaveTime = System.DateTime.Now.AddSeconds(waveReadyTime);
 
         if (portalList.Count > 0)
         {
@@ -44,8 +46,11 @@ public class WaveController : MonoBehaviour
         Portal portal = CreatePortal();
         portalList.Add(portal);
 
-        Portal anotherPortal = CreateOtherPortal(portal.position);
-        portalList.Add(anotherPortal);
+        portal = CreatePortal();
+        portalList.Add(portal);
+
+        //Portal anotherPortal = CreateOtherPortal(portal.position);
+        //portalList.Add(anotherPortal);
     }
 
     void Update()
@@ -100,12 +105,12 @@ public class WaveController : MonoBehaviour
         return rankCounts;
     }
 
-    public void GetCenterPos()
+    public Vector3 GetMapCenterPosition()
     {
-        Vector3 centor = (Vector3Int)generator.size / 2;
+        return (Vector3Int)generator.size / 2;
     }
 
-    public Portal CreatePortal()
+    public Portal CreateRandomPortal()
     {
         var portalPos = new Vector2Int(Random.Range(0, generator.size.x), Random.Range(0, generator.size.y));
         while (GameManager.Instance.IsExist(portalPrefab, portalPos))
@@ -129,19 +134,49 @@ public class WaveController : MonoBehaviour
         var portal = Instantiate(portalPrefab, (Vector2)otherPos, Quaternion.identity, transform);
         portal.position = otherPos;
         return portal;
+    
     }
 
-    //public void CreatePortal2()
+    public Vector2Int GetPortalPosition()
+    {
+        int degree = Random.Range(0, 360);
+        float radian = degree * Mathf.Deg2Rad;
+
+        float float_x = Mathf.Cos(radian) * portalRadius;
+        float float_y = Mathf.Sin(radian) * portalRadius;
+
+        int int_x = Mathf.RoundToInt(float_x); 
+        int int_y = Mathf.RoundToInt(float_y); 
+
+        Vector2Int v2i = new Vector2Int(int_x, int_y);
+        v2i += generator.size / 2;
+
+        return v2i;
+    }
+
+    public Portal CreatePortal()
+    {
+        var portalPos = GetPortalPosition();
+        while (GameManager.Instance.IsExist(portalPrefab, portalPos))
+        {
+            portalPos = GetPortalPosition();
+        }
+
+        var portal = Instantiate(portalPrefab, (Vector2)portalPos, Quaternion.identity, transform);
+        portal.position = portalPos;
+        return portal;
+    }
+
+    //public void CreatePortal_backup()
     //{
     //    var playerPos = GameManager.Instance.clone.transform.position;
     //    Vector2Int v2i = Vector2Int.RoundToInt(playerPos);
 
-    //    int minX = Mathf.Clamp(v2i.x - createDistance, 0, generator.size.x);
-    //    int maxX = Mathf.Clamp(v2i.x + createDistance, 0, generator.size.x);
+    //    int minX = Mathf.Clamp(v2i.x - portalRadius, 0, generator.size.x);
+    //    int maxX = Mathf.Clamp(v2i.x + portalRadius, 0, generator.size.x);
 
-    //    int minY = Mathf.Clamp(v2i.y - createDistance, 0, generator.size.x);
-    //    int maxY = Mathf.Clamp(v2i.y + createDistance, 0, generator.size.x);
-
+    //    int minY = Mathf.Clamp(v2i.y - portalRadius, 0, generator.size.x);
+    //    int maxY = Mathf.Clamp(v2i.y + portalRadius, 0, generator.size.x);
 
     //    var portalPos = new Vector2Int(Random.Range(minX, maxX), Random.Range(minY, maxY));
     //    while (GameManager.Instance.IsExist(portalPrefab, portalPos))
