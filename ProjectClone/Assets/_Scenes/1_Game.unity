@@ -481,7 +481,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 8}
-  m_SizeDelta: {x: 494.4659, y: 197.4187}
+  m_SizeDelta: {x: 494.4659, y: 220}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &146393448
 MonoBehaviour:
@@ -536,8 +536,8 @@ MonoBehaviour:
   rect: {fileID: 146393447}
   nameText: {fileID: 862550764}
   descriptionText: {fileID: 690826485}
-  mineralText: {fileID: 1511753115}
-  organismText: {fileID: 380260159}
+  mineralText: {fileID: 380260159}
+  organismText: {fileID: 1511753115}
 --- !u!1 &202505232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,8 +1970,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
