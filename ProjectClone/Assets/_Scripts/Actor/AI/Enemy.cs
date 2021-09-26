@@ -67,6 +67,9 @@ public class Enemy : Actor, IAttackabale
     }
     protected override void Update()
     {
+        if (isDead)
+            return;
+
         if (targetClone == null)
             SetTarget(GameManager.Instance.clone);
 
@@ -133,12 +136,15 @@ public class Enemy : Actor, IAttackabale
 
     public override void Dead()
     {
+        if (isDead)
+            return;
+
         base.Dead();
         // todo : 사망 처리
         animator.SetTrigger("Death");
         gameObject.tag = "Untagged";
 
-        Destroy(this); // 스크립트 바로 제거
+        //Destroy(this); // 스크립트 바로 제거
         Destroy(gameObject, 30f); // 사망 애니메이션 30초 후 제거
     }
 

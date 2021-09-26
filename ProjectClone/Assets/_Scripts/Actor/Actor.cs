@@ -19,6 +19,8 @@ public class Actor : MonoBehaviour, IReboundable
     protected Rigidbody2D rb;
     protected Animator animator;
 
+    protected bool isDead = false;
+
     protected virtual void Awake()
     {
         root = transform.GetChild(0);
@@ -30,9 +32,16 @@ public class Actor : MonoBehaviour, IReboundable
         animator = GetComponent<Animator>();
     }
 
-    protected virtual void Update()
+    protected void FixedUpdate()
     {
         render.sortingOrder = -Utility.World2Grid(transform.position + Vector3.down * 0.7f).y;
+    }
+
+    protected virtual void Update()
+    {
+        if (isDead)
+            return;
+
         Move();    
     }
 
@@ -58,6 +67,7 @@ public class Actor : MonoBehaviour, IReboundable
 
     public virtual void Dead() {
         SoundManager.Instance.PlayFXSound("Death_"+Random.Range(0,2));
+        isDead = true;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
