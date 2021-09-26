@@ -15,5 +15,5 @@ MonoBehaviour:
   skillIcon: {fileID: 21300000, guid: f3ea9f4c164d4ef4499a6331b23fe6ea, type: 3}
   skillType: 1
   value: 0
-  skillTitle: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"
-  skillText: "\uCD5C\uB300 \uCCB4\uB825\uC774 {0} \uB9CC\uD07C \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  skillTitle: "\uC0DD\uBA85\uB825 \uBCF4\uC720"
+  skillText: "\uB2F9\uC2E0\uC740 \uCCB4\uB825\uC744 \uAC16\uAC8C \uB429\uB2C8\uB2E4."

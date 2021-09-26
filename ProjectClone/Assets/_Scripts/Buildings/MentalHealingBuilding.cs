@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class MentalHealingBuilding : Building
@@ -13,7 +15,31 @@ public class MentalHealingBuilding : Building
     [SerializeField]
     private bool isPlayerEnter;
 
+    [SerializeField] private CircleCollider2D checkPlayerCollider;
+
     private const float MetalHealDelay = 0.5f;
+
+    private void Awake()
+    {
+        checkPlayerCollider.OnTriggerStayAsObservable().Subscribe(collision =>
+        {
+            if (collision.CompareTag("Player"))
+            {
+                isPlayerEnter = true;
+                collision.GetComponent<Clone>().SetMindState(EMindState.Stability);
+            }
+        }).AddTo(gameObject);
+
+        checkPlayerCollider.OnTriggerExitAsObservable().Subscribe(collision =>
+        {
+            if (collision.CompareTag("Player"))
+            {
+                isPlayerEnter = false;
+                collision.GetComponent<Clone>().SetMindState(EMindState.Instability);
+            }
+        }).AddTo(gameObject);
+    }
+    
     private void Update()
     {
         if (isPlayerEnter && isCreate)
@@ -35,24 +61,5 @@ public class MentalHealingBuilding : Building
         Gizmos.color = new Color(0, 0.56f, 1);
         Gizmos.DrawWireSphere(transform.position, range);
     }
-
 #endif
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Player"))
-        {
-            isPlayerEnter = true;
-            collision.GetComponent<Clone>().SetMindState(EMindState.Stability);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            isPlayerEnter = false;
-            collision.GetComponent<Clone>().SetMindState(EMindState.Instability);
-        }
-    }
 }
