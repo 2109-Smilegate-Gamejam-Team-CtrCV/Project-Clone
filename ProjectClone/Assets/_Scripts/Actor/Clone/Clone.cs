@@ -222,6 +222,7 @@ public class Clone : Actor, IPlayable
 
     public override void Dead()
     {
+        base.Dead();
         if (isDead) return;
         isDead = true;
 
