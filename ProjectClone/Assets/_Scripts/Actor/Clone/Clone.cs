@@ -16,20 +16,16 @@ public class Clone : Actor, IPlayable
     public float consumeMental = 1;
     public float totalCousumeMental { get { return eMindState == EMindState.Stability ? consumeMental : consumeMental * 0.5f; } }
 
-    [Header("Ã¤ï¿½ï¿½")]
+    [Header("Ã¤±¼")]
 #if UNITY_EDITOR
     [SerializeField] Color miningGizmoColor = Color.yellow;
 #endif
     public int miningPower = 3;
     public float miningSpeed = 1.3f;
     public float miningRange = 2f;
-    public float miningRate = 1f; // ï¿½Ú¿ï¿½ È¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float miningRate = 1f; // ÀÚ¿ø È¹µæ ¹èÀ²
 
-    // ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½?
-    public int mineral = 0; 
-    public int organic = 0;
-
-    [Header("ï¿½Ç¼ï¿½")]
+    [Header("°Ç¼³")]
 #if UNITY_EDITOR
     [SerializeField] Color buildingGizmoColor = Color.blue;
 #endif
@@ -41,8 +37,11 @@ public class Clone : Actor, IPlayable
     DateTime nextBuildTime;
     DateTime nextConsumeTime;
 
-   public EMindState eMindState = EMindState.Stability;
+    public EMindState eMindState = EMindState.Stability;
     bool isDead = false;
+
+    Vector3 leftScale = new Vector3(-1f, 1f, 1f);
+    Vector3 rightScale = new Vector3(1f, 1f, 1f);
 
     protected override void Update()
     {
@@ -120,7 +119,7 @@ public class Clone : Actor, IPlayable
         var hit = Physics2D.Raycast(ray.origin, ray.direction);
         if (hit.collider != null)
         {
-            // todo : È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
+            // todo : È£¹ö¸µµÈ ¿ÀºêÁ§Æ®¿¡ ¾Æ¿ô¶óÀÎ ÁÖ¸é ÁÁÀ»µí?
 
             //Debug.LogFormat("click target name : " + hit.collider.name);
 
@@ -137,7 +136,7 @@ public class Clone : Actor, IPlayable
 
     public void Mine(GameObject target)
     {
-        // todo : Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½Ï¸ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // todo : Ã¤±¼ »çÁ¤°Å¸® ³»ÀÇ Ã¤±¼ ´ë»óÀ» ÁÂÅ¬¸¯ÇÏ¸é Ã¤±¼ ÁøÇà
         var mining = target.GetComponent<MiningObject>();
         if (mining)
         {
@@ -155,7 +154,7 @@ public class Clone : Actor, IPlayable
 
     public void Build(GameObject target)
     {
-        // todo : ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // todo : °Ç¼³ »çÁ¤°Å¸® ³»ÀÇ °Ç¼³ ´ë»óÀ» ÁÂÅ¬¸¯ÇÏ¸é °Ç¼³ ÁøÇà
         var building = target.GetComponent<Building>();
         if (building)
         {
@@ -165,7 +164,7 @@ public class Clone : Actor, IPlayable
                 {
                     Debug.LogFormat("build target name : " + target.name);
                     nextBuildTime = DateTime.Now.AddSeconds(buildingSpeed);
-                    building.AddCount(buildingPower);
+                    building.AddCount();
                 }
             }
         }
@@ -183,7 +182,7 @@ public class Clone : Actor, IPlayable
 
     bool ReduceMental()
     {
-        // todo : 1ï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½ï¿½Å»ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
+        // todo : 1ÃÊ¸¶´Ù ¸àÅ»À» ±ï´Â´Ù.
         if (nextConsumeTime.IsEnoughTime())
         {
             float nextTime = eMindState == EMindState.Stability ? 1f : 0.5f;
@@ -212,12 +211,12 @@ public class Clone : Actor, IPlayable
 
     public override void Dead()
     {
-        Debug.Log("DEAD!!");
         isDead = true;
         animator.SetTrigger("Death");
-        Destroy(this);
+        gameObject.tag = "Untagged";
         GameManager.Instance.CreateNextClone();
-        SkillManager.Instance.expModel.Initialize();
+
+        Destroy(this);
     }
 
     public void SetMindState(EMindState newState)
@@ -225,16 +224,13 @@ public class Clone : Actor, IPlayable
         eMindState = newState;
     }
 
-#region Animation
     public void SetMoveAnimation(Vector2 moveDir)
     {
         animator.SetBool("Walk", moveDir != Vector2.zero);
 
         if (moveDir.x != 0)
-            render.flipX = moveDir.x > 0;
+            root.localScale = moveDir.x > 0 ? leftScale : rightScale;
     }
-
-#endregion
 
 #if UNITY_EDITOR
     void OnDrawGizmos()

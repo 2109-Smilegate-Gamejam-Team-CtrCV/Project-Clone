@@ -12,12 +12,15 @@ public class Actor : MonoBehaviour, IReboundable
 
     public float moveSpeed = 1f;
 
+    protected Transform root;
     protected SpriteRenderer render;
     protected Rigidbody2D rb;
     protected Animator animator;
 
     protected virtual void Awake()
     {
+        root = transform.GetChild(0);
+
         render = GetComponentInChildren<SpriteRenderer>();
         render.sortingOrder = -Utility.World2Grid(transform.position).y;
 
@@ -59,16 +62,26 @@ public class Actor : MonoBehaviour, IReboundable
         {
             Vector2 reboundDir = (transform.position2D() - collision.transform.position2D()).normalized;
 
-            // 이걸 어떻게 고치지...
-            int attackPower = 0;
-            if (gameObject.CompareTag("Enemy"))
-                attackPower = gameObject.GetComponent<Enemy>().attackPower;
-            else if (collision.collider.CompareTag("Enemy"))
-                attackPower = collision.collider.GetComponent<Enemy>().attackPower;
-
+            int attackPower = GetEnemyPower(collision.collider);
             Rebound(reboundDir, attackPower);
             GetDamage(attackPower);
         }
+    }
+
+    int GetEnemyPower(Collider2D collider)
+    {
+        Enemy enemy = null;
+
+        if (gameObject.CompareTag("Enemy"))
+        {
+            enemy = collider.GetComponent<Enemy>();
+        }
+        else if (collider.CompareTag("Enemy"))
+        {
+            enemy = collider.GetComponent<Enemy>();
+        }
+
+        return enemy == null ? 0 : enemy.attackPower;
     }
 
     protected bool ContainEnemyTag(string tag)

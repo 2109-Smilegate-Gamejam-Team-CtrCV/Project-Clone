@@ -118,7 +118,7 @@ public class Portal : Cell
     Enemy CreateEnemy(int grade, Coord summonCoord)
     {
         Enemy enemyPrefab = enemyPrefabs[grade];
-        Enemy enemy = Instantiate(enemyPrefab, summonCoord.ToVector2, Quaternion.identity);
+        Enemy enemy = Instantiate(enemyPrefab, summonCoord.ToVector2, Quaternion.identity, transform);
         enemy.transform.position = summonCoord.ToVector2;
         enemy.Init();
 

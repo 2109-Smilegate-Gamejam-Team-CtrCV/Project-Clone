@@ -100,8 +100,8 @@ MonoBehaviour:
   - {x: 0, y: 0}
   summonGizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   enemyPrefabs:
-  - {fileID: 3328451879864356330, guid: e508e9cb60987d9459bc9b8e4290c99a, type: 3}
-  - {fileID: 3328451879864356330, guid: e508e9cb60987d9459bc9b8e4290c99a, type: 3}
-  - {fileID: 3328451879864356330, guid: e508e9cb60987d9459bc9b8e4290c99a, type: 3}
-  - {fileID: 3328451879864356330, guid: e508e9cb60987d9459bc9b8e4290c99a, type: 3}
+  - {fileID: 3328451879864356330, guid: 727880846f0899943847d4988ed25566, type: 3}
+  - {fileID: 3328451879864356330, guid: d43f7db1c439b7a4fbeea352c7f95f0e, type: 3}
+  - {fileID: 3328451879864356330, guid: 727880846f0899943847d4988ed25566, type: 3}
+  - {fileID: 3328451879864356330, guid: d43f7db1c439b7a4fbeea352c7f95f0e, type: 3}
   summonRadius: 7

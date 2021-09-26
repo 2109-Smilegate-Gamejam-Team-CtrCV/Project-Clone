@@ -22,10 +22,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private bool isBuildingMode;
 
+    int playerNumber;
+
 
     protected override void Awake()
     {
         grids = new List<Cell>();
+        playerNumber = 1;
+
         base.Awake();
         gamePresenter.Init();
         mapGenerator.Generator(this);
@@ -126,6 +130,7 @@ public class GameManager : Singleton<GameManager>
     {
         var pos = (Vector3Int)mapGenerator.size / 2;
         Clone newClone = Instantiate(clonePrefab, pos, Quaternion.identity);
+        newClone.name = string.Format("Player_{0}", playerNumber++);
         newClone.Init();
 
         return newClone;
