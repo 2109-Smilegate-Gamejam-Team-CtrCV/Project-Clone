@@ -9983,8 +9983,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portalPrefab: {fileID: 5546687043354092529, guid: 9178ed3e3c41c244c994fedf21fd2f27, type: 3}
   waveLevel: 0
-  waveDelayTime: 15
-  delayIncreaseTime: 1.5
+  waveDelayTime: 25
+  delayIncreaseTime: 0.5
 --- !u!1 &1447881427
 GameObject:
   m_ObjectHideFlags: 0
