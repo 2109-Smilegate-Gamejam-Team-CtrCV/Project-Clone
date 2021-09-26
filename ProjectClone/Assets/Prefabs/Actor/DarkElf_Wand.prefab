@@ -132,7 +132,7 @@ MonoBehaviour:
   HP: 0
   maxHP: 12
   moveSpeed: 3
-  reboundPower: 1
+  reboundPower: 5
   moveGizmoColor: {r: 0, g: 1, b: 1, a: 1}
   attackGizmoColor: {r: 1, g: 0, b: 0, a: 1}
   attackPower: 3
