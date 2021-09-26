@@ -21,6 +21,7 @@ public class Enemy : Actor, IAttackabale
 
     public int attackPower = 1;
     public float attackSpeed = 1f;
+    public float attackCoolTime = 1f;
     public float attackRadius = 3f;
 
     DateTime nextAttackTime;
@@ -59,6 +60,8 @@ public class Enemy : Actor, IAttackabale
 
         base.Update();
 
+        //RotateWeapon();
+
         if (isBulletAttack)
             Attack();
     }
@@ -87,13 +90,25 @@ public class Enemy : Actor, IAttackabale
         if (nextAttackTime.IsEnoughTime() == false || IsAttackRange() == false)
             return;
 
-        nextAttackTime = DateTime.Now.AddSeconds(attackSpeed);
+        nextAttackTime = DateTime.Now.AddSeconds(attackCoolTime);
 
         // todo : 투사체 발사
         Bullet bullet = Instantiate(bulletPrefab, weapon.position, Quaternion.identity);
         bullet.isPlayer = false;
         bullet.velocity = attackSpeed * (targetClone.transform.position - weapon.position).normalized;
         bullet.damage = attackPower;
+    }
+
+    public float ___offset;
+
+    void RotateWeapon()
+    {
+        float dy = targetClone.transform.position.y - weapon.position.y;
+        float dx = targetClone.transform.position.x - weapon.position.x;
+        float angle = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
+
+        weapon.rotation = Quaternion.Euler(0f, 0f, angle + ___offset); //+ Quaternion.Euler(0, 0, -40f); // offset
+        //weapon.rotation = Quaternion.AngleAxis(angle + 45f, Vector3.forward); //+ Quaternion.Euler(0, 0, -40f); // offset
     }
 
     bool IsAttackRange()
@@ -128,7 +143,7 @@ public class Enemy : Actor, IAttackabale
         if (targetClone != null)
         {
             Gizmos.color = moveGizmoColor;
-            Gizmos.DrawRay(transform.position, targetClone.transform.position2D() - transform.position2D());
+            Gizmos.DrawRay(weapon.position, targetClone.transform.position2D() - transform.position2D());
         }
     }
 #endif

@@ -214,7 +214,9 @@ public class Clone : Actor, IPlayable
 
     public override void Dead()
     {
+        if (isDead) return;
         isDead = true;
+
         animator.SetTrigger("Death");
         gameObject.tag = "Untagged";
         GameManager.Instance.CreateNextClone();
