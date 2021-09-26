@@ -111,4 +111,5 @@ MonoBehaviour:
   - {fileID: 3328451879864356330, guid: e508e9cb60987d9459bc9b8e4290c99a, type: 3}
   - {fileID: 3328451879864356330, guid: d2cffe5a5005d384f8f1f530550d9cd0, type: 3}
   - {fileID: 3328451879864356330, guid: 256820c526504dc449ef36ab9500d2df, type: 3}
+  - {fileID: 3328451879864356330, guid: 33bfcb02a3a21f04c80799fbba4812cb, type: 3}
   summonRadius: 7

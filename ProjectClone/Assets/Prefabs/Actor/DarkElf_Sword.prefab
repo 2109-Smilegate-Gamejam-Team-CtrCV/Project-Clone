@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -208281097
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 909844823646958635, guid: 4bb915ae0d80004438f184d99dc13aab, type: 3}
+  m_Sprite: {fileID: -4818990870160958833, guid: 4bb915ae0d80004438f184d99dc13aab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3328451879864356332}
   - component: {fileID: 1380012489114730220}
   m_Layer: 0
-  m_Name: DarkElf_Wand
+  m_Name: DarkElf_Sword
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  maxHP: 12
+  maxHP: 10
   moveSpeed: 3
   reboundPower: 1
   moveGizmoColor: {r: 0, g: 1, b: 1, a: 1}
@@ -138,8 +138,8 @@ MonoBehaviour:
   attackPower: 3
   attackSpeed: 1
   attackRadius: 3
-  Rank: 4
-  weaponType: 3
+  Rank: 3
+  weaponType: 1
 --- !u!50 &3328451879864356335
 Rigidbody2D:
   serializedVersion: 4
