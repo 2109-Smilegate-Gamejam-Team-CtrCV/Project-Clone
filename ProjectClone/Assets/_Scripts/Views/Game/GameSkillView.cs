@@ -1,12 +1,20 @@
+using System;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameSkillView : MonoBehaviour
 {
     public CanvasGroup canvasGroup;
+
+    private void Awake()
+    {
+        GetComponent<Button>().OnClickAsObservable().Subscribe(_ => HIde()).AddTo(gameObject);
+    }
+
     public void Show()
     {
         if(!isActiveAndEnabled)
