@@ -204,7 +204,7 @@ public class Clone : Actor, IPlayable
     public override bool GetDamage(int power)
     {
         bool isDead = base.GetDamage(power);
-        GameManager.Instance.gamePresenter.gameMainView.SetHeart(HP);
+        GameManager.Instance.gamePresenter.gameMainView.SetHeart(maxHP,HP);
 
         return isDead;
     }
