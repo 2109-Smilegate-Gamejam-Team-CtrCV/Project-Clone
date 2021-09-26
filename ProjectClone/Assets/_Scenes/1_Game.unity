@@ -536,8 +536,8 @@ MonoBehaviour:
   rect: {fileID: 146393447}
   nameText: {fileID: 862550764}
   descriptionText: {fileID: 690826485}
-  mineralText: {fileID: 1511753115}
-  organismText: {fileID: 380260159}
+  mineralText: {fileID: 380260159}
+  organismText: {fileID: 1511753115}
 --- !u!1 &202505232
 GameObject:
   m_ObjectHideFlags: 0

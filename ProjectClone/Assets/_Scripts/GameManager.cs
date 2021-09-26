@@ -64,10 +64,14 @@ public class GameManager : Singleton<GameManager>
             index -= 1;
 
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.Minus))
         {
             gamePresenter.gameModel.AddOrganism(1000);
             gamePresenter.gameModel.AddMineral(1000);
+        }
+        if (Input.GetKeyDown(KeyCode.Plus))
+        {
+            gamePresenter.gameModel.AddExperience(1000);
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
