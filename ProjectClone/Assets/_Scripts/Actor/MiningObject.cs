@@ -18,6 +18,7 @@ public class MiningObject : MonoBehaviour, IGatherable
     public int amount = 10;
     public bool isDeath;
 
+    public Transform health;
     void Awake()
     {
         Init();
@@ -36,7 +37,7 @@ public class MiningObject : MonoBehaviour, IGatherable
         Debug.Log("cur hp : " + HP);
         transform.DOShakePosition(0.25f,new Vector2(0.35f, 0.2f),50);
         GetComponent<SpriteRenderer>().material.DOColor(Color.black, "_Addtive", 0.25f).From(Color.white);
-
+        health.transform.localScale = new Vector3(HP / (float)maxHP, 1, 1);
         if (eResource == EResource.Organism)
         {
             SoundManager.Instance.PlayFXSound("Axe");

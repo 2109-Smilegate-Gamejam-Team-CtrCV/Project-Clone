@@ -50,7 +50,7 @@ public class MapGenerator: MonoBehaviour
             {
 
                 array[y*size.x+x] = (fastNoise.GetValue(y, x) + 2) / 3;
-                if ((x-center.x)*(x- center.x) + (y - center.y) * (y - center.y) < 300) 
+                if ((x - center.x) * (x - center.x) + (y - center.y) * (y - center.y) < 40* 40)  
                     array[y * size.x + x] = 1;
 
 

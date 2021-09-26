@@ -9855,7 +9855,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: -1025177295
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1393707447
 RectTransform:
@@ -10090,7 +10090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4068ba906c7292d429842631d656d649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cut: 0.5
+  cut: 0.6
   spriteRenderer: {fileID: 1448690522}
   tilemap: {fileID: 877567375}
   tilemap1: {fileID: 1627353884}
