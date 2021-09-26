@@ -112,6 +112,7 @@ public class Enemy : Actor, IAttackabale
         bullet.isPlayer = false;
         bullet.velocity = attackSpeed * (targetClone.transform.position - weapon.position).normalized;
         bullet.damage = attackPower;
+        bullet.lifeTime = attackRadius / attackSpeed;
     }
 
     public float ___offset;

@@ -41,6 +41,7 @@ public class DefenseBuidling : Building
                     var b = Instantiate(bullet, pivot.position, Quaternion.identity);
                     b.velocity = attackSpeed * (enemy.transform.position - pivot.position).normalized;
                     b.damage = attackDamage;
+                    b.lifeTime = attackRange / attackSpeed;
                 }
             }
         }
