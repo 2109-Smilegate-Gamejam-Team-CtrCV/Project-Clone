@@ -19,20 +19,35 @@ public class Actor : MonoBehaviour, IReboundable
     protected Rigidbody2D rb;
     protected Animator animator;
 
+    protected bool isDead = false;
+
     protected virtual void Awake()
     {
         root = transform.GetChild(0);
 
         render = GetComponentInChildren<SpriteRenderer>();
-        render.sortingOrder = -Utility.World2Grid(transform.position).y;
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
+    protected void FixedUpdate()
+    {
+        int sortingOrder = -Utility.World2Grid(transform.position + Vector3.down * 0.7f).y;
+        render.sortingOrder = sortingOrder;
+
+        SpriteRenderer[] childRenders = render.GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < childRenders.Length; i++)
+        {
+            childRenders[i].sortingOrder = sortingOrder;
+        }
+    }
+
     protected virtual void Update()
     {
-        render.sortingOrder = -Utility.World2Grid(transform.position + Vector3.down * 0.7f).y;
+        if (isDead)
+            return;
+
         Move();    
     }
 
@@ -58,6 +73,7 @@ public class Actor : MonoBehaviour, IReboundable
 
     public virtual void Dead() {
         SoundManager.Instance.PlayFXSound("Death_"+Random.Range(0,2));
+        isDead = true;
     }
 
     void OnCollisionEnter2D(Collision2D collision)

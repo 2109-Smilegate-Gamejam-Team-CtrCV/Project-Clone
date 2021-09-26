@@ -38,7 +38,6 @@ public class Clone : Actor, IPlayable
     DateTime nextConsumeTime;
 
     public EMindState eMindState = EMindState.Stability;
-    bool isDead = false;
 
     Vector3 leftScale = new Vector3(-1f, 1f, 1f);
     Vector3 rightScale = new Vector3(1f, 1f, 1f);
@@ -222,9 +221,9 @@ public class Clone : Actor, IPlayable
 
     public override void Dead()
     {
-        base.Dead();
         if (isDead) return;
-        isDead = true;
+
+        base.Dead();
 
         animator.SetTrigger("Death");
         gameObject.tag = "Untagged";
