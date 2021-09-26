@@ -9,6 +9,8 @@ public class SkillManager : Singleton<SkillManager>
     [NonSerialized] public AddedSkillStats currentSkillStats;
     [NonSerialized] public SkillExpModel expModel;
     [SerializeField] private TMP_Text currExp, needExp, getExpPerSec;
+    [SerializeField] private TMP_Text skillTitle, skillText;
+    [SerializeField] private GameObject skillTooltipPanel;
 
     protected override void OnAwake()
     {
@@ -70,5 +72,13 @@ public class SkillManager : Singleton<SkillManager>
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    public Transform ShowTooltip(SkillData data)
+    {
+        skillTitle.text = data.skillTitle;
+        skillText.text = data.value > 0 ? string.Format(data.skillText, data.value) : data.skillText;
+        skillTooltipPanel.SetActive(true);
+        return skillTooltipPanel.transform;
     }
 }
