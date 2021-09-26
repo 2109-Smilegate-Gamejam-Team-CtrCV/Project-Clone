@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 94160191002180794}
   - component: {fileID: -7012794403018257242}
   - component: {fileID: 2076591399198725249}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stone_2
   m_TagString: Mining
   m_Icon: {fileID: 0}

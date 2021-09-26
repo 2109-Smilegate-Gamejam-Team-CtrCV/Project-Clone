@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7807206166843505674}
   - component: {fileID: 7807206166843505676}
   - component: {fileID: 13961725385623869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DefenseBuilding 2
   m_TagString: Building
   m_Icon: {fileID: 0}

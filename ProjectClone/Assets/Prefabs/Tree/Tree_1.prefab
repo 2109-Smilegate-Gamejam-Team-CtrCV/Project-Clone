@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4552155608157929180}
   - component: {fileID: -2340888474392768955}
   - component: {fileID: 3804415411253778111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree_1
   m_TagString: Mining
   m_Icon: {fileID: 0}

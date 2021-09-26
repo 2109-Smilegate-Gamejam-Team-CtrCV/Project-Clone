@@ -122,21 +122,21 @@ public class Clone : Actor, IPlayable
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos = new Vector2(worldPos.x, worldPos.y);
 
-        Ray2D ray = new Ray2D(mousePos, Vector2.zero);
-        var hit = Physics2D.Raycast(ray.origin, ray.direction);
-        if (hit.collider != null)
+        var collider = Physics2D.OverlapPoint(mousePos, 1 << LayerMask.NameToLayer("CanClickObject"));
+        
+        if (collider != null)
         {
             // todo : 호버링된 오브젝트에 아웃라인 주면 좋을듯?
 
-            //Debug.LogFormat("click target name : " + hit.collider.name);
+            Debug.LogFormat("click target name : " + collider.name);
 
-            if (hit.collider.CompareTag("Mining"))
+            if (collider.CompareTag("Mining"))
             {
-                Mine(hit.collider.gameObject);
+                Mine(collider.gameObject);
             }
-            else if (hit.collider.CompareTag("Building"))
+            else if (collider.CompareTag("Building"))
             {
-                Build(hit.collider.gameObject);
+                Build(collider.gameObject);
             }
         }
     }
