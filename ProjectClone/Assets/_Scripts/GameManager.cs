@@ -53,7 +53,8 @@ public class GameManager : Singleton<GameManager>
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
-            SetBuildingMode(!isBuildingMode);
+            gamePresenter.gameModel.AddOrganism(1000);
+            gamePresenter.gameModel.AddMineral(1000);
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -94,6 +95,7 @@ public class GameManager : Singleton<GameManager>
                 SetBuildingMode(false);
             }
         }
+        
     }
 
     public GameObject preview;

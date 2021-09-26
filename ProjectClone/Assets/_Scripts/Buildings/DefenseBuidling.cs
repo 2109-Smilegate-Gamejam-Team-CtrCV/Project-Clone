@@ -28,12 +28,11 @@ public class DefenseBuidling : Building
         if (timer >= attackDelay)
         {
             timer -= attackDelay;
-            var enemys = Physics2D.OverlapCircleAll(transform.position, attackRange)
-                .Where(p => p.gameObject.CompareTag("Enemy"));
+            var enemys = Physics2D.OverlapCircleAll(transform.position, attackRange).Where(p => p.gameObject.CompareTag("Enemy")).OrderBy(p => Vector2.SqrMagnitude(p.transform.position - transform.position));
 
             if (enemys.Count() > 0)
             {
-                var enemy = enemys.OrderBy(p => Vector2.SqrMagnitude(p.transform.position - transform.position)).FirstOrDefault();
+                var enemy = enemys.FirstOrDefault();
                 var b = Instantiate(bullet, transform.position, Quaternion.identity);
                 b.velocity = attackSpeed * (enemy.transform.position - transform.position).normalized;
                 b.damage = attackDamage;
