@@ -54,7 +54,7 @@ MonoBehaviour:
   createCount: 5
   isCreate: 0
   experienceCreateValue: 2
-  experienceCreateDelay: 12
+  experienceCreateDelay: 10
   experienceCreateDelaySpace: 4
 --- !u!212 &3585677482624703016
 SpriteRenderer:

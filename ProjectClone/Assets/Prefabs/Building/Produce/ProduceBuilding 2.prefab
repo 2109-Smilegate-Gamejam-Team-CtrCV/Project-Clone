@@ -53,9 +53,9 @@ MonoBehaviour:
   - {x: 1, y: 1}
   createCount: 3
   isCreate: 0
-  delayTimer: 8
+  delayTimer: 3
   produceItemType: 1
-  itemCount: 1
+  itemCount: 15
 --- !u!212 &6647346757942973298
 SpriteRenderer:
   m_ObjectHideFlags: 0

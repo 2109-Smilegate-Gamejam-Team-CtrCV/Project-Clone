@@ -7,7 +7,6 @@ public class BuildingItem : ScriptableObject
 {
     public Sprite Icon;
     public string Name;
-    [TextArea]
     public string Description;
     public int Mineral;
     public int Organism;
