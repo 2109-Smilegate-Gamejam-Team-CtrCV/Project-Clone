@@ -22,20 +22,26 @@ public class DefenseBuidling : Building
 
     private float timer = 0;
 
+    public Transform pivot;
+
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= attackDelay)
+        if(isCreate)
         {
-            timer -= attackDelay;
-            var enemys = Physics2D.OverlapCircleAll(transform.position, attackRange).Where(p => p.gameObject.CompareTag("Enemy")).OrderBy(p => Vector2.SqrMagnitude(p.transform.position - transform.position));
 
-            if (enemys.Count() > 0)
+            timer += Time.deltaTime;
+            if (timer >= attackDelay)
             {
-                var enemy = enemys.FirstOrDefault();
-                var b = Instantiate(bullet, transform.position, Quaternion.identity);
-                b.velocity = attackSpeed * (enemy.transform.position - transform.position).normalized;
-                b.damage = attackDamage;
+                timer -= attackDelay;
+                var enemys = Physics2D.OverlapCircleAll(transform.position, attackRange).Where(p => p.gameObject.CompareTag("Enemy")).OrderBy(p => Vector2.SqrMagnitude(p.transform.position - transform.position));
+
+                if (enemys.Count() > 0)
+                {
+                    var enemy = enemys.FirstOrDefault();
+                    var b = Instantiate(bullet, pivot.position, Quaternion.identity);
+                    b.velocity = attackSpeed * (enemy.transform.position - pivot.position).normalized;
+                    b.damage = attackDamage;
+                }
             }
         }
     }

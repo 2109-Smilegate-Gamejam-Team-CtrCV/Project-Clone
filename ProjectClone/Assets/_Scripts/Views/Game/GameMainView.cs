@@ -108,7 +108,7 @@ public class GameMainView : MonoBehaviour
             contextItem.Icon = item.Icon;
             contextItem.OnClick.Subscribe(_ =>
             {
-                if(GameManager.Instance.gamePresenter.gameModel.organism.Value >= item.Organism && GameManager.Instance.gamePresenter.gameModel.organism.Value >= item.Organism)
+                if(GameManager.Instance.gamePresenter.gameModel.organism.Value >= item.Organism && GameManager.Instance.gamePresenter.gameModel.mineral.Value >= item.Mineral)
                 {
                     GameManager.Instance.Building = item;
                     GameManager.Instance.SetBuildingMode(true);
