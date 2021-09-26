@@ -34,7 +34,7 @@ public class MiningObject : MonoBehaviour, IGatherable
     public bool GetDamage(int power)
     {
         HP = Mathf.Clamp(HP - power, 0, maxHP);
-        Debug.Log("cur hp : " + HP);
+        //Debug.Log("cur hp : " + HP);
         transform.DOShakePosition(0.25f,new Vector2(0.35f, 0.2f),50);
         GetComponent<SpriteRenderer>().material.DOColor(Color.black, "_Addtive", 0.25f).From(Color.white);
         health.transform.localScale = new Vector3(HP / (float)maxHP, 1, 1);

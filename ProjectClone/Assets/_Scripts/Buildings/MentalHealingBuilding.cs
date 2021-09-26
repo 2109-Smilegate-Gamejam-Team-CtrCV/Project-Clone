@@ -49,7 +49,7 @@ public class MentalHealingBuilding : Building
             if (timer > MetalHealDelay)
             {
                 timer -= MetalHealDelay;
-                Debug.Log("¸ÞÅ» È¸º¹");
+                //Debug.Log("¸ÞÅ» È¸º¹");
                 GameManager.Instance.clone.mental += mentalHeal/2;
             }
         }

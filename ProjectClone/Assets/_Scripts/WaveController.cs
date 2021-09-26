@@ -101,7 +101,7 @@ public class WaveController : MonoBehaviour
             rankCounts[3] = 0;
         }
 
-        Debug.LogFormat("Wave Level : {4} -> 1등급 : {0} 마리, 2등급 : {1} 마리, 3등급 : {2} 마리, 4등급 : {3} 마리", rankCounts[0], rankCounts[1], rankCounts[2], rankCounts[3], waveLevel);
+        //Debug.LogFormat("Wave Level : {4} -> 1등급 : {0} 마리, 2등급 : {1} 마리, 3등급 : {2} 마리, 4등급 : {3} 마리", rankCounts[0], rankCounts[1], rankCounts[2], rankCounts[3], waveLevel);
         return rankCounts;
     }
 
