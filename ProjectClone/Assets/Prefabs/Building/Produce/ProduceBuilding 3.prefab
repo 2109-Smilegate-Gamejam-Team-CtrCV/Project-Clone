@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6237092265049229272}
   - component: {fileID: 6237092265049229275}
   - component: {fileID: 6647346757942973298}
-  - component: {fileID: -9073601049994451689}
+  - component: {fileID: 4250378983735286159}
   m_Layer: 0
   m_Name: ProduceBuilding 3
   m_TagString: Building
@@ -56,7 +56,7 @@ MonoBehaviour:
   - {x: 2, y: 0}
   - {x: 2, y: 1}
   - {x: 2, y: 2}
-  createCount: 3
+  createCount: 80
   isCreate: 0
   delayTimer: 5
   produceItemType: 0
@@ -112,8 +112,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-9073601049994451689
-BoxCollider2D:
+--- !u!58 &4250378983735286159
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -136,5 +136,4 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 3}
-  m_EdgeRadius: 0
+  m_Radius: 1.25

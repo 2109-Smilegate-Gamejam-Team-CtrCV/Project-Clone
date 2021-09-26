@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6370773874836084290}
   - component: {fileID: 6370773874836084302}
   - component: {fileID: 5955744302949729000}
-  - component: {fileID: 691357042422103022}
+  - component: {fileID: 7051710999205112482}
   m_Layer: 0
   m_Name: ExperienceProduceBuilding
   m_TagString: Building
@@ -48,7 +48,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   patterns:
   - {x: 0, y: 0}
-  createCount: 5
+  createCount: 15
   isCreate: 0
   experienceCreateValue: 2
   experienceCreateDelay: 10
@@ -104,8 +104,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &691357042422103022
-BoxCollider2D:
+--- !u!58 &7051710999205112482
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,15 +118,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.5, y: 0.5}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.25
