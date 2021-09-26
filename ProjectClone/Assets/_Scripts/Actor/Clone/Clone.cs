@@ -71,6 +71,9 @@ public class Clone : Actor, IPlayable
         nextMiningTime = DateTime.Now;
         nextBuildTime = DateTime.Now;
         nextConsumeTime = DateTime.Now;
+
+
+        GameManager.Instance.gamePresenter.gameMainView.SetHeart(maxHP, HP);
     }
 
     public override void Move()

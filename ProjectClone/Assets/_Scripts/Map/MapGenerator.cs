@@ -122,7 +122,7 @@ public class MapGenerator: MonoBehaviour
         {
             var pos = new Vector2Int(Random.Range(0, size.x), Random.Range(0, size.y));
             var stonePrefab = stones[Random.Range(0, stones.Length)];
-            if (!gameManager.IsExist(stonePrefab, pos) )
+            if (!gameManager.IsExist(stonePrefab, pos) && (pos.x - center.x) * (pos.x - center.x) + (pos.y - center.y) * (pos.y - center.y) >= 6 * 6)
             {
                 var stone = Instantiate(stonePrefab, (Vector2)pos, Quaternion.identity);
                 stone.position = pos;

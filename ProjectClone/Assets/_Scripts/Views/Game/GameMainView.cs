@@ -80,7 +80,7 @@ public class GameMainView : MonoBehaviour
         {
             var haert =Instantiate(heartUI, Vector3.zero, Quaternion.identity, heartTransform);
             haert.transform.localPosition = Vector3.zero;
-            if (heart >= i) haert.GetComponent<Image>().color = Color.white;
+            if (heart > i) haert.GetComponent<Image>().color = Color.white;
             else haert.GetComponent<Image>().color = Color.black;
         }
     }
