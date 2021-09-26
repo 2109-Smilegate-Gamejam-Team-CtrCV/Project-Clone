@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -12,14 +13,19 @@ public class SkillManager : Singleton<SkillManager>
     [SerializeField] private TMP_Text skillTitle, skillText;
     [SerializeField] private GameObject skillTooltipPanel;
 
+    private IDisposable _disposableCurrExpTextEvent;
+
     protected override void OnAwake()
     {
         base.OnAwake();
         expModel = gameObject.AddComponent<SkillExpModel>();
 
-        expModel.CurrExp.Subscribe(value => currExp.text = $"현재 경험치 : {value:F01}").AddTo(currExp);
-        expModel.NeedExp.Subscribe(value => needExp.text = $"다음 스킬 습득에 필요한 경험치 : {value}").AddTo(needExp);
-        expModel.GetExpPerSec.Subscribe(value => getExpPerSec.text = $"초당 경험치 획득량 : {value}").AddTo(getExpPerSec);
+        _disposableCurrExpTextEvent = expModel.CurrExp.Subscribe(value => currExp.text = $"현재 경험치 : {value:F01}")
+            .AddTo(currExp);
+        expModel.NeedExp.Subscribe(value => needExp.text = $"다음 스킬 습득에 필요한 경험치 : {value}")
+            .AddTo(needExp);
+        expModel.GetExpPerSec.Subscribe(value => getExpPerSec.text = $"초당 경험치 획득량 : {value}")
+            .AddTo(getExpPerSec);
         expModel.Initialize();
     }
 
@@ -71,6 +77,13 @@ public class SkillManager : Singleton<SkillManager>
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
+        }
+
+        if (SkillGridInitializer.Instance.Cells.All(cell => cell.isUnlocked))
+        {
+            _disposableCurrExpTextEvent.Dispose();
+            needExp.text = "다음 스킬 습득에 필요한 경험치 : MAX";
+            expModel.canGetSkillShowEvent.Dispose();
         }
     }
 

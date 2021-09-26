@@ -14,6 +14,8 @@ public class SkillExpModel : MonoBehaviour
     public IObservable<float> CurrExp => currExp.ObserveOnMainThread();
     public IObservable<float> GetExpPerSec => getExpPerSec.ObserveOnMainThread();
     public IObservable<float> ExpGrowthFigure => expGrowthFigure.ObserveOnMainThread();
+    public bool CanGetSkill => currExp.Value >= needExp.Value;
+    public IDisposable canGetSkillShowEvent;
 
     private static readonly WaitForSeconds ExpCooldown = new WaitForSeconds(1f);
     private Coroutine addExpCoroutine;
@@ -59,5 +61,8 @@ public class SkillExpModel : MonoBehaviour
     private void Start()
     {
         Initialize();
+        canGetSkillShowEvent = currExp.Where(value => value >= needExp.Value)
+            .Subscribe(_ => GameManager.Instance.gamePresenter.gameSkillView.Show())
+            .AddTo(gameObject);
     }
 }

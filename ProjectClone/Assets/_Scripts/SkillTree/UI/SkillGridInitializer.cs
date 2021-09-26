@@ -30,6 +30,8 @@ public class SkillGridInitializer : Singleton<SkillGridInitializer>
 
     [SerializeField] private SkillCell[] cells;
     [SerializeField] private SkillCell mainCell;
+
+    public SkillCell[] Cells => cells;
     
     // Start is called before the first frame update
     private void Start()
