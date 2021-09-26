@@ -118,6 +118,7 @@ public class Enemy : Actor, IAttackabale
 
     public override void Dead()
     {
+        base.Dead();
         // todo : »ç¸Á Ã³¸®
         animator.SetTrigger("Death");
         gameObject.tag = "Untagged";

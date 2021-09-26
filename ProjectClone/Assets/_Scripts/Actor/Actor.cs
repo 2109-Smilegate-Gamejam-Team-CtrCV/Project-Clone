@@ -56,7 +56,9 @@ public class Actor : MonoBehaviour, IReboundable
         return HP <= 0;
     }
 
-    public virtual void Dead() { }
+    public virtual void Dead() {
+        SoundManager.Instance.PlayFXSound("Death");
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {

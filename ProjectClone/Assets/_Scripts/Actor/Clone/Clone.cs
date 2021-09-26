@@ -222,6 +222,7 @@ public class Clone : Actor, IPlayable
 
     public override void Dead()
     {
+        base.Dead();
         isDead = true;
         animator.SetTrigger("Death");
         gameObject.tag = "Untagged";
