@@ -58,7 +58,7 @@ MonoBehaviour:
   attackPower: 1
   attackSpeed: 3
   attackCoolTime: 5
-  attackRadius: 3
+  attackRadius: 6
   Rank: 2
   weaponType: 3
   health: {fileID: 3641154868656435051}

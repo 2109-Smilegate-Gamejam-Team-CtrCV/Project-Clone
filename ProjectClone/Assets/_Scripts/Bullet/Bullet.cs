@@ -16,6 +16,9 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
+        float d = Vector2.SignedAngle(Vector2.up, velocity) + 90;
+
+        transform.rotation = Quaternion.Euler(0, 0, d);
         transform.position += (Vector3)velocity * Time.deltaTime;
     }
 

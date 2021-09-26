@@ -84,7 +84,7 @@ MonoBehaviour:
   attackDelay: 3
   attackRange: 8
   attackDamage: 1
-  attackSpeed: 8
+  attackSpeed: 10
   bullet: {fileID: -8021436701540116091, guid: 3d4e138dbaa71fb4a8d11b840387b608, type: 3}
   pivot: {fileID: 6704089546059930976}
 --- !u!212 &7807206166843505676

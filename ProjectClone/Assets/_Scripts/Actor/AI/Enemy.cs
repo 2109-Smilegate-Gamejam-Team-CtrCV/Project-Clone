@@ -109,6 +109,7 @@ public class Enemy : Actor, IAttackabale
 
         // todo : 투사체 발사
         Bullet bullet = Instantiate(bulletPrefab, weapon.position, Quaternion.identity);
+        Debug.Log(bullet);
         bullet.isPlayer = false;
         bullet.velocity = attackSpeed * (targetClone.transform.position - weapon.position).normalized;
         bullet.damage = attackPower;

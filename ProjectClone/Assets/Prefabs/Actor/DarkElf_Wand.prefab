@@ -222,7 +222,7 @@ MonoBehaviour:
   attackPower: 3
   attackSpeed: 3
   attackCoolTime: 5
-  attackRadius: 3
+  attackRadius: 6
   Rank: 4
   weaponType: 3
   health: {fileID: 3981960342502624456}
