@@ -132,7 +132,7 @@ MonoBehaviour:
   HP: 0
   maxHP: 6
   moveSpeed: 2
-  reboundPower: 1
+  reboundPower: 5
   mental: 0
   maxMental: 30
   consumeMental: 1
