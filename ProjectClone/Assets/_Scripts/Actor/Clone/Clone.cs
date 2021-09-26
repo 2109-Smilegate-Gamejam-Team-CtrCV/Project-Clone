@@ -228,6 +228,7 @@ public class Clone : Actor, IPlayable
         animator.SetTrigger("Death");
         gameObject.tag = "Untagged";
         GameManager.Instance.CreateNextClone();
+        SkillManager.Instance.expModel.Initialize();
 
         Destroy(this);
     }
