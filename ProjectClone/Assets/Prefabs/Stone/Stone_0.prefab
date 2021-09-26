@@ -132,7 +132,7 @@ MonoBehaviour:
   HP: 0
   maxHP: 20
   eResource: 0
-  amount: 10
+  amount: 5
   isDeath: 0
   health: {fileID: 97585662064459277}
 --- !u!1 &6694184193313125287
