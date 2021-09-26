@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3328451879864356330}
   - component: {fileID: 3328451879864356335}
   - component: {fileID: 3328451879864356332}
-  - component: {fileID: 6602713180719448158}
+  - component: {fileID: 7654538693494328722}
   m_Layer: 0
-  m_Name: Goblin
+  m_Name: Zombie_Wand
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,6 +55,8 @@ MonoBehaviour:
   attackPower: 1
   attackSpeed: 1
   attackRadius: 3
+  Rank: 2
+  weaponType: 3
 --- !u!50 &3328451879864356335
 Rigidbody2D:
   serializedVersion: 4
@@ -92,7 +94,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.35}
   serializedVersion: 2
   m_Radius: 0.25
---- !u!95 &6602713180719448158
+--- !u!95 &7654538693494328722
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -102,7 +104,7 @@ Animator:
   m_GameObject: {fileID: 3328451879864356331}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d3e8b341bffa2744eb6e6bf1b1e797a4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 08a77ad56e9e44b41b57f5e1dcd8d467, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -139,7 +141,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4293416190464593165}
+  - {fileID: 2615989816804268207}
   m_Father: {fileID: 3328451879864356333}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -183,7 +185,7 @@ SpriteRenderer:
   m_SortingLayerID: -208281097
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6844617184521262719, guid: ca58d042f721fe2498413667facc9b5b, type: 3}
+  m_Sprite: {fileID: 5633502816415635640, guid: 61288e36994423e4383eee88d4d4155b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -194,7 +196,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &5110172763219337784
+--- !u!1 &5862690376755891008
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,8 +204,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4293416190464593165}
-  - component: {fileID: 625489771771121133}
+  - component: {fileID: 2615989816804268207}
+  - component: {fileID: 7271181937013707364}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -211,13 +213,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4293416190464593165
+--- !u!4 &2615989816804268207
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5110172763219337784}
+  m_GameObject: {fileID: 5862690376755891008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.45, y: -0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -225,13 +227,13 @@ Transform:
   m_Father: {fileID: 3328451881316144005}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &625489771771121133
+--- !u!212 &7271181937013707364
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5110172763219337784}
+  m_GameObject: {fileID: 5862690376755891008}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
