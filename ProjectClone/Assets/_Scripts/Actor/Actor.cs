@@ -57,7 +57,7 @@ public class Actor : MonoBehaviour, IReboundable
     }
 
     public virtual void Dead() {
-        SoundManager.Instance.PlayFXSound("Death");
+        SoundManager.Instance.PlayFXSound("Death_"+Random.Range(0,2));
     }
 
     void OnCollisionEnter2D(Collision2D collision)
