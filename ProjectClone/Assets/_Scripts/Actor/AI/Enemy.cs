@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum EWeaponType
+{
+    Hand,
+    Sword,
+    Bow,
+    Wand
+}
+
 public class Enemy : Actor, IAttackabale
 {
 #if UNITY_EDITOR
@@ -15,8 +23,14 @@ public class Enemy : Actor, IAttackabale
 
     DateTime nextAttackTime;
     Vector2 moveDir;
+    Vector3 leftScale = new Vector3(-1f, 1f, 1f);
+    Vector3 rightScale = new Vector3(1f, 1f, 1f);
 
     Clone targetClone;
+    Transform weapon;
+
+    public int Rank = 1;
+    EWeaponType weaponType;
 
     public override void Init()
     {
@@ -26,7 +40,16 @@ public class Enemy : Actor, IAttackabale
 
         nextAttackTime = DateTime.Now;
 
-        SetTarget(GameManager.Instance.clone);
+        weapon = root.GetChild(0);
+        Dead();
+    }
+
+    protected override void Update()
+    {
+        if (targetClone == null)
+            SetTarget(GameManager.Instance.clone);
+
+        base.Update();
     }
 
     public override void Move()
@@ -39,6 +62,13 @@ public class Enemy : Actor, IAttackabale
 
         moveDir = (targetClone.transform.position2D() - transform.position2D()).normalized;
         transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+        SetMoveAnimation(moveDir);
+    }
+
+    public void SetMoveAnimation(Vector2 moveDir)
+    {
+        if (moveDir.x != 0)
+            root.localScale = moveDir.x > 0 ? leftScale : rightScale;
     }
 
     public void Attack()
@@ -63,7 +93,9 @@ public class Enemy : Actor, IAttackabale
     public override void Dead()
     {
         // todo : »ç¸Á Ã³¸®
-        Destroy(gameObject);
+        animator.SetTrigger("Death");
+        gameObject.tag = "Untagged";
+        Destroy(this);
     }
 
     public void SetTarget(Clone clone)

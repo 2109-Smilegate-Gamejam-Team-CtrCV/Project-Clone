@@ -25,10 +25,6 @@ public class Clone : Actor, IPlayable
     public float miningRange = 2f;
     public float miningRate = 1f; // 자원 획득 배율
 
-    // 자원은 매니저에서 갖는게?
-    public int mineral = 0; 
-    public int organic = 0;
-
     [Header("건설")]
 #if UNITY_EDITOR
     [SerializeField] Color buildingGizmoColor = Color.blue;
@@ -41,8 +37,11 @@ public class Clone : Actor, IPlayable
     DateTime nextBuildTime;
     DateTime nextConsumeTime;
 
-   public EMindState eMindState = EMindState.Stability;
+    public EMindState eMindState = EMindState.Stability;
     bool isDead = false;
+
+    Vector3 leftScale = new Vector3(-1f, 1f, 1f);
+    Vector3 rightScale = new Vector3(1f, 1f, 1f);
 
     protected override void Update()
     {
@@ -212,12 +211,12 @@ public class Clone : Actor, IPlayable
 
     public override void Dead()
     {
-        
-        Debug.Log("DEAD!!");
         isDead = true;
         animator.SetTrigger("Death");
-        Destroy(this);
+        gameObject.tag = "Untagged";
         GameManager.Instance.CreateNextClone();
+
+        Destroy(this);
     }
 
     public void SetMindState(EMindState newState)
@@ -225,16 +224,13 @@ public class Clone : Actor, IPlayable
         eMindState = newState;
     }
 
-#region Animation
     public void SetMoveAnimation(Vector2 moveDir)
     {
         animator.SetBool("Walk", moveDir != Vector2.zero);
 
         if (moveDir.x != 0)
-            render.flipX = moveDir.x > 0;
+            root.localScale = moveDir.x > 0 ? leftScale : rightScale;
     }
-
-#endregion
 
 #if UNITY_EDITOR
     void OnDrawGizmos()

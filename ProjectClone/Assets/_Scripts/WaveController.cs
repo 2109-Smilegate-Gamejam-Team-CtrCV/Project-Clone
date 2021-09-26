@@ -113,7 +113,7 @@ public class WaveController : MonoBehaviour
             portalPos = new Vector2Int(Random.Range(0, generator.size.x), Random.Range(0, generator.size.y));
         }
 
-        var portal = Instantiate(portalPrefab, (Vector2)portalPos, Quaternion.identity);
+        var portal = Instantiate(portalPrefab, (Vector2)portalPos, Quaternion.identity, transform);
         portal.position = portalPos;
         return portal;
     }
@@ -126,7 +126,7 @@ public class WaveController : MonoBehaviour
             otherPos = new Vector2Int(Random.Range(0, generator.size.x), Random.Range(0, generator.size.y));
         }
 
-        var portal = Instantiate(portalPrefab, (Vector2)otherPos, Quaternion.identity);
+        var portal = Instantiate(portalPrefab, (Vector2)otherPos, Quaternion.identity, transform);
         portal.position = otherPos;
         return portal;
     }
