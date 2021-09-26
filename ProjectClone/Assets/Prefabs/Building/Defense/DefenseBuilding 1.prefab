@@ -85,9 +85,9 @@ MonoBehaviour:
   createCount: 30
   isCreate: 0
   attackDelay: 1
-  attackRange: 9
+  attackRange: 12
   attackDamage: 1
-  attackSpeed: 1.5
+  attackSpeed: 12
   bullet: {fileID: -8021436701540116091, guid: 3d4e138dbaa71fb4a8d11b840387b608, type: 3}
   pivot: {fileID: 3275939780246177038}
 --- !u!212 &7807206166843505676
