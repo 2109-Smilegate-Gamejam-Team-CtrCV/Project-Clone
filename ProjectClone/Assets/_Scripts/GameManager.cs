@@ -53,7 +53,8 @@ public class GameManager : Singleton<GameManager>
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
-            SetBuildingMode(!isBuildingMode);
+            gamePresenter.gameModel.AddOrganism(1000);
+            gamePresenter.gameModel.AddMineral(1000);
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -87,6 +88,9 @@ public class GameManager : Singleton<GameManager>
                     var i = Instantiate(b.cell, (Vector2)pos, Quaternion.identity);
                     i.position = pos;
                     AddCell(i);
+
+                    if (GameManager.Instance.gamePresenter.gameModel.organism.Value < Building.Organism || GameManager.Instance.gamePresenter.gameModel.mineral.Value < Building.Mineral)
+                        SetBuildingMode(false);
                 }
             }
             if (Input.GetMouseButtonUp(1) && !EventSystem.current.IsPointerOverGameObject())
@@ -94,6 +98,7 @@ public class GameManager : Singleton<GameManager>
                 SetBuildingMode(false);
             }
         }
+        
     }
 
     public GameObject preview;

@@ -1,47 +1,175 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class SoundManager : Singleton<SoundManager>
+public class SoundManager : MonoBehaviour
 {
-    private IReadOnlyDictionary<string, AudioSource> _bgmDictionary;
-    private IReadOnlyDictionary<string, AudioSource> _vfxDictionary;
-    private AudioSource _nowPlayingBGM;
-    
-    protected override void OnAwake()
-    {
-        _bgmDictionary = Resources.LoadAll<AudioSource>("BGM")
-            .Select(audioSource => Instantiate(audioSource, transform))
-            .ToDictionary(value => value.name);
-        
-        _vfxDictionary = Resources.LoadAll<AudioSource>("VFX")
-            .Select(audioSource => Instantiate(audioSource, transform))
-            .ToDictionary(value => value.name);
+    public float MasterVoulme => masterVoulme;
+    public float BGMVolume => bgmVolume;
+    public float FxVoulme => fxVoulme;
 
-        foreach (var audioSource in _bgmDictionary.Values)
+    private float masterVoulme;
+    private float bgmVolume;
+    private float fxVoulme;
+
+    private AudioSource bgmAudioSourece;
+    private List<AudioSource> fxAudioSourceList = new List<AudioSource>();
+
+    private Dictionary<string, AudioClip> bgmSoundDic = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> fxSoundDic = new Dictionary<string, AudioClip>();
+
+    private static SoundManager instance;
+    public static SoundManager Instance
+    {
+        get
         {
-            audioSource.loop = true;
+            if (instance == null) // instance 가 비어있다면
+            {
+                instance = FindObjectOfType<SoundManager>(); // 찾아준다
+                if (instance == null) // 그래도 없다면
+                {
+                    instance = new GameObject(typeof(SoundManager).ToString()).AddComponent<SoundManager>(); // 만든다
+                }
+            }
+
+            return instance;
         }
     }
 
-    public void PlayBGM(string title)
+    private void Awake()
     {
-        if (_bgmDictionary.TryGetValue(title, out var audioSource))
+        if (instance == null)
         {
-            audioSource.volume = OptionManager.Instance.BGM * OptionManager.Instance.Master;
-            audioSource.Play();
-            _nowPlayingBGM?.Stop();
-            _nowPlayingBGM = audioSource;
+            instance = this as SoundManager;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        DontDestroyOnLoad(this);
+
+        foreach (var audioClip in Resources.LoadAll<AudioClip>("BGM")) // Resource 폴더에있는 사운드들 담아두기
+        {
+            bgmSoundDic.Add(audioClip.name, audioClip);
+            Debug.Log(audioClip.name);
         }
     }
 
-    public void PlayVFX(string name)
+    private void OnDestroy()
     {
-        if (_vfxDictionary.TryGetValue(name, out var audioSource))
+        if (instance == this)
         {
-            audioSource.volume = OptionManager.Instance.VFX * OptionManager.Instance.Master;
-            audioSource.Play();
+            instance = default;
         }
     }
+
+    private AudioClip GetBGMSound(string name)
+    {
+        AudioClip result;
+        if (!bgmSoundDic.TryGetValue(name, out result))
+        {
+            Debug.LogWarning(name + "Not Found");
+        }
+        return result;
+    }
+
+    private AudioClip GetFxSound(string name)
+    {
+        AudioClip result;
+        if (!fxSoundDic.TryGetValue(name, out result))
+        {
+            result = Resources.Load<AudioClip>("VFX/" + name);
+            if (result == null)
+            {
+                Debug.LogWarning(name + "Not Found");
+                return null;
+            }
+            fxSoundDic.Add(name, result);
+        }
+        return result;
+    }
+
+    private AudioSource MakeAudioSourceObject(string name)
+    {
+        GameObject Object = new GameObject();
+        Object.name = name;
+        Object.transform.SetParent(gameObject.transform);
+
+        return Object.AddComponent<AudioSource>();
+    }
+
+    private void SetAudioSource(AudioSource audioSource, AudioClip audioClip, bool isLoop, float volume, bool isMute = false)
+    {
+        audioSource.clip = audioClip;
+        audioSource.loop = isLoop;
+        audioSource.volume = volume;
+        audioSource.mute = isMute;
+    }
+
+    public void AdjustMasterVolume(float newVolume)
+    {
+        masterVoulme = newVolume;
+        AdjustBGMVolume(bgmVolume);
+        AdjustFxVoulme(fxVoulme);
+    }
+
+    public void AdjustBGMVolume(float newVolume)
+    {
+        bgmVolume = newVolume;
+        if (bgmAudioSourece != null)
+        {
+            bgmAudioSourece.volume = bgmVolume * MasterVoulme;
+        }
+    }
+
+    public void AdjustFxVoulme(float newVolume)
+    {
+        fxVoulme = newVolume;
+        foreach (var fxAudioSource in fxAudioSourceList)
+        {
+            if (fxAudioSource != null)
+            {
+                fxAudioSource.volume = fxVoulme * MasterVoulme;
+            }
+        }
+    }
+
+    public void PlayBGMSound(string name)
+    {
+        if (bgmAudioSourece == null)
+        {
+            bgmAudioSourece = MakeAudioSourceObject("BGMObject");
+        }
+
+        SetAudioSource(bgmAudioSourece, GetBGMSound(name), true, bgmVolume * MasterVoulme, false);
+        bgmAudioSourece.Play();
+    }
+
+    public void PlayFXSound(string name)
+    {
+        foreach (var fxAudioSource in fxAudioSourceList)
+        {
+            if (!fxAudioSource.isPlaying)
+            {
+                SetAudioSource(fxAudioSource, GetFxSound(name), false, fxVoulme * MasterVoulme, false);
+                fxAudioSource.Play();
+                return;
+            }
+        }
+
+        fxAudioSourceList.Add(MakeAudioSourceObject("FxObject"));
+        PlayFXSound(name);
+    }
+
+    public void PauseBGM()
+    {
+        bgmAudioSourece.Pause();
+    }
+
+    public void ResumeBGM()
+    {
+        bgmAudioSourece.UnPause();
+    }
+
 }

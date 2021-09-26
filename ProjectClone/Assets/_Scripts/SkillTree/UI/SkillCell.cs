@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,20 +18,37 @@ public class SkillCell : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().OnClickAsObservable()
+        var button = GetComponent<Button>(); 
+        
+        button.OnClickAsObservable()
             .Where(_ => canUnlock && !isUnlocked)
             .Subscribe(_ =>
         {
+            SkillManager.Instance.GetSkill(skillData, out var canGetSkill);
+            if (!canGetSkill) return;
+            
             foreach (var cell in adjCell)
             {
                 cell.gameObject.SetActive(true);
                 cell.canUnlock = true;
             }
             isUnlocked = true;
-            SkillManager.Instance.GetSkill(skillData);
             transform.DOScale(1, 0.75f);
             GetComponent<Image>().DOColor(Color.white,0.75f);
         }).AddTo(gameObject);
+
+        button.OnPointerEnterAsObservable()
+            .Select(pointerEventData => pointerEventData.position)
+            .Subscribe(_ =>
+            {
+                var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePos.z = 0;
+                SkillManager.Instance.ShowTooltip(skillData).position = mousePos;
+            }).AddTo(gameObject);
+
+        button.OnPointerExitAsObservable()
+            .Subscribe(_ => SkillManager.Instance.ShowTooltip(skillData).gameObject.SetActive(false))
+            .AddTo(gameObject);
 
         _icon = gameObject.transform.GetChild(0).GetComponent<Image>();
         _icon.sprite = skillData.skillIcon;

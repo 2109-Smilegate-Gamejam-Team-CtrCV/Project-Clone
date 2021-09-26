@@ -22,28 +22,34 @@ public class DefenseBuidling : Building
 
     private float timer = 0;
 
+    public Transform pivot;
+
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= attackDelay)
+        if(isCreate)
         {
-            timer -= attackDelay;
-            var enemys = Physics2D.OverlapCircleAll(transform.position, attackRange)
-                .Where(p => p.gameObject.CompareTag("Enemy"));
 
-            if (enemys.Count() > 0)
+            timer += Time.deltaTime;
+            if (timer >= attackDelay)
             {
-                var enemy = enemys.OrderBy(p => Vector2.SqrMagnitude(p.transform.position - transform.position)).FirstOrDefault();
-                var b = Instantiate(bullet, transform.position, Quaternion.identity);
-                b.velocity = attackSpeed * (enemy.transform.position - transform.position).normalized;
-                b.damage = attackDamage;
+                timer -= attackDelay;
+                var enemys = Physics2D.OverlapCircleAll(transform.position, attackRange).Where(p => p.gameObject.CompareTag("Enemy")).OrderBy(p => Vector2.SqrMagnitude(p.transform.position - transform.position));
+
+                if (enemys.Count() > 0)
+                {
+                    var enemy = enemys.FirstOrDefault();
+                    var b = Instantiate(bullet, pivot.position, Quaternion.identity);
+                    b.velocity = attackSpeed * (enemy.transform.position - pivot.position).normalized;
+                    b.damage = attackDamage;
+                }
             }
         }
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
+    protected override void OnDrawGizmosSelected()
     {
+        base.OnDrawGizmosSelected();
         Gizmos.color = new Color(1,0.5f,0);
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }

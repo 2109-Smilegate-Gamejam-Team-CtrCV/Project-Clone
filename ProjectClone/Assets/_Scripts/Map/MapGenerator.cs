@@ -22,7 +22,8 @@ public class MapGenerator: MonoBehaviour
     public float[] array;
     public Dictionary<Vector2Int, bool> exist;
 
-
+    public int treeCount;
+    public int stoneCount;
     public Stone[] stones;
     public Tree[] trees;
     public bool IsExist(Vector2Int pos)
@@ -121,7 +122,7 @@ public class MapGenerator: MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < stoneCount; i++)
         {
             var pos = new Vector2Int(Random.Range(0, size.x), Random.Range(0, size.y));
             var stonePrefab = stones[Random.Range(0, stones.Length)];
@@ -133,7 +134,7 @@ public class MapGenerator: MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < treeCount; i++)
         {
             var pos = new Vector2Int(Random.Range(0, size.x), Random.Range(0, size.y));
             var treePrefab = trees[Random.Range(0, trees.Length)];

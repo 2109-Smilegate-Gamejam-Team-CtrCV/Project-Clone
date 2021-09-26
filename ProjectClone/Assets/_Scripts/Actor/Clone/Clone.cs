@@ -164,7 +164,7 @@ public class Clone : Actor, IPlayable
                 {
                     Debug.LogFormat("build target name : " + target.name);
                     nextBuildTime = DateTime.Now.AddSeconds(buildingSpeed);
-                    building.AddCount();
+                    building.AddCount(buildingPower);
                 }
             }
         }

@@ -78,7 +78,8 @@ public class GameMainView : MonoBehaviour
 
         for (int i = 0; i < heart; i++)
         {
-            Instantiate(heartUI, Vector3.zero, Quaternion.identity, heartTransform);
+            var haert =Instantiate(heartUI, Vector3.zero, Quaternion.identity, heartTransform);
+            haert.transform.localPosition = Vector3.zero;
         }
     }
     public void AddShopHeader(string name)
@@ -107,7 +108,7 @@ public class GameMainView : MonoBehaviour
             contextItem.Icon = item.Icon;
             contextItem.OnClick.Subscribe(_ =>
             {
-                if(GameManager.Instance.gamePresenter.gameModel.organism.Value >= item.Organism && GameManager.Instance.gamePresenter.gameModel.organism.Value >= item.Organism)
+                if(GameManager.Instance.gamePresenter.gameModel.organism.Value >= item.Organism && GameManager.Instance.gamePresenter.gameModel.mineral.Value >= item.Mineral)
                 {
                     GameManager.Instance.Building = item;
                     GameManager.Instance.SetBuildingMode(true);

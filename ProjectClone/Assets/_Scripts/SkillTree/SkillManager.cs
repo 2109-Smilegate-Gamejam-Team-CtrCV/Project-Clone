@@ -1,14 +1,36 @@
 ﻿using System;
+using System.Collections;
+using TMPro;
 using UniRx;
+using UnityEngine;
 
 public class SkillManager : Singleton<SkillManager>
 {
     [NonSerialized] public AddedSkillStats currentSkillStats;
+    [NonSerialized] public SkillExpModel expModel;
+    [SerializeField] private TMP_Text currExp, needExp, getExpPerSec;
+    [SerializeField] private TMP_Text skillTitle, skillText;
+    [SerializeField] private GameObject skillTooltipPanel;
 
-    public void GetSkill(SkillData skillData)
+    protected override void OnAwake()
+    {
+        base.OnAwake();
+        expModel = gameObject.AddComponent<SkillExpModel>();
+
+        expModel.CurrExp.Subscribe(value => currExp.text = $"현재 경험치 : {value:F01}").AddTo(currExp);
+        expModel.NeedExp.Subscribe(value => needExp.text = $"다음 스킬 습득에 필요한 경험치 : {value}").AddTo(needExp);
+        expModel.GetExpPerSec.Subscribe(value => getExpPerSec.text = $"초당 경험치 획득량 : {value}").AddTo(getExpPerSec);
+        expModel.Initialize();
+    }
+
+    public void GetSkill(SkillData skillData, out bool canGetSkill)
     {
         currentSkillStats = GameManager.Instance.clone.gameObject.GetComponent<AddedSkillStats>() ??
                               GameManager.Instance.clone.gameObject.AddComponent<AddedSkillStats>();
+
+        canGetSkill = expModel.GetSkill();
+
+        if (!canGetSkill) return;
         
         switch (skillData.skillType)
         {
@@ -45,8 +67,18 @@ public class SkillManager : Singleton<SkillManager>
             case SkillData.SkillType.AddAutoAttacking:
                 currentSkillStats.gotAutoAttack = true;
                 break;
+            case SkillData.SkillType.AddExtraLife:
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    public Transform ShowTooltip(SkillData data)
+    {
+        skillTitle.text = data.skillTitle;
+        skillText.text = data.value > 0 ? string.Format(data.skillText, data.value) : data.skillText;
+        skillTooltipPanel.SetActive(true);
+        return skillTooltipPanel.transform;
     }
 }

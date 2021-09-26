@@ -32,6 +32,7 @@ public class Actor : MonoBehaviour, IReboundable
 
     protected virtual void Update()
     {
+        render.sortingOrder = -Utility.World2Grid(transform.position + Vector3.down * 0.7f).y;
         Move();    
     }
 

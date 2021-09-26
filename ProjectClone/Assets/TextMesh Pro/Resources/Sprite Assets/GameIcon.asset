@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+        m_Texture: {fileID: 2800000, guid: 73cabe44bdf8fe844a2e54ea2b723fcf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -35,6 +35,7 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,13 +46,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
-  m_Name: EmojiOne
+  m_Name: GameIcon
   m_EditorClassIdentifier: 
   hashCode: -1836805472
   material: {fileID: 2103686}
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
+    m_FaceIndex: 0
     m_FamilyName: 
     m_StyleName: 
     m_PointSize: 0
@@ -71,44 +73,44 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  spriteSheet: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+  spriteSheet: {fileID: 2800000, guid: 73cabe44bdf8fe844a2e54ea2b723fcf, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 128522
     m_GlyphIndex: 0
     m_Scale: 1
-    m_Name: Smiling face with smiling eyes
-    m_HashCode: -1318250903
+    m_Name: Health
+    m_HashCode: -1510403364
   - m_ElementType: 2
     m_Unicode: 128523
     m_GlyphIndex: 1
     m_Scale: 1
-    m_Name: 1f60b
-    m_HashCode: 57188339
+    m_Name: Mental
+    m_HashCode: -1397890881
   - m_ElementType: 2
     m_Unicode: 128525
     m_GlyphIndex: 2
     m_Scale: 1
-    m_Name: 1f60d
-    m_HashCode: 57188341
+    m_Name: Mineral
+    m_HashCode: 966877424
   - m_ElementType: 2
     m_Unicode: 128526
     m_GlyphIndex: 3
     m_Scale: 1
-    m_Name: 1f60e
-    m_HashCode: 57188340
+    m_Name: Organic
+    m_HashCode: 628563615
   - m_ElementType: 2
     m_Unicode: 128512
     m_GlyphIndex: 4
     m_Scale: 1
-    m_Name: Grinning face
-    m_HashCode: -95541379
+    m_Name: Bow
+    m_HashCode: 75514
   - m_ElementType: 2
     m_Unicode: 128513
     m_GlyphIndex: 5
     m_Scale: 1
-    m_Name: 1f601
-    m_HashCode: 57188256
+    m_Name: Book
+    m_HashCode: 2491209
   - m_ElementType: 2
     m_Unicode: 128514
     m_GlyphIndex: 6
@@ -175,14 +177,14 @@ MonoBehaviour:
       m_Width: 128
       m_Height: 128
       m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 115.6
+      m_HorizontalBearingY: 100
       m_HorizontalAdvance: 128
     m_GlyphRect:
       m_X: 0
-      m_Y: 384
-      m_Width: 128
-      m_Height: 128
-    m_Scale: 1
+      m_Y: 0
+      m_Width: 64
+      m_Height: 64
+    m_Scale: 1.2
     m_AtlasIndex: 0
     sprite: {fileID: 0}
   - m_Index: 1
@@ -190,14 +192,14 @@ MonoBehaviour:
       m_Width: 128
       m_Height: 128
       m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 115.6
+      m_HorizontalBearingY: 100
       m_HorizontalAdvance: 128
     m_GlyphRect:
-      m_X: 128
-      m_Y: 384
-      m_Width: 128
-      m_Height: 128
-    m_Scale: 1
+      m_X: 64
+      m_Y: 0
+      m_Width: 64
+      m_Height: 64
+    m_Scale: 1.2
     m_AtlasIndex: 0
     sprite: {fileID: 0}
   - m_Index: 2
@@ -205,14 +207,14 @@ MonoBehaviour:
       m_Width: 128
       m_Height: 128
       m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 115.6
+      m_HorizontalBearingY: 100
       m_HorizontalAdvance: 128
     m_GlyphRect:
-      m_X: 256
-      m_Y: 384
-      m_Width: 128
-      m_Height: 128
-    m_Scale: 1
+      m_X: 128
+      m_Y: 0
+      m_Width: 64
+      m_Height: 64
+    m_Scale: 1.2
     m_AtlasIndex: 0
     sprite: {fileID: 0}
   - m_Index: 3
@@ -220,14 +222,14 @@ MonoBehaviour:
       m_Width: 128
       m_Height: 128
       m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 115.6
+      m_HorizontalBearingY: 100
       m_HorizontalAdvance: 128
     m_GlyphRect:
-      m_X: 384
-      m_Y: 384
-      m_Width: 128
-      m_Height: 128
-    m_Scale: 1
+      m_X: 192
+      m_Y: 0
+      m_Width: 64
+      m_Height: 64
+    m_Scale: 1.2
     m_AtlasIndex: 0
     sprite: {fileID: 0}
   - m_Index: 4
@@ -235,14 +237,14 @@ MonoBehaviour:
       m_Width: 128
       m_Height: 128
       m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 115.6
+      m_HorizontalBearingY: 100
       m_HorizontalAdvance: 128
     m_GlyphRect:
-      m_X: 0
-      m_Y: 256
-      m_Width: 128
-      m_Height: 128
-    m_Scale: 1
+      m_X: 256
+      m_Y: 0
+      m_Width: 64
+      m_Height: 64
+    m_Scale: 1.5
     m_AtlasIndex: 0
     sprite: {fileID: 0}
   - m_Index: 5
@@ -250,14 +252,14 @@ MonoBehaviour:
       m_Width: 128
       m_Height: 128
       m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 115.6
+      m_HorizontalBearingY: 100
       m_HorizontalAdvance: 128
     m_GlyphRect:
-      m_X: 128
-      m_Y: 256
-      m_Width: 128
-      m_Height: 128
-    m_Scale: 1
+      m_X: 320
+      m_Y: 0
+      m_Width: 64
+      m_Height: 64
+    m_Scale: 1.5
     m_AtlasIndex: 0
     sprite: {fileID: 0}
   - m_Index: 6
@@ -657,3 +659,4 @@ Material:
     m_TexEnvs: []
     m_Floats: []
     m_Colors: []
+  m_BuildTextureStacks: []

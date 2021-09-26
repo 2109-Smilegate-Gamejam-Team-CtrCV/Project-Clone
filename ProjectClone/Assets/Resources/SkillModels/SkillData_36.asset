@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkillData_36
   m_EditorClassIdentifier: 
   skillIcon: {fileID: 21300000, guid: d154df6656cf91f4584931e829ec4a13, type: 3}
-  skillType: 9
+  skillType: 11
   value: 0
   skillTitle: "\uBBF8\uC815"
   skillText: "\uBBF8\uC815\n"
