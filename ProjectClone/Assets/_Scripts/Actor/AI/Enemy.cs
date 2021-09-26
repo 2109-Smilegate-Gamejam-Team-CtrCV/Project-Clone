@@ -17,6 +17,8 @@ public class Enemy : Actor, IAttackabale
     [SerializeField] Color moveGizmoColor = Color.cyan;
     [SerializeField] Color attackGizmoColor = Color.red;
 #endif
+    [SerializeField] Bullet bulletPrefab;
+
     public int attackPower = 1;
     public float attackSpeed = 1f;
     public float attackRadius = 3f;
@@ -34,7 +36,7 @@ public class Enemy : Actor, IAttackabale
     public bool isBulletAttack 
     { 
         get 
-        { 
+        {
             return weaponType == EWeaponType.Bow || weaponType == EWeaponType.Wand; 
         } 
     }
@@ -56,6 +58,9 @@ public class Enemy : Actor, IAttackabale
             SetTarget(GameManager.Instance.clone);
 
         base.Update();
+
+        if (isBulletAttack)
+            Attack();
     }
 
     public override void Move()
@@ -63,7 +68,7 @@ public class Enemy : Actor, IAttackabale
         if (targetClone == null)
             return;
 
-        //if (IsAttackRange())
+        //if (isBulletAttack && IsAttackRange())
         //    return;
 
         moveDir = (targetClone.transform.position2D() - transform.position2D()).normalized;
@@ -82,10 +87,13 @@ public class Enemy : Actor, IAttackabale
         if (nextAttackTime.IsEnoughTime() == false || IsAttackRange() == false)
             return;
 
-        Debug.Log("attack player");
         nextAttackTime = DateTime.Now.AddSeconds(attackSpeed);
 
         // todo : 투사체 발사
+        Bullet bullet = Instantiate(bulletPrefab, weapon.position, Quaternion.identity);
+        bullet.isPlayer = false;
+        bullet.velocity = attackSpeed * (targetClone.transform.position - weapon.position).normalized;
+        bullet.damage = attackPower;
     }
 
     bool IsAttackRange()
