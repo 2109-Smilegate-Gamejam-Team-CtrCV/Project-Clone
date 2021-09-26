@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3009414005095111015}
   - component: {fileID: 2525695725553454541}
-  - component: {fileID: 8661036242898433227}
   - component: {fileID: 5996094074036613266}
   - component: {fileID: 6099404120518903990}
+  - component: {fileID: 8635785353445404917}
   m_Layer: 0
   m_Name: HealthHealingBuilding
   m_TagString: Building
@@ -85,32 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8661036242898433227
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3009414005095111013}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1, y: 1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2}
-  m_EdgeRadius: 0
 --- !u!114 &5996094074036613266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +103,7 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 1, y: 1}
-  createCount: 5
+  createCount: 35
   isCreate: 0
   range: 0
   healthHealDelay: 15
@@ -150,3 +124,19 @@ CircleCollider2D:
   m_Offset: {x: 1, y: 1}
   serializedVersion: 2
   m_Radius: 6
+--- !u!58 &8635785353445404917
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3009414005095111013}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1, y: 1}
+  serializedVersion: 2
+  m_Radius: 0.5
