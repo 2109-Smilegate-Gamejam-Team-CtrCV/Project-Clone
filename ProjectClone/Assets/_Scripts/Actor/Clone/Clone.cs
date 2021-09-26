@@ -31,7 +31,7 @@ public class Clone : Actor, IPlayable
 #endif
     public int buildingPower = 3;
     public float buildingSpeed = 1.3f;
-    public float buildingRange = 1f;
+    public float buildingRange = 2.5f;
 
     DateTime nextMiningTime;
     DateTime nextBuildTime;
