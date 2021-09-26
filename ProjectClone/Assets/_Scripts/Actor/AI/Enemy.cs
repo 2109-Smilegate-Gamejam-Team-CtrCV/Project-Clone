@@ -30,7 +30,14 @@ public class Enemy : Actor, IAttackabale
     Transform weapon;
 
     public int Rank = 1;
-    EWeaponType weaponType;
+    public EWeaponType weaponType;
+    public bool isBulletAttack 
+    { 
+        get 
+        { 
+            return weaponType == EWeaponType.Bow || weaponType == EWeaponType.Wand; 
+        } 
+    }
 
     public override void Init()
     {
@@ -41,7 +48,6 @@ public class Enemy : Actor, IAttackabale
         nextAttackTime = DateTime.Now;
 
         weapon = root.GetChild(0);
-        Dead();
     }
 
     protected override void Update()
@@ -95,7 +101,9 @@ public class Enemy : Actor, IAttackabale
         // todo : 사망 처리
         animator.SetTrigger("Death");
         gameObject.tag = "Untagged";
-        Destroy(this);
+
+        Destroy(this); // 스크립트 바로 제거
+        Destroy(gameObject, 30f); // 사망 애니메이션 30초 후 제거
     }
 
     public void SetTarget(Clone clone)
@@ -104,7 +112,7 @@ public class Enemy : Actor, IAttackabale
     }
 
 #if UNITY_EDITOR
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = attackGizmoColor;
         Gizmos.DrawWireSphere(transform.position, attackRadius);

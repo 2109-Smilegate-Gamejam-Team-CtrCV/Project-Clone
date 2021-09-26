@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public struct Coord : IComparer<int>
 {
@@ -39,7 +40,7 @@ public class Portal : Cell
     [SerializeField] Color summonGizmoColor = Color.yellow;
 #endif
 
-    [SerializeField] Enemy[] enemyPrefabs;
+    [SerializeField] List<Enemy> enemyPrefabs = new List<Enemy>();
 
     public int summonRadius = 10;
 
@@ -71,9 +72,9 @@ public class Portal : Cell
 
     public void SummonEnemy(int[] enemySummonCounts)
     {
-        for (int grade = 0; grade < enemySummonCounts.Length; ++grade)
+        for (int rank = 1; rank <= enemySummonCounts.Length; ++rank)
         {
-            int count = enemySummonCounts[grade];
+            int count = enemySummonCounts[rank - 1];
 
             for (int i = 0; i != count;)
             {
@@ -83,10 +84,13 @@ public class Portal : Cell
                 Coord summonCoord = new Coord(v2i.x, v2i.y);
                 if (coordSet.Contains(summonCoord) == false)
                 {
-                    coordSet.Add(summonCoord);
-                    ++i;
-                    Enemy enemy = CreateEnemy(grade, summonCoord);
-                    enemyList.Add(enemy);
+                    Enemy enemy = CreateEnemy(rank, summonCoord);
+                    if (enemy != null)
+                    {
+                        enemyList.Add(enemy);
+                        coordSet.Add(summonCoord);
+                        ++i;
+                    }
                 }
             }
         }
@@ -115,14 +119,23 @@ public class Portal : Cell
     //    } 
     //}
 
-    Enemy CreateEnemy(int grade, Coord summonCoord)
+    Enemy CreateEnemy(int rank, Coord summonCoord)
     {
-        Enemy enemyPrefab = enemyPrefabs[grade];
+        List<Enemy> targetList = enemyPrefabs.FindAll(e => e.Rank == rank);
+        int index = Random.Range(0, targetList.Count);
+
+        Enemy enemyPrefab = targetList[index];
+        if (enemyPrefab == null)
+        {
+            Debug.LogErrorFormat("Can not Find Correct Enemy. Rank : {0}", rank);
+            return null;
+        }
+
         Enemy enemy = Instantiate(enemyPrefab, summonCoord.ToVector2, Quaternion.identity, transform);
         enemy.transform.position = summonCoord.ToVector2;
         enemy.Init();
 
-        //Debug.LogFormat("Summon Enemy. Grade : {0}", grade + 1);
+        //Debug.LogFormat("Summon Enemy. Name {0}, Rank : {1}", enemy.name, rank);
         return enemy;
     }
 
@@ -148,7 +161,7 @@ public class Portal : Cell
     //}
 
 #if UNITY_EDITOR
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = summonGizmoColor;
         Gizmos.DrawWireSphere(transform.position, summonRadius);

@@ -233,7 +233,7 @@ public class Clone : Actor, IPlayable
     }
 
 #if UNITY_EDITOR
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = miningGizmoColor;
         Gizmos.DrawWireSphere(transform.position, miningRange);
