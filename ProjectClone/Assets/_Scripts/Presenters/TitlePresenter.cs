@@ -14,7 +14,10 @@ public class TitlePresenter : MonoBehaviour
 
     private void Awake()
     {
-
+        SoundManager.Instance.AdjustMasterVolume(OptionManager.Instance.Master);
+        SoundManager.Instance.AdjustBGMVolume(OptionManager.Instance.BGM);
+        SoundManager.Instance.AdjustFxVoulme(OptionManager.Instance.VFX);
+        SoundManager.Instance.PlayBGMSound("BGM");
         mainView.StartClick.Subscribe(_ => SceneManager.LoadScene(1));
         mainView.OptionClick.Subscribe(_ => optionView.Show());
         mainView.ExitClick.Subscribe(_ => Application.Quit());

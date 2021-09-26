@@ -28,6 +28,7 @@ public abstract class Building : Cell
             createCounter += damage;
             GetComponent<SpriteRenderer>().material.DOFloat(createCounter / createCount, "_Gray", 0.25f);
 
+            SoundManager.Instance.PlayFXSound("Hammer");
             transform.DOScaleY(1, 0.5f).From(1.2f);
             if(createCounter >= createCount)
             {

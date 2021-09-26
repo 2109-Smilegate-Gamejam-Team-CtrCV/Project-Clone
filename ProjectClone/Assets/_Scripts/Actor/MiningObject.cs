@@ -36,6 +36,16 @@ public class MiningObject : MonoBehaviour, IGatherable
         Debug.Log("cur hp : " + HP);
         transform.DOShakePosition(0.25f,new Vector2(0.35f, 0.2f),50);
         GetComponent<SpriteRenderer>().material.DOColor(Color.black, "_Addtive", 0.25f).From(Color.white);
+
+        if (eResource == EResource.Organism)
+        {
+            SoundManager.Instance.PlayFXSound("Axe");
+        }
+        else
+        {
+            SoundManager.Instance.PlayFXSound("Mining");
+        }
+
         if (HP <= 0 && !isDeath)
         {
             GainResource();
