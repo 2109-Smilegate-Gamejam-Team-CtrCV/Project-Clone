@@ -53,6 +53,7 @@ MonoBehaviour:
   reboundPower: 5
   moveGizmoColor: {r: 0, g: 1, b: 1, a: 1}
   attackGizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  bulletPrefab: {fileID: -8021436701540116091, guid: 3d4e138dbaa71fb4a8d11b840387b608, type: 3}
   attackPower: 1
   attackSpeed: 1
   attackRadius: 3
