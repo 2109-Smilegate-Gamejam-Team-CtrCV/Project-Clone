@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   maxHP: 6
-  moveSpeed: 5
+  moveSpeed: 2
   reboundPower: 1
   mental: 0
   maxMental: 30
