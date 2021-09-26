@@ -8,10 +8,10 @@ public class Bullet : MonoBehaviour
 
     public bool isPlayer;
     public Vector2 velocity;
-
+    public float lifeTime;
     private void Awake()
     {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, lifeTime);
     }
 
     private void Update()

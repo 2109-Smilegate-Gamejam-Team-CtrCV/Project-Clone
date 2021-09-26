@@ -21,7 +21,7 @@ public class MentalHealingBuilding : Building
 
     private void Awake()
     {
-        checkPlayerCollider.OnTriggerStayAsObservable().Subscribe(collision =>
+        checkPlayerCollider.OnTriggerEnter2DAsObservable().Subscribe(collision =>
         {
             if (collision.CompareTag("Player"))
             {
@@ -30,7 +30,7 @@ public class MentalHealingBuilding : Building
             }
         }).AddTo(gameObject);
 
-        checkPlayerCollider.OnTriggerExitAsObservable().Subscribe(collision =>
+        checkPlayerCollider.OnTriggerExit2DAsObservable().Subscribe(collision =>
         {
             if (collision.CompareTag("Player"))
             {
@@ -40,6 +40,7 @@ public class MentalHealingBuilding : Building
         }).AddTo(gameObject);
     }
     
+
     private void Update()
     {
         if (isPlayerEnter && isCreate)

@@ -77,6 +77,7 @@ public class MiningObject : MonoBehaviour, IGatherable
             transform.DOScaleY(0.1f, 0.5f);
         }
         isDeath = true;
+        SoundManager.Instance.PlayFXSound("Give");
         Destroy(gameObject,0.5f);
     }
 }

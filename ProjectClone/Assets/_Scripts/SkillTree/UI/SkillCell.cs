@@ -33,6 +33,8 @@ public class SkillCell : MonoBehaviour
                 cell.canUnlock = true;
             }
             isUnlocked = true;
+
+            SoundManager.Instance.PlayFXSound("Skill");
             transform.DOScale(1, 0.75f);
             GetComponent<Image>().DOColor(Color.white,0.75f);
         }).AddTo(gameObject);

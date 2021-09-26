@@ -104,10 +104,8 @@ MonoBehaviour:
   isCreate: 0
   range: 60
   mentalHeal: 2
---- !u!58 &4525502180571480306
-  mentalHeal: 1
   isPlayerEnter: 0
-  checkPlayerCollider: {fileID: 0}
+  checkPlayerCollider: {fileID: 1062523131992988778}
 --- !u!58 &5876718235609532796
 CircleCollider2D:
   m_ObjectHideFlags: 0
