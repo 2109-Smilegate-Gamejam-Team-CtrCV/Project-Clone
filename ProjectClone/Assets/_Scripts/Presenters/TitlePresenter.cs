@@ -27,9 +27,9 @@ public class TitlePresenter : MonoBehaviour
 
 
         optionView.CancelClick.Subscribe(p => optionView.Hide());
-        optionView.MasterVolumeValueChanged.Subscribe(p => OptionManager.Instance.Master = p);
-        optionView.BGMVolumeValueChanged.Subscribe(p => OptionManager.Instance.BGM = p);
-        optionView.VFXVolumeValueChanged.Subscribe(p => OptionManager.Instance.VFX = p);
+        optionView.MasterVolumeValueChanged.Subscribe(p => { OptionManager.Instance.Master = p; SoundManager.Instance.AdjustMasterVolume(p); })  ;
+        optionView.BGMVolumeValueChanged.Subscribe(p => { OptionManager.Instance.BGM = p; SoundManager.Instance.AdjustBGMVolume(p); });
+        optionView.VFXVolumeValueChanged.Subscribe(p => { OptionManager.Instance.VFX = p; SoundManager.Instance.AdjustFxVoulme(p); });
 
     }
 }
