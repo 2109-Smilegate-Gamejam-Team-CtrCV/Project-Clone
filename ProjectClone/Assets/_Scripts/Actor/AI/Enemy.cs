@@ -33,6 +33,7 @@ public class Enemy : Actor, IAttackabale
 
     public int Rank = 1;
     public EWeaponType weaponType;
+    public Transform health;
     public bool isBulletAttack 
     { 
         get 
@@ -51,7 +52,18 @@ public class Enemy : Actor, IAttackabale
 
         weapon = root.GetChild(0);
     }
+    public override bool GetDamage(int power)
+    {
+        HP = Mathf.Clamp(HP - power, 0, maxHP);
+        health.transform.localScale = new Vector3(HP / (float)maxHP, 1, 1);
 
+        if (HP <= 0)
+        {
+            Dead();
+        }
+
+        return HP <= 0;
+    }
     protected override void Update()
     {
         if (targetClone == null)

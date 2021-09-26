@@ -42,7 +42,11 @@ public class Clone : Actor, IPlayable
 
     Vector3 leftScale = new Vector3(-1f, 1f, 1f);
     Vector3 rightScale = new Vector3(1f, 1f, 1f);
+    private void Start()
+    {
 
+        GameManager.Instance.gamePresenter.gameMainView.SetHeart(maxHP, HP);
+    }
     protected override void Update()
     {
         if (isDead)
