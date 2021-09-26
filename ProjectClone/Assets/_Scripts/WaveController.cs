@@ -80,24 +80,24 @@ public class WaveController : MonoBehaviour
 
     public int[] GetSummonMonsterCount()
     {
-        int[] grades = new int[4];
+        int[] rankCounts = new int[4];
         if (isMonsterCarnival) // 몬스터 카니발
         {
-            grades[0] = waveLevel + waveLevel;
-            grades[1] = (waveLevel / 3) + (waveLevel / 5);
-            grades[2] = (waveLevel / 8) + (waveLevel / 10);
-            grades[3] = waveLevel / 15;
+            rankCounts[0] = waveLevel + waveLevel;
+            rankCounts[1] = (waveLevel / 3) + (waveLevel / 5);
+            rankCounts[2] = (waveLevel / 8) + (waveLevel / 10);
+            rankCounts[3] = waveLevel / 15;
         }
         else
         {
-            grades[0] = waveLevel;
-            grades[1] = waveLevel / 3;
-            grades[2] = waveLevel / 8;
-            grades[3] = 0;
+            rankCounts[0] = waveLevel;
+            rankCounts[1] = waveLevel / 3;
+            rankCounts[2] = waveLevel / 8;
+            rankCounts[3] = 0;
         }
 
-        Debug.LogFormat("Wave Level : {4} -> 1등급 : {0} 마리, 2등급 : {1} 마리, 3등급 : {2} 마리, 4등급 : {3} 마리", grades[0], grades[1], grades[2], grades[3], waveLevel);
-        return grades;
+        Debug.LogFormat("Wave Level : {4} -> 1등급 : {0} 마리, 2등급 : {1} 마리, 3등급 : {2} 마리, 4등급 : {3} 마리", rankCounts[0], rankCounts[1], rankCounts[2], rankCounts[3], waveLevel);
+        return rankCounts;
     }
 
     public void GetCenterPos()

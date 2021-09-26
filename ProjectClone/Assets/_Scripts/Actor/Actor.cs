@@ -12,6 +12,8 @@ public class Actor : MonoBehaviour, IReboundable
 
     public float moveSpeed = 1f;
 
+    public float reboundPower = 1f;
+
     protected Transform root;
     protected SpriteRenderer render;
     protected Rigidbody2D rb;
@@ -62,7 +64,7 @@ public class Actor : MonoBehaviour, IReboundable
             Vector2 reboundDir = (transform.position2D() - collision.transform.position2D()).normalized;
 
             int attackPower = GetEnemyPower(collision.collider);
-            Rebound(reboundDir, attackPower);
+            Rebound(reboundDir, attackPower * reboundPower);
             GetDamage(attackPower);
         }
     }
@@ -73,7 +75,7 @@ public class Actor : MonoBehaviour, IReboundable
 
         if (gameObject.CompareTag("Enemy"))
         {
-            enemy = collider.GetComponent<Enemy>();
+            enemy = gameObject.GetComponent<Enemy>();
         }
         else if (collider.CompareTag("Enemy"))
         {
@@ -91,7 +93,7 @@ public class Actor : MonoBehaviour, IReboundable
         return EnemyTags.Contains(tag);
     }
 
-    public void Rebound(Vector2 direction, int power)
+    public void Rebound(Vector2 direction, float power)
     {
         // todo : 충돌 시, 반대 방향으로 튕겨나간다.
         rb.AddForce(direction * power, ForceMode2D.Impulse);
@@ -100,7 +102,7 @@ public class Actor : MonoBehaviour, IReboundable
 
 public interface IReboundable
 {
-    public void Rebound(Vector2 direction, int power);
+    public void Rebound(Vector2 direction, float power);
 }
 
 public interface IAttackabale

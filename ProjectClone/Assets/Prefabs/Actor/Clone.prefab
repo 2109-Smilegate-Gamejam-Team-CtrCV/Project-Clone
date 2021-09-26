@@ -132,6 +132,7 @@ MonoBehaviour:
   HP: 0
   maxHP: 6
   moveSpeed: 5
+  reboundPower: 1
   mental: 0
   maxMental: 30
   consumeMental: 1
@@ -140,8 +141,6 @@ MonoBehaviour:
   miningSpeed: 1.3
   miningRange: 2
   miningRate: 1
-  mineral: 0
-  organic: 0
   buildingGizmoColor: {r: 0, g: 0, b: 1, a: 1}
   buildingPower: 3
   buildingSpeed: 1.3
