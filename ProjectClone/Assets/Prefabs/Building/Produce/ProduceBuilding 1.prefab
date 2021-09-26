@@ -53,9 +53,9 @@ MonoBehaviour:
   - {x: 1, y: 1}
   createCount: 30
   isCreate: 0
-  delayTimer: 3
+  delayTimer: 8
   produceItemType: 0
-  itemCount: 2
+  itemCount: 1
 --- !u!212 &6647346757942973298
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -121,5 +121,14 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1, y: 1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 2, y: 3}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
   m_Radius: 0.75

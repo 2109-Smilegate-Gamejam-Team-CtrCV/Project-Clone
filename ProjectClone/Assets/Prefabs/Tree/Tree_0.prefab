@@ -130,9 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  maxHP: 20
+  maxHP: 30
   eResource: 1
-  amount: 10
+  amount: 8
   isDeath: 0
   health: {fileID: 9124477457319399486}
 --- !u!1 &6156710960831720773

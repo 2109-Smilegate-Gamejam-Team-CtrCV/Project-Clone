@@ -50,9 +50,9 @@ MonoBehaviour:
   - {x: 0, y: 0}
   createCount: 15
   isCreate: 0
-  experienceCreateValue: 2
-  experienceCreateDelay: 10
-  experienceCreateDelaySpace: 4
+  experienceCreateValue: 1
+  experienceCreateDelay: 8
+  experienceCreateDelaySpace: 5
 --- !u!212 &5955744302949729000
 SpriteRenderer:
   m_ObjectHideFlags: 0
