@@ -42,7 +42,11 @@ public class Clone : Actor, IPlayable
 
     Vector3 leftScale = new Vector3(-1f, 1f, 1f);
     Vector3 rightScale = new Vector3(1f, 1f, 1f);
+    private void Start()
+    {
 
+        GameManager.Instance.gamePresenter.gameMainView.SetHeart(maxHP, HP);
+    }
     protected override void Update()
     {
         if (isDead)
@@ -186,13 +190,17 @@ public class Clone : Actor, IPlayable
     bool ReduceMental()
     {
         // todo : 1ÃÊ¸¶´Ù ¸àÅ»À» ±ï´Â´Ù.
-        if (nextConsumeTime.IsEnoughTime())
+        if (nextConsumeTime.IsEnoughTime() )
         {
             float nextTime = eMindState == EMindState.Stability ? 1f : 0.5f;
             nextConsumeTime = DateTime.Now.AddSeconds(nextTime);
+            if(eMindState != EMindState.Stability)
+            {
+                mental = Mathf.Clamp(mental - totalCousumeMental, 0, maxMental);
 
-            mental = Mathf.Clamp(mental - totalCousumeMental, 0, maxMental);
+            }
             GameManager.Instance.gamePresenter.gameMainView.MetalGauge = mental / maxMental;
+
             //GameManager.Instance.gamePresenter.gameModel.AddMental(-totalCousumeMental);
 
             if (mental <= 0)
