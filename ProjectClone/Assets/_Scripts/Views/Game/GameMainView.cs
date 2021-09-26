@@ -69,17 +69,19 @@ public class GameMainView : MonoBehaviour
         get => subject;
     }
 
-    public void SetHeart(int heart)
+    public void SetHeart(int maxHeart, int heart)
     {
         foreach (Transform item in heartTransform)
         {
             Destroy(item.gameObject);
         }
 
-        for (int i = 0; i < heart; i++)
+        for (int i = 0; i < maxHeart; i++)
         {
             var haert =Instantiate(heartUI, Vector3.zero, Quaternion.identity, heartTransform);
             haert.transform.localPosition = Vector3.zero;
+            if (heart > i) haert.GetComponent<Image>().color = Color.white;
+            else haert.GetComponent<Image>().color = Color.black;
         }
     }
     public void AddShopHeader(string name)

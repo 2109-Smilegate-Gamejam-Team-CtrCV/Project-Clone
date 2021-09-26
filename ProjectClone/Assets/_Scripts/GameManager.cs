@@ -19,6 +19,8 @@ public class GameManager : Singleton<GameManager>
     public int index = 0;
     private List<Cell> grids;
 
+
+    public Building[] cells;
     [SerializeField]
     private bool isBuildingMode;
 
@@ -34,6 +36,17 @@ public class GameManager : Singleton<GameManager>
         gamePresenter.Init();
         mapGenerator.Generator(this);
         CreateNextClone();
+
+
+        var i = Instantiate(cells[0], (Vector2)Utility.Grid2World(new Vector2Int(mapGenerator.size.x / 2, mapGenerator.size.y / 2 + 2)), Quaternion.identity);
+        AddCell(i);
+        i.SetCreateActive();
+
+
+        var j = Instantiate(cells[1], (Vector2)Utility.Grid2World(new Vector2Int(mapGenerator.size.x / 2+3, mapGenerator.size.y / 2 + 2)), Quaternion.identity);
+        AddCell(j);
+        j.SetCreateActive();
+
 
         if (waveControl != null)
             waveControl.Init();

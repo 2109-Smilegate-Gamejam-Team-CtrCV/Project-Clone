@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -208281097
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9f665056bff099e4ca46ade2e51e56bb, type: 3}
+  m_Sprite: {fileID: 909844823646958635, guid: 4bb915ae0d80004438f184d99dc13aab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3328451879864356332}
   - component: {fileID: 1380012489114730220}
   m_Layer: 0
-  m_Name: DarkElf
+  m_Name: DarkElf_Wand
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,11 +130,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  maxHP: 6
-  moveSpeed: 1
+  maxHP: 12
+  moveSpeed: 3
+  reboundPower: 5
   moveGizmoColor: {r: 0, g: 1, b: 1, a: 1}
   attackGizmoColor: {r: 1, g: 0, b: 0, a: 1}
-  attackPower: 1
+  attackPower: 3
   attackSpeed: 1
   attackRadius: 3
   Rank: 4

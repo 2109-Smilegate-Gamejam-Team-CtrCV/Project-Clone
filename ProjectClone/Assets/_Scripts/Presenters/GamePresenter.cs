@@ -16,7 +16,6 @@ public class GamePresenter : MonoBehaviour
     {
         gameModel = new GameModel();
 
-        gameModel.heart.Subscribe(value => gameMainView.SetHeart(value));
         gameModel.mineral.Subscribe(value => gameMainView.MineralText = value.ToString());
         gameModel.organism.Subscribe(value => gameMainView.OrganismText = value.ToString());
         gameMainView.ShopTapChanged.Subscribe(p => gameMainView.SetValueChanged(buildShopList[p].buildingItems));

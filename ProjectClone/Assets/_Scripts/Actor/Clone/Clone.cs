@@ -71,6 +71,9 @@ public class Clone : Actor, IPlayable
         nextMiningTime = DateTime.Now;
         nextBuildTime = DateTime.Now;
         nextConsumeTime = DateTime.Now;
+
+
+        GameManager.Instance.gamePresenter.gameMainView.SetHeart(maxHP, HP);
     }
 
     public override void Move()
@@ -204,7 +207,7 @@ public class Clone : Actor, IPlayable
     public override bool GetDamage(int power)
     {
         bool isDead = base.GetDamage(power);
-        GameManager.Instance.gamePresenter.gameMainView.SetHeart(HP);
+        GameManager.Instance.gamePresenter.gameMainView.SetHeart(maxHP,HP);
 
         return isDead;
     }
