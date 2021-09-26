@@ -56,11 +56,13 @@ MonoBehaviour:
   attackGizmoColor: {r: 1, g: 0, b: 0, a: 1}
   bulletPrefab: {fileID: -8021436701540116091, guid: 1b94635a57429784c940082afda2fad2, type: 3}
   attackPower: 1
-  attackSpeed: 1
+  attackSpeed: 5
+  attackCoolTime: 4
   attackRadius: 3
   Rank: 2
   weaponType: 2
   health: {fileID: 5769569665090521468}
+  ___offset: 0
 --- !u!50 &3328451879864356335
 Rigidbody2D:
   serializedVersion: 4
