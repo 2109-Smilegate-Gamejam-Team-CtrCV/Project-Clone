@@ -10,6 +10,7 @@ public class MentalHealingBuilding : Building
     [SerializeField]
     private float mentalHeal;
     private float timer;
+    [SerializeField]
     private bool isPlayerEnter;
 
     private const float MetalHealDelay = 0.5f;
@@ -21,7 +22,8 @@ public class MentalHealingBuilding : Building
             if (timer > MetalHealDelay)
             {
                 timer -= MetalHealDelay;
-                GameManager.Instance.gamePresenter.gameModel.AddMental(mentalHeal * 0.5f);
+                Debug.Log("¸ÞÅ» È¸º¹");
+                GameManager.Instance.clone.mental += mentalHeal;
             }
         }
     }
