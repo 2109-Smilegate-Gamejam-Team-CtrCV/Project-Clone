@@ -26,7 +26,6 @@ public class Actor : MonoBehaviour, IReboundable
         root = transform.GetChild(0);
 
         render = GetComponentInChildren<SpriteRenderer>();
-        render.sortingOrder = -Utility.World2Grid(transform.position).y;
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -34,7 +33,14 @@ public class Actor : MonoBehaviour, IReboundable
 
     protected void FixedUpdate()
     {
-        render.sortingOrder = -Utility.World2Grid(transform.position + Vector3.down * 0.7f).y;
+        int sortingOrder = -Utility.World2Grid(transform.position + Vector3.down * 0.7f).y;
+        render.sortingOrder = sortingOrder;
+
+        SpriteRenderer[] childRenders = render.GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < childRenders.Length; i++)
+        {
+            childRenders[i].sortingOrder = sortingOrder;
+        }
     }
 
     protected virtual void Update()
