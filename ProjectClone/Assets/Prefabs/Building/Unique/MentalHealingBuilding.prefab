@@ -129,7 +129,7 @@ MonoBehaviour:
   createCount: 3
   isCreate: 0
   range: 60
-  mentalHeal: 2
+  mentalHeal: 1
 --- !u!58 &4525502180571480306
 CircleCollider2D:
   m_ObjectHideFlags: 0

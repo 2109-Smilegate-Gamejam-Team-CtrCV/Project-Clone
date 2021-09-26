@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: c6e2c38e378dfb240a6f48d676853e66, type: 3}
   Name: "\uD478\uB978 \uD683\uBD88"
-  Description: "\uC815\uC2E0\uB825\uC744 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294 \uAC74\uBB3C\n2<sprite
-    name=Mental>/1\uCD08"
+  Description: "\uC815\uC2E0\uB825\uC744 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294 \uAC74\uBB3C"
   Mineral: 0
   Organism: 0
   cell: {fileID: 2857666002793903974, guid: f8eea06b8851c2341bd5bb296efa95cb, type: 3}
