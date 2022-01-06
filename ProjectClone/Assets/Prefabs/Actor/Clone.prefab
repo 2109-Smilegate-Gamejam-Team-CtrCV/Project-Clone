@@ -138,12 +138,12 @@ MonoBehaviour:
   consumeMental: 1
   miningGizmoColor: {r: 1, g: 0.9203187, b: 0, a: 1}
   miningPower: 4
-  miningSpeed: 1
+  miningSpeed: 0.7
   miningRange: 4
   miningRate: 1
   buildingGizmoColor: {r: 0, g: 0, b: 1, a: 1}
   buildingPower: 4
-  buildingSpeed: 1
+  buildingSpeed: 0.7
   buildingRange: 4
   eMindState: 0
 --- !u!50 &5590044767114331873
